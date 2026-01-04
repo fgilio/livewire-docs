@@ -1,0 +1,50 @@
+{
+    "slug": "wire-current",
+    "title": "wire:current",
+    "description": "The wire:current directive allows you to easily detect and style currently active links on a page.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-current",
+    "sections": [
+        {
+            "title": "#Exact matching",
+            "content": "By default, wire:current uses a partial matching strategy, meaning it will be applied if the link and current page share the beginning portion of the Url's path.\nFor example, if the link is /posts, and the current page is /posts/1, the wire:current directive will be applied.\nIf you wish to use exact matching, you can add the .exact modifier to the directive.\nHere's an example where you might want to use exact matching to prevent the \"Dashboard\" link from being highlighted when the user visits /posts:",
+            "examples": [
+                {
+                    "code": "<nav> <a href=\"/\" wire:current.exact=\"font-bold\">Dashboard</a></nav>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Strict matching",
+            "content": "By default, wire:current will remove trailing slashes (/) from its comparison.\nIf you'd like to disable this behavior and force a stract path string comparison, you can append the .strict modifier:",
+            "examples": [
+                {
+                    "code": "<nav> <a href=\"/posts/\" wire:current.strict=\"font-bold\">Dashboard</a></nav>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Troubleshooting",
+            "content": "If wire:current is not detecting the current link correctly, ensure the following:",
+            "examples": []
+        }
+    ],
+    "directives_used": [
+        "wire:current"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:38+00:00"
+}

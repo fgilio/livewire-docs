@@ -1,0 +1,49 @@
+{
+    "slug": "offline",
+    "title": "Offline States",
+    "description": "In real-time applications, it can be helpful to provide a visual indication that the user's device is no longer connected to the internet.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/offline",
+    "sections": [
+        {
+            "title": "#Toggling classes",
+            "content": "Adding the class modifier allows you to add a class to an element when the user loses their connection. The class will be removed again, once the user is back online:\nOr, using the .remove modifier, you can remove a class when a user loses their connection. In this example, the bg-green-300 class will be removed from the <div> while the user has lost their connection:",
+            "examples": [
+                {
+                    "code": "<div wire:offline.class=\"bg-red-300\">",
+                    "type": "class"
+                },
+                {
+                    "code": "<div class=\"bg-green-300\" wire:offline.class.remove=\"bg-green-300\">",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Toggling attributes",
+            "content": "The .attr modifier allows you to add an attribute to an element when the user loses their connection. In this example, the \"Save\" button will be disabled while the user has lost their connection:",
+            "examples": [
+                {
+                    "code": "<button wire:offline.attr=\"disabled\">Save</button>",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [
+        "wire:offline"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:29+00:00"
+}

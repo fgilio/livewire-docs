@@ -1,0 +1,47 @@
+{
+    "slug": "session-properties",
+    "title": "Session Properties",
+    "description": "Livewire makes it easy to persist property values across page refreshes/changes using the #[Session] attribute.",
+    "category": "essentials",
+    "url": "https://livewire.laravel.com/docs/3.x/session-properties",
+    "sections": [
+        {
+            "title": "#Basic usage",
+            "content": "Here's a ShowPosts component that allows users to filter visible posts by a string stored in a $search property:\nBecause the #[Session] attribute has been added to the $search property, after a user enters a search value, they can refresh the page and the search value will be persisted. Every time $search is updated, its new value will be stored in the user's session and used across page loads.\nBecause Laravel sessions are loaded into memory during every request, you can slow down the performance of your entire application for a given user by storing too much in a user's session.",
+            "examples": [
+                {
+                    "code": "<?php use Livewire\\Attributes\\Session;use Livewire\\Component;use App\\Models\\Post; class ShowPosts extends Component{ #[Session] public $search;  protected function posts() { return $this->search === '' ? Post::all() : Post::where('title', 'like', '%'.$this->search.'%'); }  public function render() { return view('livewire.show-posts', [ 'posts' => $this->posts(), ]); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Setting a custom key",
+            "content": "When using [#Session], Livewire will store the property value in the session using a dynamically generated key that consists of the component name combined with the property name.\nThis ensures that properties across component instances will use the same session value. It also ensures properties of the same name from different components won't conflict.\nIf you want full control over what session key Livewire uses for a given property, you can pass the key: parameter:\nWhen Livewire stores and retrieves the value of the $search property, it will use the given key: \"search\".\nAdditionally, if you want to generate the key dynamically from other properties in your component, you can do so using the following curly brace notation:\nIn the above example, if the $author model's id is \"4\", the session key will become: search-4",
+            "examples": [
+                {
+                    "code": "<?php use Livewire\\Attributes\\Session;use Livewire\\Component; class ShowPosts extends Component{ #[Session(key: 'search')] public $search;  // ...}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php use Livewire\\Attributes\\Session;use Livewire\\Component;use App\\Models\\Author; class ShowPosts extends Component{ public Author $author;  #[Session(key: 'search-{author.id}')] public $search;  // ...}",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:22+00:00"
+}

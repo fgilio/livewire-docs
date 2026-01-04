@@ -1,0 +1,28 @@
+{
+    "name": "wire:poll",
+    "description": "Automatically refresh component data at specified intervals",
+    "variants": [
+        {
+            "syntax": "wire:poll",
+            "description": "Poll every 2.5 seconds (default)"
+        },
+        {
+            "syntax": "wire:poll.5s",
+            "description": "Poll every 5 seconds"
+        },
+        {
+            "syntax": "wire:poll.visible",
+            "description": "Only poll when element is visible"
+        },
+        {
+            "syntax": "wire:poll.keep-alive",
+            "description": "Continue polling even when tab is inactive"
+        },
+        {
+            "syntax": "wire:poll=\"refreshData\"",
+            "description": "Call specific method on poll"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

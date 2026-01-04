@@ -1,0 +1,37 @@
+{
+    "slug": "teleport",
+    "title": "Teleport",
+    "description": "Livewire allows you to teleport part of your template to another part of the DOM on the page entirely.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/teleport",
+    "sections": [
+        {
+            "title": "#Basic usage",
+            "content": "To teleport a portion of your template to another part of the DOM, you can wrap it in Livewire's @teleport directive.\nBelow is an example of using @teleport to render a modal dialog's contents at the end of the <body> element on the page:\nThe @teleport selector can be any string you would normally pass into something like document.querySelector().\nYou can learn more about document.querySelector() by consulting its MDN documentation.\nNow, when the above Livewire template is rendered on the page, the contents portion of the modal will be rendered at the end of <body>:\nLivewire only supports teleporting HTML outside your components. For example, teleporting a modal to the <body> tag is fine, but teleporting it to another element within your component will not work.\nMake sure you only include a single root element inside your @teleport statement.",
+            "examples": [
+                {
+                    "code": "<div> <!-- Modal --> <div x-data=\"{ open: false }\"> <button @click=\"open = ! open\">Toggle Modal</button>  @teleport('body') <div x-show=\"open\"> Modal contents... </div> @endteleport </div></div>",
+                    "type": "class"
+                },
+                {
+                    "code": "<body> <!-- ... -->  <div x-show=\"open\"> Modal contents... </div></body>",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:30+00:00"
+}

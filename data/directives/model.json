@@ -1,0 +1,44 @@
+{
+    "name": "wire:model",
+    "description": "Bind an input element's value to a component property for two-way data binding",
+    "variants": [
+        {
+            "syntax": "wire:model",
+            "description": "Two-way binding, updates on change event"
+        },
+        {
+            "syntax": "wire:model.live",
+            "description": "Updates on every input event (keystroke)"
+        },
+        {
+            "syntax": "wire:model.blur",
+            "description": "Updates when input loses focus"
+        },
+        {
+            "syntax": "wire:model.change",
+            "description": "Updates on change event (default)"
+        },
+        {
+            "syntax": "wire:model.lazy",
+            "description": "Alias for .change"
+        },
+        {
+            "syntax": "wire:model.debounce.500ms",
+            "description": "Debounce updates by specified time"
+        },
+        {
+            "syntax": "wire:model.throttle.500ms",
+            "description": "Throttle updates by specified time"
+        },
+        {
+            "syntax": "wire:model.live.debounce.500ms",
+            "description": "Live updates with debounce"
+        },
+        {
+            "syntax": "wire:model.fill",
+            "description": "Only set initial value, one-way from server"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

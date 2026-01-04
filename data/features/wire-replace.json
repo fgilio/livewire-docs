@@ -1,0 +1,22 @@
+{
+    "slug": "wire-replace",
+    "title": "wire:replace",
+    "description": "Livewire's DOM diffing is useful for updating existing elements on your page, but occasionally you may need to force some elements to render from scratch to reset internal state.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-replace",
+    "sections": [],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:50+00:00"
+}

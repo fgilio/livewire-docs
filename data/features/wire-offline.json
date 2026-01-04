@@ -1,0 +1,22 @@
+{
+    "slug": "wire-offline",
+    "title": "wire:offline",
+    "description": "In certain circumstances it can be helpful for your users to know if they are currently connected to the internet.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-offline",
+    "sections": [],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:47+00:00"
+}

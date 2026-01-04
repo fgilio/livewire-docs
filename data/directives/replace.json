@@ -1,0 +1,12 @@
+{
+    "name": "wire:replace",
+    "description": "Replace the entire element instead of morphing on updates",
+    "variants": [
+        {
+            "syntax": "wire:replace",
+            "description": "Replace entire element on update instead of morphing"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

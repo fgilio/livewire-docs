@@ -1,0 +1,40 @@
+{
+    "slug": "wire-cloak",
+    "title": "wire:cloak",
+    "description": "wire:cloak is a directive that hides elements on page load until Livewire is fully initialized. This is useful for preventing the \"flash of unstyled content\" that can occur when the page loads before Livewire has a chance to initialize.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-cloak",
+    "sections": [
+        {
+            "title": "#Basic usage",
+            "content": "To use wire:cloak, add the directive to any element you want to hide during page load:\nwire:cloak is particularly useful in scenarios where you want to prevent users from seeing uninitialized dynamic content such as element shown or hidden using wire:show.\nIn the above example, without wire:cloak, both icons would be shown before Livewire initializes. However, with wire:cloak, both elements will be hidden until initialization.",
+            "examples": [
+                {
+                    "code": "<div wire:cloak> This content will be hidden until Livewire is fully loaded</div>",
+                    "type": "class"
+                },
+                {
+                    "code": "<div> <div wire:show=\"starred\" wire:cloak> <!-- Yellow star icon... --> </div>  <div wire:show=\"!starred\" wire:cloak> <!-- Gray star icon... --> </div></div>",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [
+        "wire:cloak",
+        "wire:show"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:39+00:00"
+}

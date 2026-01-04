@@ -1,0 +1,16 @@
+{
+    "name": "wire:submit",
+    "description": "Handle form submission and trigger a component action",
+    "variants": [
+        {
+            "syntax": "wire:submit",
+            "description": "Handle form submission"
+        },
+        {
+            "syntax": "wire:submit.prevent",
+            "description": "Prevent default form submission"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

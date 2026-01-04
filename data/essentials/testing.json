@@ -1,0 +1,172 @@
+{
+    "slug": "testing",
+    "title": "Testing",
+    "description": "By appending the --test flag to the make:livewire command, you can generate a test file along with a component:",
+    "category": "essentials",
+    "url": "https://livewire.laravel.com/docs/3.x/testing",
+    "sections": [
+        {
+            "title": "#Creating your first test",
+            "content": "By appending the --test flag to the make:livewire command, you can generate a test file along with a component:\nIn addition to generating the component files themselves, the above command will generate the following test file tests/Feature/Livewire/CreatePostTest.php:\nIf you would like to create a Pest PHP test, you may provide the --pest option to the make:livewire command:\nOf course, you can always create these files by hand or even use Livewire's testing utilities inside any other existing PHPUnit test in your Laravel application.\nBefore reading further, you may wish to familiarize yourself with Laravel's own built-in testing features.",
+            "examples": [
+                {
+                    "code": "php artisan make:livewire create-post --test",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\CreatePost;use Livewire\\Livewire;use Tests\\TestCase; class CreatePostTest extends TestCase{ public function test_renders_successfully() { Livewire::test(CreatePost::class) ->assertStatus(200); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Testing a page contains a component",
+            "content": "The simplest Livewire test you can write is asserting that a given endpoint in your application includes and successfully renders a given Livewire component.\nLivewire provides an assertSeeLivewire() method that can be used from any Laravel test:\nSmoke tests are broad tests that ensure there are no catastrophic problems in your application. Although it may seem like a test that isn't worth writing, pound for pound, these are some of the most valuable tests you can write as they require very little maintenance and provide you a base level of confidence that your application will render successfully with no major errors.",
+            "examples": [
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\CreatePost;use Tests\\TestCase; class CreatePostTest extends TestCase{ public function test_component_exists_on_the_page() { $this->get('/posts/create') ->assertSeeLivewire(CreatePost::class); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Testing views",
+            "content": "Livewire provides a simple yet powerful utility for asserting the existence of text in the component's rendered output: assertSee().\nBelow is an example of using assertSee() to ensure that all posts in the database are displayed on the page:\nIn addition to asserting the output of a rendered view, sometimes it's helpful to test the data being passed into the view.\nHere's the same test as above, but testing the view data rather than the rendered output:\nAs you can see, assertViewHas() provides control over what assertions you want to make against the specified data.\nIf you would rather make a simple assertion, such as ensuring a piece of view data matches a given value, you can pass the value directly as the second argument given to the assertViewHas() method.\nFor example, assuming you have a component with a variable named $postCount being passed into the view, you can make assertions against its literal value like so:",
+            "examples": [
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\ShowPosts;use Livewire\\Livewire;use App\\Models\\Post;use Tests\\TestCase; class ShowPostsTest extends TestCase{ public function test_displays_posts() { Post::factory()->make(['title' => 'On bathing well']); Post::factory()->make(['title' => 'There\\'s no time like bathtime']);  Livewire::test(ShowPosts::class) ->assertSee('On bathing well') ->assertSee('There\\'s no time like bathtime'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\ShowPosts;use Livewire\\Livewire;use App\\Models\\Post;use Tests\\TestCase; class ShowPostsTest extends TestCase{ public function test_displays_all_posts() { Post::factory()->make(['title' => 'On bathing well']); Post::factory()->make(['title' => 'The bathtub is my sanctuary']);  Livewire::test(ShowPosts::class) ->assertViewHas('posts', function ($posts) { return count($posts) == 2; }); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "$this->assertViewHas('postCount', 3)",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Setting the authenticated user",
+            "content": "Most web applications require users to log in before using them. Rather than manually authenticating a fake user at the beginning of your tests, Livewire provides an actingAs() method.\nBelow is an example of a test where multiple users have posts, yet the authenticated user should only be able to see their own posts:",
+            "examples": [
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\ShowPosts;use Livewire\\Livewire;use App\\Models\\User;use App\\Models\\Post;use Tests\\TestCase; class ShowPostsTest extends TestCase{ public function test_user_only_sees_their_own_posts() { $user = User::factory() ->has(Post::factory()->count(3)) ->create();  $stranger = User::factory() ->has(Post::factory()->count(2)) ->create();  Livewire::actingAs($user) ->test(ShowPosts::class) ->assertViewHas('posts', function ($posts) { return count($posts) == 3; }); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Testing properties",
+            "content": "Livewire also provides helpful testing utilities for setting and asserting properties within your components.\nComponent properties are typically updated in your application when users interact with form inputs containing wire:model. But, because tests don't typically type into an actual browser, Livewire allows you to set properties directly using the set() method.\nBelow is an example of using set() to update the $title property of a CreatePost component:\nOften, Livewire components receive data being passed in from a parent component or route parameters. Because Livewire components are tested in isolation, you can manually pass data into them using the second parameter of the Livewire::test() method:\nThe underlying component being tested (UpdatePost) will receive $post through its mount() method. Let's look at the source for UpdatePost to paint a clearer picture of this feature:\nIf your Livewire component depends on specific query parameters in the URL of the page it's loaded on, you can use the withQueryParams() method to set the query parameters manually for your test.\nBelow is a basic SearchPosts component that uses Livewire's URL feature to store and track the current search query in the query string:\nAs you can see, the $search property above uses Livewire's #[Url] attribute to denote that its value should be stored in the URL.\nBelow is an example of how you would simulate the scenario of loading this component on a page with specific query parameters in the URL:\nIf your Livewire component depends on cookies, you can use the withCookie() or withCookies() methods to set the cookies manually for your test.\nBelow is a basic Cart component that loads a discount token from a cookie on mount:\nAs you can see, the $discountToken property above gets its value from a cookie in the request.\nBelow is an example of how you would simulate the scenario of loading this component on a page with cookies:",
+            "examples": [
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\CreatePost;use Livewire\\Livewire;use Tests\\TestCase; class CreatePostTest extends TestCase{ public function test_can_set_title() { Livewire::test(CreatePost::class) ->set('title', 'Confessions of a serial soaker') ->assertSet('title', 'Confessions of a serial soaker'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\UpdatePost;use Livewire\\Livewire;use App\\Models\\Post;use Tests\\TestCase; class UpdatePostTest extends TestCase{ public function test_title_field_is_populated() { $post = Post::factory()->make([ 'title' => 'Top ten bath bombs', ]);  Livewire::test(UpdatePost::class, ['post' => $post]) ->assertSet('title', 'Top ten bath bombs'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use App\\Models\\Post; class UpdatePost extends Component{ public Post $post;  public $title = '';  public function mount(Post $post) { $this->post = $post;  $this->title = $post->title; }  // ...}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use Livewire\\Attributes\\Url;use App\\Models\\Post; class SearchPosts extends Component{ #[Url] public $search = '';  public function render() { return view('livewire.search-posts', [ 'posts' => Post::search($this->search)->get(), ]); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\SearchPosts;use Livewire\\Livewire;use App\\Models\\Post;use Tests\\TestCase; class SearchPostsTest extends TestCase{ public function test_can_search_posts_via_url_query_string() { Post::factory()->create(['title' => 'Testing the first water-proof hair dryer']); Post::factory()->create(['title' => 'Rubber duckies that actually float']);  Livewire::withQueryParams(['search' => 'hair']) ->test(SearchPosts::class) ->assertSee('Testing the first') ->assertDontSee('Rubber duckies'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use Livewire\\Attributes\\Url;use App\\Models\\Post; class Cart extends Component{ public $discountToken;  public mount() { $this->discountToken = request()->cookie('discountToken'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\Cart;use Livewire\\Livewire;use Tests\\TestCase; class CartTest extends TestCase{ public function test_can_load_discount_token_from_a_cookie() { Livewire::withCookies(['discountToken' => 'CALEB2023']) ->test(Cart::class) ->assertSet('discountToken', 'CALEB2023'); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Calling actions",
+            "content": "Livewire actions are typically called from the frontend using something like wire:click.\nBecause Livewire component tests don't use an actual browser, you can instead trigger actions in your tests using the call() method.\nBelow is an example of a CreatePost component using the call() method to trigger the save() action:\nIn the above test, we assert that calling save() creates a new post in the database.\nYou can also pass parameters to actions by passing additional parameters into the call() method:\nTo test that a validation error has been thrown, you can use Livewire's assertHasErrors() method:\nIf you want to test that a specific validation rule has failed, you can pass an array of rules:\nOr if you'd rather assert a validation message exists, you can do so as well:\nAuthorizing actions relying on untrusted input in your Livewire components is essential. Livewire provides assertUnauthorized() and assertForbidden() methods to ensure that an authentication or authorization check has failed:\nIf you prefer, you can also test for explicit status codes that an action in your component may have triggered using assertStatus():\nYou can test that a Livewire action performed a redirect using the assertRedirect() method:\nAs an added convenience, you can assert that the user was redirected to a specific page component instead of a hard-coded URL.\nTo assert that an event was dispatched from within your component, you can use the ->assertDispatched() method:\nIt is often helpful to test that two components can communicate with each other by dispatching and listening for events. Using the dispatch() method, let's simulate a CreatePost component dispatching a create-post event. Then, we will assert that a PostCountBadge component, which listens for that event, updates its post count appropriately:\nSometimes it may come in handy to assert that an event was dispatched with one or more parameters. Let's have a look at a component called ShowPosts that dispatches an event called banner-message with a parameter called message:\nIf your component dispatches an event of which the parameter values must be asserted conditionally, you can pass in a closure as the second argument to the assertDispatched method like below. It receives the event name as the first argument, and an array containing the parameters as the second argument. Make sure the closure returns a boolean.",
+            "examples": [
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\CreatePost;use Livewire\\Livewire;use App\\Models\\Post;use Tests\\TestCase; class CreatePostTest extends TestCase{ public function test_can_create_post() { $this->assertEquals(0, Post::count());  Livewire::test(CreatePost::class) ->set('title', 'Wrinkly fingers? Try this one weird trick') ->set('content', '...') ->call('save');  $this->assertEquals(1, Post::count()); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "->call('deletePost', $postId);",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\CreatePost;use Livewire\\Livewire;use Tests\\TestCase; class CreatePostTest extends TestCase{ public function test_title_field_is_required() { Livewire::test(CreatePost::class) ->set('title', '') ->call('save') ->assertHasErrors('title'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "$this->assertHasErrors(['title' => ['required']]);",
+                    "type": "class"
+                },
+                {
+                    "code": "$this->assertHasErrors(['title' => ['The title field is required.']]);",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\UpdatePost;use Livewire\\Livewire;use App\\Models\\User;use App\\Models\\Post;use Tests\\TestCase; class UpdatePostTest extends TestCase{ public function test_cant_update_another_users_post() { $user = User::factory()->create(); $stranger = User::factory()->create();  $post = Post::factory()->for($stranger)->create();  Livewire::actingAs($user) ->test(UpdatePost::class, ['post' => $post]) ->set('title', 'Living the lavender life') ->call('save') ->assertUnauthorized();  Livewire::actingAs($user) ->test(UpdatePost::class, ['post' => $post]) ->set('title', 'Living the lavender life') ->call('save') ->assertForbidden(); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "->assertStatus(401); // Unauthorized->assertStatus(403); // Forbidden",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\CreatePost;use Livewire\\Livewire;use Tests\\TestCase; class CreatePostTest extends TestCase{ public function test_redirected_to_all_posts_after_creating_a_post() { Livewire::test(CreatePost::class) ->set('title', 'Using a loofah doesn\\'t make you aloof...ugh') ->set('content', '...') ->call('save') ->assertRedirect('/posts'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "->assertRedirect(CreatePost::class);",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\CreatePost;use Livewire\\Livewire;use Tests\\TestCase; class CreatePostTest extends TestCase{ public function test_creating_a_post_dispatches_event() { Livewire::test(CreatePost::class) ->set('title', 'Top 100 bubble bath brands') ->set('content', '...') ->call('save') ->assertDispatched('post-created'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\PostCountBadge;use App\\Livewire\\CreatePost;use Livewire\\Livewire;use Tests\\TestCase; class PostCountBadgeTest extends TestCase{ public function test_post_count_is_updated_when_event_is_dispatched() { $badge = Livewire::test(PostCountBadge::class) ->assertSee(\"0\");  Livewire::test(CreatePost::class) ->set('title', 'Tear-free: the greatest lie ever told') ->set('content', '...') ->call('save') ->assertDispatched('post-created');  $badge->dispatch('post-created') ->assertSee(\"1\"); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\ShowPosts;use Livewire\\Livewire;use Tests\\TestCase; class ShowPostsTest extends TestCase{ public function test_notification_is_dispatched_when_deleting_a_post() { Livewire::test(ShowPosts::class) ->call('delete', postId: 3) ->assertDispatched('notify', message: 'The post was deleted', ); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\ShowPosts;use Livewire\\Livewire;use Tests\\TestCase; class ShowPostsTest extends TestCase{ public function test_notification_is_dispatched_when_deleting_a_post() { Livewire::test(ShowPosts::class) ->call('delete', postId: 3) ->assertDispatched('notify', function($eventName, $params) { return ($params['message'] ?? '') === 'The post was deleted'; }) }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#All available testing utilities",
+            "content": "Livewire provides many more testing utilities. Below is a comprehensive list of every testing method available to you, with a short description of how it's intended to be used:",
+            "examples": []
+        }
+    ],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:10+00:00"
+}

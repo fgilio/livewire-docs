@@ -1,0 +1,40 @@
+{
+    "slug": "wire-click",
+    "title": "wire:click",
+    "description": "Livewire provides a simple wire:click directive for calling component methods (aka actions) when a user clicks a specific element on the page.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-click",
+    "sections": [
+        {
+            "title": "#Using wire:click on links",
+            "content": "When using wire:click on <a> tags, you must append .prevent to prevent the default handling of a link in the browser. Otherwise, the browser will visit the provided link and update the page's URL.",
+            "examples": [
+                {
+                    "code": "<a href=\"#\" wire:click.prevent=\"...\">",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Going deeper",
+            "content": "The wire:click directive is just one of many different available event listeners in Livewire. For full documentation on its (and other event listeners) capabilities, visit the Livewire actions documentation page.",
+            "examples": []
+        }
+    ],
+    "directives_used": [
+        "wire:click"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:32+00:00"
+}

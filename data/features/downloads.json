@@ -1,0 +1,67 @@
+{
+    "slug": "downloads",
+    "title": "File Downloads",
+    "description": "File downloads in Livewire work much the same as in Laravel itself. Typically, you can use any Laravel download utility inside a Livewire component, and it should work as expected.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/downloads",
+    "sections": [
+        {
+            "title": "#Basic usage",
+            "content": "Triggering a file download in Livewire is as simple as returning a standard Laravel download response.\nBelow is an example of a ShowInvoice component that contains a \"Download\" button to download the invoice PDF:\nJust like in a Laravel controller, you can also use the Storage facade to initiate downloads:",
+            "examples": [
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use App\\Models\\Invoice; class ShowInvoice extends Component{ public Invoice $invoice;  public function mount(Invoice $invoice) { $this->invoice = $invoice; }  public function download() { return response()->download( $this->invoice->file_path, 'invoice.pdf' ); }  public function render() { return view('livewire.show-invoice'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<div> <h1>{{ $invoice->title }}</h1>  <span>{{ $invoice->date }}</span> <span>{{ $invoice->amount }}</span>  <button type=\"button\" wire:click=\"download\">Download</button> </div>",
+                    "type": "class"
+                },
+                {
+                    "code": "public function download(){ return Storage::disk('invoices')->download('invoice.csv');}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Streaming downloads",
+            "content": "Livewire can also stream downloads; however, they aren't truly streamed. The download isn't triggered until the file's contents are collected and delivered to the browser:",
+            "examples": [
+                {
+                    "code": "public function download(){ return response()->streamDownload(function () { echo '...'; // Echo download contents directly... }, 'invoice.pdf');}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Testing file downloads",
+            "content": "Livewire also provides a ->assertFileDownloaded() method to easily test that a file was downloaded with a given name:\nYou can also test to ensure a file was not downloaded using the ->assertNoFileDownloaded() method:",
+            "examples": [
+                {
+                    "code": "use App\\Models\\Invoice; public function test_can_download_invoice(){ $invoice = Invoice::factory();  Livewire::test(ShowInvoice::class) ->call('download') ->assertFileDownloaded('invoice.pdf');}",
+                    "type": "class"
+                },
+                {
+                    "code": "use App\\Models\\Invoice; public function test_does_not_download_invoice_if_unauthorised(){ $invoice = Invoice::factory();  Livewire::test(ShowInvoice::class) ->call('download') ->assertNoFileDownloaded();}",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [
+        "wire:click"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:25+00:00"
+}

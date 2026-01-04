@@ -1,0 +1,20 @@
+{
+    "name": "wire:dirty",
+    "description": "Show, hide, or modify elements when form data has been changed",
+    "variants": [
+        {
+            "syntax": "wire:dirty",
+            "description": "Show when form has unsaved changes"
+        },
+        {
+            "syntax": "wire:dirty.remove",
+            "description": "Hide when form has unsaved changes"
+        },
+        {
+            "syntax": "wire:dirty.class=\"border-yellow-500\"",
+            "description": "Add class when dirty"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

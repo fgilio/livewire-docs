@@ -1,0 +1,12 @@
+{
+    "name": "wire:stream",
+    "description": "Stream content updates to a specific element for real-time UI updates",
+    "variants": [
+        {
+            "syntax": "wire:stream=\"propertyName\"",
+            "description": "Stream content updates to element"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

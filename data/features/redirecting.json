@@ -1,0 +1,89 @@
+{
+    "slug": "redirecting",
+    "title": "Redirecting",
+    "description": "After a user performs some action — like submitting a form — you may want to redirect them to another page in your application.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/redirecting",
+    "sections": [
+        {
+            "title": "#Basic usage",
+            "content": "Below is an example of a CreatePost Livewire component that redirects the user to another page after they submit the form to create a post:\nAs you can see, when the save action is triggered, a redirect will also be triggered to /posts. When Livewire receives this response, it will redirect the user to the new URL on the frontend.",
+            "examples": [
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use App\\Models\\Post; class CreatePost extends Component{ public $title = '';  public $content = '';  public function save() { Post::create([ 'title' => $this->title, 'content' => $this->content, ]);  $this->redirect('/posts'); }  public function render() { return view('livewire.create-post'); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Redirect to Route",
+            "content": "In case you want to redirect to a page using its route name you can use the redirectRoute.\nFor example, if you have a page with the route named 'profile' like this:\nYou can use redirectRoute to redirect to that page using the name of the route like so:\nIn case you need to pass parameters to the route you may use the second argument of the method redirectRoute like so:",
+            "examples": [
+                {
+                    "code": "Route::get('/user/profile', function () { // ...})->name('profile');",
+                    "type": "class"
+                },
+                {
+                    "code": "$this->redirectRoute('profile');",
+                    "type": "class"
+                },
+                {
+                    "code": "$this->redirectRoute('profile', ['id' => 1]);",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Redirect to intended",
+            "content": "In case you want to redirect the user back to the previous page they were on you can use redirectIntended. It accepts an optional default URL as its first argument which is used as a fallback if no previous page can be determined:",
+            "examples": [
+                {
+                    "code": "$this->redirectIntended('/default/url');",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Redirecting to full-page components",
+            "content": "Because Livewire uses Laravel's built-in redirection feature, you can use all of the redirection methods available to you in a typical Laravel application.\nFor example, if you are using a Livewire component as a full-page component for a route like so:\nYou can redirect to the component by providing the component name to the redirect() method:",
+            "examples": [
+                {
+                    "code": "use App\\Livewire\\ShowPosts; Route::get('/posts', ShowPosts::class);",
+                    "type": "class"
+                },
+                {
+                    "code": "public function save(){ // ...  $this->redirect(ShowPosts::class);}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Flash messages",
+            "content": "In addition to allowing you to use Laravel's built-in redirection methods, Livewire also supports Laravel's session flash data utilities.\nTo pass flash data along with a redirect, you can use Laravel's session()->flash() method like so:\nAssuming the page being redirected to contain the following Blade snippet, the user will see a \"Post successfully updated.\" message after updating the post:",
+            "examples": [
+                {
+                    "code": "use Livewire\\Component; class UpdatePost extends Component{ // ...  public function update() { // ...  session()->flash('status', 'Post successfully updated.');  $this->redirect('/posts'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "@if (session('status')) <div class=\"alert alert-success\"> {{ session('status') }} </div>@endif",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:24+00:00"
+}

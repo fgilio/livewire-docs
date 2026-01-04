@@ -1,0 +1,20 @@
+{
+    "name": "wire:offline",
+    "description": "Show, hide, or modify elements when the browser loses network connection",
+    "variants": [
+        {
+            "syntax": "wire:offline",
+            "description": "Show when browser is offline"
+        },
+        {
+            "syntax": "wire:offline.remove",
+            "description": "Hide when offline"
+        },
+        {
+            "syntax": "wire:offline.class=\"opacity-50\"",
+            "description": "Add class when offline"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

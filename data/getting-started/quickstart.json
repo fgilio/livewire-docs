@@ -1,0 +1,142 @@
+{
+    "slug": "quickstart",
+    "title": "Quickstart",
+    "description": "To begin your Livewire journey, we will create a simple \"counter\" component and render it in the browser. This example is a great way to experience Livewire for the first time as it demonstrates Livewire's liveness in the simplest way possible.",
+    "category": "getting-started",
+    "url": "https://livewire.laravel.com/docs/3.x/quickstart",
+    "sections": [
+        {
+            "title": "#Prerequisites",
+            "content": "Before we start, make sure you have the following installed:",
+            "examples": []
+        },
+        {
+            "title": "#Install Livewire",
+            "content": "From the root directory of your Laravel app, run the following Composer command:\nIf the application you are using already has AlpineJS installed, you will need to remove it for Livewire to work properly; otherwise, Alpine will be loaded twice and Livewire won't function. For example, if you installed the Laravel Breeze \"Blade with Alpine\" starter kit, you will need to remove Alpine from resources/js/app.js.",
+            "examples": [
+                {
+                    "code": "composer require livewire/livewire",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Create a Livewire component",
+            "content": "Livewire provides a convenient Artisan command to generate new components quickly. Run the following command to make a new Counter component:\nThis command will generate two new files in your project:",
+            "examples": [
+                {
+                    "code": "php artisan make:livewire counter",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Writing the class",
+            "content": "Open app/Livewire/Counter.php and replace its contents with the following:\nHere's a brief explanation of the code above:",
+            "examples": [
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component; class Counter extends Component{ public $count = 1;  public function increment() { $this->count++; }  public function decrement() { $this->count--; }  public function render() { return view('livewire.counter'); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Writing the view",
+            "content": "Open the resources/views/livewire/counter.blade.php file and replace its content with the following:\nThis code will display the value of the $count property and two buttons that increment and decrement the $count property, respectively.\nIn order for Livewire to work, components must have just one single element as its root. If multiple root elements are detected, an exception is thrown. It is recommended to use a <div> element as in the example. HTML comments count as separate elements and should be put inside the root element. When rendering full-page components, named slots for the layout file may be put outside the root element. These are removed before the component is rendered.",
+            "examples": [
+                {
+                    "code": "<div> <h1>{{ $count }}</h1>  <button wire:click=\"increment\">+</button>  <button wire:click=\"decrement\">-</button></div>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Register a route for the component",
+            "content": "Open the routes/web.php file in your Laravel application and add the following code:\nNow, our counter component is assigned to the /counter route, so that when a user visits the /counter endpoint in your application, this component will be rendered by the browser.",
+            "examples": [
+                {
+                    "code": "use App\\Livewire\\Counter; Route::get('/counter', Counter::class);",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Create a template layout",
+            "content": "Before you can visit /counter in the browser, we need an HTML layout for our component to render inside. By default, Livewire will automatically look for a layout file named: resources/views/components/layouts/app.blade.php\nYou may create this file if it doesn't already exist by running the following command:\nThis command will generate a file called resources/views/components/layouts/app.blade.php with the following contents:\nThe counter component will be rendered in place of the $slot variable in the template above.\nYou may have noticed there is no JavaScript or CSS assets provided by Livewire. That is because Livewire 3 and above automatically injects any frontend assets it needs.",
+            "examples": [
+                {
+                    "code": "php artisan livewire:layout",
+                    "type": "class"
+                },
+                {
+                    "code": "<!DOCTYPE html><html lang=\"{{ str_replace('_', '-', app()->getLocale()) }}\"> <head> <meta charset=\"utf-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">  <title>{{ $title ?? 'Page Title' }}</title> </head> <body> {{ $slot }} </body></html>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Test it out",
+            "content": "With our component class and templates in place, our component is ready to test!\nVisit /counter in your browser, and you should see a number displayed on the screen with two buttons to increment and decrement the number.\nAfter clicking one of the buttons, you will notice that the count updates in real time, without the page reloading. This is the magic of Livewire: dynamic frontend applications written entirely in PHP.\nWe've barely scratched the surface of what Livewire is capable of. Keep reading the documentation to see everything Livewire has to offer.",
+            "examples": []
+        }
+    ],
+    "directives_used": [
+        "wire:click",
+        "wire:layout"
+    ],
+    "related": [
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting",
+        "testing",
+        "session-properties",
+        "understanding-nesting",
+        "alpine",
+        "bundling",
+        "computed-properties",
+        "contribution-guide",
+        "downloads",
+        "lazy",
+        "locked",
+        "navigate",
+        "offline",
+        "pagination",
+        "redirecting",
+        "synthesizers",
+        "teleport",
+        "uploads",
+        "url",
+        "validation",
+        "wire-click",
+        "wire-cloak",
+        "wire-confirm",
+        "wire-current",
+        "wire-dirty",
+        "wire-ignore",
+        "wire-init",
+        "wire-loading",
+        "wire-model",
+        "wire-navigate",
+        "wire-offline",
+        "wire-poll",
+        "wire-replace",
+        "wire-show",
+        "wire-stream",
+        "wire-submit",
+        "wire-text",
+        "wire-transition",
+        "volt",
+        "hydration",
+        "javascript",
+        "morphing",
+        "security",
+        "troubleshooting"
+    ],
+    "scraped_at": "2026-01-02T23:36:57+00:00"
+}

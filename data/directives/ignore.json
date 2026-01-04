@@ -1,0 +1,16 @@
+{
+    "name": "wire:ignore",
+    "description": "Exclude an element from Livewire's DOM diffing/morphing",
+    "variants": [
+        {
+            "syntax": "wire:ignore",
+            "description": "Ignore element during DOM diffing"
+        },
+        {
+            "syntax": "wire:ignore.self",
+            "description": "Only ignore the element itself, not children"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

@@ -1,0 +1,16 @@
+{
+    "name": "wire:navigate",
+    "description": "Enable SPA-style navigation without full page reloads",
+    "variants": [
+        {
+            "syntax": "wire:navigate",
+            "description": "SPA-style navigation without full page reload"
+        },
+        {
+            "syntax": "wire:navigate.hover",
+            "description": "Prefetch page on hover"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

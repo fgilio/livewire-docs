@@ -1,0 +1,107 @@
+{
+    "slug": "wire-model",
+    "title": "wire:model",
+    "description": "Livewire makes it easy to bind a component property's value with form inputs using wire:model.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-model",
+    "sections": [
+        {
+            "title": "#Customizing update timing",
+            "content": "By default, Livewire will only send a network request when an action is performed (like wire:click or wire:submit), NOT when a wire:model input is updated.\nThis drastically improves the performance of Livewire by reducing network requests and provides a smoother experience for your users.\nHowever, there are occasions where you may want to update the server more frequently for things like real-time validation.\nTo send property updates to the server as a user types into an input-field, you can append the .live modifier to wire:model:\nBy default, when using wire:model.live, Livewire adds a 150 millisecond debounce to server updates. This means if a user is continually typing, Livewire will wait until the user stops typing for 150 milliseconds before sending a request.\nYou can customize this timing by appending .debounce.Xms to the input. Here is an example of changing the debounce to 250 milliseconds:\nBy appending the .blur modifier, Livewire will only send network requests with property updates when a user clicks away from an input, or presses the tab key to move to the next input.\nAdding .blur is helpful for scenarios where you want to update the server more frequently, but not as a user types. For example, real-time validation is a common instance where .blur is helpful.\nThere are times when the behavior of .blur isn't exactly what you want and instead .change is.\nFor example, if you want to run validation every time a select input is changed, by adding .change, Livewire will send a network request and validate the property as soon as a user selects a new option. As opposed to .blur which will only update the server after the user tabs away from the select input.\nAny changes made to the text input will be automatically synchronized with the $title property in your Livewire component.",
+            "examples": [
+                {
+                    "code": "<input type=\"text\" wire:model.live=\"title\">",
+                    "type": "class"
+                },
+                {
+                    "code": "<input type=\"text\" wire:model.live.debounce.250ms=\"title\">",
+                    "type": "class"
+                },
+                {
+                    "code": "<input type=\"text\" wire:model.blur=\"title\">",
+                    "type": "class"
+                },
+                {
+                    "code": "<select wire:model.change=\"title\"> <!-- ... --></select>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Input fields",
+            "content": "Livewire supports most native input elements out of the box. Meaning you should just be able to attach wire:model to any input element in the browser and easily bind properties to them.\nHere's a comprehensive list of the different available input types and how you use them in a Livewire context.\nFirst and foremost, text inputs are the bedrock of most forms. Here's how to bind a property named \"title\" to one:\nTextarea elements are similarly straightforward. Simply add wire:model to a textarea and the value will be bound:\nIf the \"content\" value is initialized with a string, Livewire will fill the textarea with that value - there's no need to do something like the following:\nCheckboxes can be used for single values, such as when toggling a boolean property. Or, checkboxes may be used to toggle a single value in a group of related values. We'll discuss both scenarios:\nAt the end of a signup form, you might have a checkbox allowing the user to opt-in to email updates. You might call this property $receiveUpdates. You can easily bind this value to the checkbox using wire:model:\nNow when the $receiveUpdates value is false, the checkbox will be unchecked. Of course, when the value is true, the checkbox will be checked.\nNow, let's say in addition to allowing the user to decide to receive updates, you have an array property in your class called $updateTypes, allowing the user to choose from a variety of update types:\nBy binding multiple checkboxes to the $updateTypes property, the user can select multiple update types and they will be added to the $updateTypes array property:\nFor example, if the user checks the first two boxes but not the third, the value of $updateTypes will be: [\"email\", \"sms\"]\nTo toggle between two different values for a single property, you may use radio buttons:\nLivewire makes it simple to work with <select> dropdowns. When adding wire:model to a dropdown, the currently selected value will be bound to the provided property name and vice versa.\nIn addition, there's no need to manually add selected to the option that will be selected - Livewire handles that for you automatically.\nBelow is an example of a select dropdown filled with a static list of states:\nWhen a specific state is selected, for example, \"Alaska\", the $state property on the component will be set to AK. If you would prefer the value to be set to \"Alaska\" instead of \"AK\", you can leave the value=\"\" attribute off the <option> element entirely.\nOften, you may build your dropdown options dynamically using Blade:\nIf you don't have a specific option selected by default, you may want to show a muted placeholder option by default, such as \"Select a state\":\nAs you can see, there is no \"placeholder\" attribute for a select menu like there is for text inputs. Instead, you have to add a disabled option element as the first option in the list.\nSometimes you may want one select menu to be dependent on another. For example, a list of cities that changes based on which state is selected.\nFor the most part, this works as you'd expect, however there is one important gotcha: You must add a wire:key to the changing select so that Livewire properly refreshes its value when the options change.\nHere's an example of two selects, one for states, one for cities. When the state select changes, the options in the city select will change properly:\nAgain, the only thing non-standard here is the wire:key that has been added to the second select. This ensures that when the state changes, the \"selectedCity\" value will be reset properly.\nIf you are using a \"multiple\" select menu, Livewire works as expected. In this example, states will be added to the $states array property when they are selected and removed if they are deselected:",
+            "examples": [
+                {
+                    "code": "<input type=\"text\" wire:model=\"title\">",
+                    "type": "class"
+                },
+                {
+                    "code": "<textarea type=\"text\" wire:model=\"content\"></textarea>",
+                    "type": "class"
+                },
+                {
+                    "code": "<!-- Warning: This snippet demonstrates what NOT to do... --> <textarea type=\"text\" wire:model=\"content\">{{ $content }}</textarea>",
+                    "type": "class"
+                },
+                {
+                    "code": "<input type=\"checkbox\" wire:model=\"receiveUpdates\">",
+                    "type": "class"
+                },
+                {
+                    "code": "public $updateTypes = [];",
+                    "type": "class"
+                },
+                {
+                    "code": "<input type=\"checkbox\" value=\"email\" wire:model=\"updateTypes\"><input type=\"checkbox\" value=\"sms\" wire:model=\"updateTypes\"><input type=\"checkbox\" value=\"notification\" wire:model=\"updateTypes\">",
+                    "type": "class"
+                },
+                {
+                    "code": "<input type=\"radio\" value=\"yes\" wire:model=\"receiveUpdates\"><input type=\"radio\" value=\"no\" wire:model=\"receiveUpdates\">",
+                    "type": "class"
+                },
+                {
+                    "code": "<select wire:model=\"state\"> <option value=\"AL\">Alabama</option> <option value=\"AK\">Alaska</option> <option value=\"AZ\">Arizona</option> ...</select>",
+                    "type": "class"
+                },
+                {
+                    "code": "<select wire:model=\"state\"> @foreach (\\App\\Models\\State::all() as $state) <option value=\"{{ $state->id }}\">{{ $state->label }}</option> @endforeach</select>",
+                    "type": "class"
+                },
+                {
+                    "code": "<select wire:model=\"state\"> <option disabled value=\"\">Select a state...</option>  @foreach (\\App\\Models\\State::all() as $state) <option value=\"{{ $state->id }}\">{{ $state->label }}</option> @endforeach</select>",
+                    "type": "class"
+                },
+                {
+                    "code": "<!-- States select menu... --><select wire:model.live=\"selectedState\"> @foreach (State::all() as $state) <option value=\"{{ $state->id }}\">{{ $state->label }}</option> @endforeach</select> <!-- Cities dependent select menu... --><select wire:model.live=\"selectedCity\" wire:key=\"{{ $selectedState }}\"> @foreach (City::whereStateId($selectedState->id)->get() as $city) <option value=\"{{ $city->id }}\">{{ $city->label }}</option> @endforeach</select>",
+                    "type": "class"
+                },
+                {
+                    "code": "<select wire:model=\"states\" multiple> <option value=\"AL\">Alabama</option> <option value=\"AK\">Alaska</option> <option value=\"AZ\">Arizona</option> ...</select>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Going deeper",
+            "content": "For a more complete documentation on using wire:model in the context of HTML forms, visit the Livewire forms documentation page.",
+            "examples": []
+        }
+    ],
+    "directives_used": [
+        "wire:key",
+        "wire:model"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:34+00:00"
+}

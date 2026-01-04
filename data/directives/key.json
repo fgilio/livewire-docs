@@ -1,0 +1,12 @@
+{
+    "name": "wire:key",
+    "description": "Provide a unique identifier for elements in loops to help Livewire track changes",
+    "variants": [
+        {
+            "syntax": "wire:key=\"unique-id\"",
+            "description": "Unique identifier for list items"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

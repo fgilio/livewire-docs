@@ -1,0 +1,22 @@
+{
+    "slug": "wire-ignore",
+    "title": "wire:ignore",
+    "description": "Livewire's ability to make updates to the page is what makes it \"live\", however, there are times when you might want to prevent Livewire from updating a portion of the page.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-ignore",
+    "sections": [],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:49+00:00"
+}

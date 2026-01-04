@@ -1,0 +1,32 @@
+{
+    "name": "wire:click",
+    "description": "Trigger a component action when the element is clicked",
+    "variants": [
+        {
+            "syntax": "wire:click",
+            "description": "Trigger action on click"
+        },
+        {
+            "syntax": "wire:click.prevent",
+            "description": "Prevent default behavior"
+        },
+        {
+            "syntax": "wire:click.stop",
+            "description": "Stop event propagation"
+        },
+        {
+            "syntax": "wire:click.self",
+            "description": "Only trigger if clicked element is the target"
+        },
+        {
+            "syntax": "wire:click.throttle.500ms",
+            "description": "Throttle clicks"
+        },
+        {
+            "syntax": "wire:click.debounce.500ms",
+            "description": "Debounce clicks"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

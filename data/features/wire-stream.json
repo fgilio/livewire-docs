@@ -1,0 +1,51 @@
+{
+    "slug": "wire-stream",
+    "title": "wire:stream",
+    "description": "Livewire allows you to stream content to a web page before a request is complete via the wire:stream API. This is an extremely useful feature for things like AI chat-bots which stream responses as they are generated.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-stream",
+    "sections": [
+        {
+            "title": "#Streaming chat-bot responses",
+            "content": "A common use-case for wire:stream is streaming chat-bot responses as they are received from an API that supports streamed responses (like OpenAI's ChatGPT).\nBelow is an example of using wire:stream to accomplish a ChatGPT-like interface:\nHere's what's going on in the above example:",
+            "examples": [
+                {
+                    "code": "use Livewire\\Component; class ChatBot extends Component{ public $prompt = '';  public $question = '';  public $answer = '';  function submitPrompt() { $this->question = $this->prompt;  $this->prompt = '';  $this->js('$wire.ask()'); }  function ask() { $this->answer = OpenAI::ask($this->question, function ($partial) { $this->stream(to: 'answer', content: $partial); }); }  public function render() { return <<<'HTML' <div> <section> <div>ChatBot</div>  @if ($question) <article> <hgroup> <h3>User</h3> <p>{{ $question }}</p> </hgroup>  <hgroup> <h3>ChatBot</h3> <p wire:stream=\"answer\">{{ $answer }}</p> </hgroup> </article> @endif </section>  <form wire:submit=\"submitPrompt\"> <input wire:model=\"prompt\" type=\"text\" placeholder=\"Send a message\" autofocus> </form> </div> HTML; }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Replace vs. append",
+            "content": "When streaming content to an element using $this->stream(), you can tell Livewire to either replace the contents of the target element with the streamed contents or append them to the existing contents.\nReplacing or appending can both be desirable depending on the scenario. For example, when streaming a response from a chatbot, typically appending is desired (and is therefore the default). However, when showing something like a count-down, replacing is more fitting.\nYou can configure either by passing the replace: parameter to $this->stream with a boolean value:\nAppend/replace can also be specified at the target element level by appending or removing the .replace modifier:",
+            "examples": [
+                {
+                    "code": "// Append contents...$this->stream(to: 'target', content: '...'); // Replace contents...$this->stream(to: 'target', content: '...', replace: true);",
+                    "type": "class"
+                },
+                {
+                    "code": "// Append contents...<div wire:stream=\"target\"> // Replace contents...<div wire:stream.replace=\"target\">",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [
+        "wire:model",
+        "wire:stream",
+        "wire:submit"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:53+00:00"
+}

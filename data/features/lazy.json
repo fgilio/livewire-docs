@@ -1,0 +1,120 @@
+{
+    "slug": "lazy",
+    "title": "Lazy Loading",
+    "description": "Livewire allows you to lazy load components that would otherwise slow down the initial page load.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/lazy",
+    "sections": [
+        {
+            "title": "#Rendering placeholder HTML",
+            "content": "By default, Livewire will insert an empty <div></div> for your component before it is fully loaded. As the component will initially be invisible to users, it can be jarring when the component suddenly appears on the page.\nTo signal to your users that the component is being loaded, you can define a placeholder() method to render any kind of placeholder HTML you like, including loading spinners and skeleton placeholders:\nBecause the above component specifies a \"placeholder\" by returning HTML from a placeholder() method, the user will see an SVG loading spinner on the page until the component is fully loaded.\nFor instance, if your placeholder's root element type is a 'div,' your component must also use a 'div' element.\nFor more complex loaders (such as skeletons) you can return a view from the placeholder() similar to render().\nAny parameters from the component being lazy loaded will be available as an $params argument passed to the placeholder() method.",
+            "examples": [
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use App\\Models\\Transaction; class Revenue extends Component{ public $amount;  public function mount() { // Slow database query... $this->amount = Transaction::monthToDate()->sum('amount'); }  public function placeholder() { return <<<'HTML' <div> <!-- Loading spinner... --> <svg>...</svg> </div> HTML; }  public function render() { return view('livewire.revenue'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "public function placeholder(array $params = []){ return view('livewire.placeholders.skeleton', $params);}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Lazy loading outside of the viewport",
+            "content": "By default, Lazy-loaded components aren't full loaded until they enter the browser's viewport, for example when a user scrolls to one.\nIf you'd rather lazy load all components on a page as soon as the page is loaded, without waiting for them to enter the viewport, you can do so by passing \"on-load\" into the lazy parameter:\nNow this component will load after the page is ready without waiting for it to be inside the viewport.",
+            "examples": [
+                {
+                    "code": "<livewire:revenue lazy=\"on-load\" />",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Passing in props",
+            "content": "In general, you can treat lazy components the same as normal components, since you can still pass data into them from outside.\nFor example, here's a scenario where you might pass a time interval into the Revenue component from a parent component:\nYou can accept this data in mount() just like any other component:\nHowever, unlike a normal component load, a lazy component has to serialize or \"dehydrate\" any passed-in properties and temporarily store them on the client-side until the component is fully loaded.\nFor example, you might want to pass in an Eloquent model to the Revenue component like so:\nIn a normal component, the actual PHP in-memory $user model would be passed into the mount() method of Revenue. However, because we won't run mount() until the next network request, Livewire will internally serialize $user to JSON and then re-query it from the database before the next request is handled.\nTypically, this serialization should not cause any behavioral differences in your application.",
+            "examples": [
+                {
+                    "code": "<input type=\"date\" wire:model=\"start\"><input type=\"date\" wire:model=\"end\"> <livewire:revenue lazy :$start :$end />",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use App\\Models\\Transaction; class Revenue extends Component{ public $amount;  public function mount($start, $end) { // Expensive database query... $this->amount = Transactions::between($start, $end)->sum('amount'); }  public function placeholder() { return <<<'HTML' <div> <!-- Loading spinner... --> <svg>...</svg> </div> HTML; }  public function render() { return view('livewire.revenue'); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<livewire:revenue lazy :$user />",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Lazy load by default",
+            "content": "If you want to enforce that all usages of a component will be lazy-loaded, you can add the #[Lazy] attribute above the component class:\nIf you want to override lazy loading you can set the lazy parameter to false:\nIf there are multiple lazy-loaded components on the page, each component will make an independent network request, rather than each lazy update being bundled into a single request.\nIf you want to disable this isolation behavior and instead bundle all updates together in a single network request you can do so with the isolate: false parameter:\nNow, if there are ten Revenue components on the same page, when the page loads, all ten updates will be bundled and sent the server as single network request.",
+            "examples": [
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use Livewire\\Attributes\\Lazy; #[Lazy]class Revenue extends Component{ // ...}",
+                    "type": "class"
+                },
+                {
+                    "code": "<livewire:revenue :lazy=\"false\" />",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use Livewire\\Attributes\\Lazy; #[Lazy(isolate: false)] class Revenue extends Component{ // ...}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Full-page lazy loading",
+            "content": "You may want to lazy load full-page Livewire components. You can do this by calling ->lazy() on the route like so:\nOr alternatively, if there is a component that is lazy-loaded by default, and you would like to opt-out of lazy-loading, you can use the following enabled: false parameter:",
+            "examples": [
+                {
+                    "code": "Route::get('/dashboard', \\App\\Livewire\\Dashboard::class)->lazy();",
+                    "type": "class"
+                },
+                {
+                    "code": "Route::get('/dashboard', \\App\\Livewire\\Dashboard::class)->lazy(enabled: false);",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Default placeholder view",
+            "content": "If you want to set a default placeholder view for all your components you can do so by referencing the view in the /config/livewire.php config file:\nNow, when a component is lazy-loaded and no placeholder() is defined, Livewire will use the configured Blade view (livewire.placeholder in this case.)",
+            "examples": [
+                {
+                    "code": "'lazy_placeholder' => 'livewire.placeholder',",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Disabling lazy loading for tests",
+            "content": "When unit testing a lazy component, or a page with nested lazy components, you may want to disable the \"lazy\" behavior so that you can assert the final rendered behavior. Otherwise, those components would be rendered as their placeholders during your tests.\nYou can easily disable lazy loading using the Livewire::withoutLazyLoading() testing helper like so:\nNow, when the dashboard component is rendered for this test, it will skip rendering the placeholder() and instead render the full component as if lazy loading wasn't applied at all.",
+            "examples": [
+                {
+                    "code": "<?php namespace Tests\\Feature\\Livewire; use App\\Livewire\\Dashboard;use Livewire\\Livewire;use Tests\\TestCase; class DashboardTest extends TestCase{ public function test_renders_successfully() { Livewire::withoutLazyLoading() ->test(Dashboard::class) ->assertSee(...); }}",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [
+        "wire:model",
+        "wire:revenue"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:14+00:00"
+}

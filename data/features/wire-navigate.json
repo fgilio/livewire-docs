@@ -1,0 +1,40 @@
+{
+    "slug": "wire-navigate",
+    "title": "wire:navigate",
+    "description": "Livewire's wire:navigate feature makes page navigation much faster, providing an SPA-like experience for your users.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-navigate",
+    "sections": [
+        {
+            "title": "#Prefetching pages on hover",
+            "content": "By adding the .hover modifier, Livewire will pre-fetch a page when a user hovers over a link. This way, the page will have already been downloaded from the server when the user clicks on the link.",
+            "examples": [
+                {
+                    "code": "<a href=\"/\" wire:navigate.hover>Dashboard</a>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Going deeper",
+            "content": "For more complete documentation on this feature, visit Livewire's navigate documentation page.",
+            "examples": []
+        }
+    ],
+    "directives_used": [
+        "wire:navigate"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:37+00:00"
+}

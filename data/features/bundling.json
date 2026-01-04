@@ -1,0 +1,43 @@
+{
+    "slug": "bundling",
+    "title": "Request Bundling",
+    "description": "Every component update in Livewire triggers a network request. By default, when multiple components trigger updates at the same time, they are bundled into a single request.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/bundling",
+    "sections": [
+        {
+            "title": "#Isolating component requests",
+            "content": "By using Livewire's #[Isolate] class attribute, you can mark a component as \"isolated\". This means that whenever that component makes a server roundtrip, it will attempt to isolate itself from other component requests.\nThis is useful if the update is expensive and you'd rather execute this component's update in parallel with others. For example, if multiple components are using wire:poll or listening for an event on the page, you may want to isolate specific component whose updates are expensive and would otherwise hold up the entire request.\nBy adding the #[Isolate] attribute, this component's requests will no longer be bundled with other component updates.",
+            "examples": [
+                {
+                    "code": "use Livewire\\Attributes\\Isolate;use Livewire\\Component; #[Isolate] class ShowPost extends Component{ // ...}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Lazy components are isolated by default",
+            "content": "When many components on a single page are \"lazy\" loaded (using the #[Lazy] attribute), it is often desired that their requests are isolated and sent in parallel. Therefore, Livewire isolates lazy updates by default.\nIf you wish to disable this behavior, you can pass an isolate: false parameter into the #[Lazy] attribute like so:\nNow, if there are multiple Revenue components on the same page, all ten updates will be bundled and sent the server as single, lazy-load, network request.",
+            "examples": [
+                {
+                    "code": "<?php namespace App\\Livewire; use Livewire\\Component;use Livewire\\Attributes\\Lazy; #[Lazy(isolate: false)] class Revenue extends Component{ // ...}",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:28+00:00"
+}

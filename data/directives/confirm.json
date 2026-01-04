@@ -1,0 +1,16 @@
+{
+    "name": "wire:confirm",
+    "description": "Show a confirmation dialog before executing an action",
+    "variants": [
+        {
+            "syntax": "wire:confirm=\"Are you sure?\"",
+            "description": "Show confirmation dialog before action"
+        },
+        {
+            "syntax": "wire:confirm.prompt=\"Type DELETE to confirm|DELETE\"",
+            "description": "Require specific input"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

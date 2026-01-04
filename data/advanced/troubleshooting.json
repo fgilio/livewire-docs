@@ -1,0 +1,92 @@
+{
+    "slug": "troubleshooting",
+    "title": "Troubleshooting",
+    "description": "Here at Livewire HQ, we try to remove problems from your pathway before you hit them. However, sometimes, there are some problems that we can't solve without introducing new ones, and other times, there are problems we can't anticipate.",
+    "category": "advanced",
+    "url": "https://livewire.laravel.com/docs/3.x/troubleshooting",
+    "sections": [
+        {
+            "title": "#Component mismatches",
+            "content": "When interacting with Livewire components on your page, you may encounter odd behavior or error messages like the following:\nThere are lots of reasons why you may encounter these messages, but the most common one is forgetting to add wire:key to elements and components inside a @foreach loop.\nAny time you have a loop in your Blade templates using something like @foreach, you need to add wire:key to the opening tag of the first element within the loop:\nThis ensures that Livewire can keep track of different elements in the loop when the loop changes.\nThe same applies to Livewire components within a loop:\nHowever, here's a tricky scenario you might not have assumed:\nWhen you have a Livewire component deeply nested inside a @foreach loop, you STILL need to add a key to it. For example:\nWithout the key on the nested Livewire component, Livewire will be unable to match the looped components up between network requests.\nAnother tricky scenario you may run into is having duplicate keys within the same component. This often results from using model IDs as keys, which can sometimes collide.\nHere's an example where we need to add a post- and an author- prefix to designate each set of keys as unique. Otherwise, if you have a $post and $author model with the same ID, you would have an ID collision:",
+            "examples": [
+                {
+                    "code": "Error: Component already initialized",
+                    "type": "class"
+                },
+                {
+                    "code": "Error: Snapshot missing on Livewire component with id: ...",
+                    "type": "class"
+                },
+                {
+                    "code": "@foreach($posts as $post) <div wire:key=\"{{ $post->id }}\"> ... </div>@endforeach",
+                    "type": "class"
+                },
+                {
+                    "code": "@foreach($posts as $post) <livewire:show-post :$post :key=\"$post->id\" /> @endforeach",
+                    "type": "class"
+                },
+                {
+                    "code": "@foreach($posts as $post) <div wire:key=\"{{ $post->id }}\"> ... <livewire:show-post :$post :key=\"$post->id\" /> ... </div>@endforeach",
+                    "type": "class"
+                },
+                {
+                    "code": "<div> @foreach($posts as $post) <div wire:key=\"post-{{ $post->id }}\">...</div> @endforeach  @foreach($authors as $author) <div wire:key=\"author-{{ $author->id }}\">...</div> @endforeach</div>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Multiple instances of Alpine",
+            "content": "When installing Livewire, you may run into error messages like the following:\nIf this is the case, you likely have two versions of Alpine running on the same page. Livewire includes its own bundle of Alpine under the hood, so you must remove any other versions of Alpine on Livewire pages in your application.\nOne common scenario in which this happens is adding Livewire to an existing application that already includes Alpine. For example, if you installed the Laravel Breeze starter kit and then added Livewire later, you would run into this.\nThe fix for this is simple: remove the extra Alpine instance.\nIf you are installing Livewire inside an existing Laravel Breeze (Blade + Alpine version), you need to remove the following lines from resources/js/app.js:\nBecause Livewire version 2 and below didn't include Alpine by default, you may have included an Alpine CDN as a script tag in the head of your layout. In Livewire v3, you can remove this CDN altogether, and Livewire will automatically provide Alpine for you:\nNote: you can also remove any additional Alpine plugins, as Livewire includes all Alpine plugins except @alpinejs/ui.",
+            "examples": [
+                {
+                    "code": "Error: Detected multiple instances of Alpine running",
+                    "type": "class"
+                },
+                {
+                    "code": "Alpine Expression Error: $wire is not defined",
+                    "type": "class"
+                },
+                {
+                    "code": "import './bootstrap';  -import Alpine from 'alpinejs'; - -window.Alpine = Alpine;- -Alpine.start();",
+                    "type": "class"
+                },
+                {
+                    "code": "...- <script defer src=\"https://cdn.jsdelivr.net/npm/[email protected]/dist/cdn.min.js\"></script> </head>",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Missing @alpinejs/ui",
+            "content": "Livewire's bundled version of Alpine includes all Alpine plugins EXCEPT @alpinejs/ui. If you are using headless components from Alpine Components, which relies on this plugin, you may encounter errors like the following:\nTo fix this, you can simply include the @alpinejs/ui plugin as a CDN in your layout file like so:\nNote: be sure to include the latest version of this plugin, which you can find on any component's documentation page.",
+            "examples": [
+                {
+                    "code": "Uncaught Alpine: no element provided to x-anchor",
+                    "type": "class"
+                },
+                {
+                    "code": "...+ <script defer src=\"https://unpkg.com/@alpinejs/[email protected]/dist/cdn.min.js\"></script> </head>",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [
+        "wire:key",
+        "wire:show-post"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:59+00:00"
+}

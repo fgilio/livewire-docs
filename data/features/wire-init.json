@@ -1,0 +1,22 @@
+{
+    "slug": "wire-init",
+    "title": "wire:init",
+    "description": "Livewire offers a wire:init directive to run an action as soon as the component is rendered. This can be helpful in cases where you don't want to hold up the entire page load, but want to load some data immediately after the page load.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/wire-init",
+    "sections": [],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:37:45+00:00"
+}

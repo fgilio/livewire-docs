@@ -1,0 +1,117 @@
+{
+    "slug": "security",
+    "title": "Security",
+    "description": "It's important to make sure your Livewire apps are secure and don't expose any application vulnerabilities. Livewire has internal security features to handle many cases, however, there are times when it's up to your application code to keep your components secure.",
+    "category": "advanced",
+    "url": "https://livewire.laravel.com/docs/3.x/security",
+    "sections": [
+        {
+            "title": "#Authorizing action parameters",
+            "content": "Livewire actions are extremely powerful, however, any parameters passed to Livewire actions are mutable on the client and should be treated as un-trusted user input.\nArguably the most common security pitfall in Livewire is failing to validate and authorize Livewire action calls before persisting changes to the database.\nHere is an example of an insecurity resulting from a lack of authorization:\nThe reason the above example is insecure is that wire:click=\"delete(...)\" can be modified in the browser to pass ANY post ID a malicious user wishes.\nAction parameters (like $id in this case) should be treated the same as any untrusted input from the browser.\nTherefore, to keep this application secure and prevent a user from deleting another user's post, we must add authorization to the delete() action.\nFirst, let's create a Laravel Policy for the Post model by running the following command:\nAfter running the above command, a new Policy will be created inside app/Policies/PostPolicy.php. We can then update its contents with a delete method like so:\nNow, we can use the $this->authorize() method from the Livewire component to ensure the user owns the post before deleting it:\nFurther reading:",
+            "examples": [
+                {
+                    "code": "<?php use App\\Models\\Post;use Livewire\\Component; class ShowPost extends Component{ // ...  public function delete($id) { // INSECURE!  $post = Post::find($id);  $post->delete(); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<button wire:click=\"delete({{ $post->id }})\">Delete Post</button>",
+                    "type": "class"
+                },
+                {
+                    "code": "php artisan make:policy PostPolicy --model=Post",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace App\\Policies; use App\\Models\\Post;use App\\Models\\User; class PostPolicy{ /** * Determine if the given post can be deleted by the user. */ public function delete(?User $user, Post $post): bool { return $user?->id === $post->user_id; }}",
+                    "type": "class"
+                },
+                {
+                    "code": "public function delete($id){ $post = Post::find($id);  // If the user doesn't own the post, // an AuthorizationException will be thrown... $this->authorize('delete', $post);   $post->delete();}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Authorizing public properties",
+            "content": "Similar to action parameters, public properties in Livewire should be treated as un-trusted input from the user.\nHere is the same example from above about deleting a post, written insecurely in a different manner:\nAs you can see, instead of passing the $postId as a parameter to the delete method from wire:click, we are storing it as a public property on the Livewire component.\nThe problem with this approach is that any malicious user can inject a custom element onto the page such as:\nThis would allow them to freely modify the $postId before pressing \"Delete Post\". Because the delete action doesn't authorize the value of $postId, the user can now delete any post in the database, whether they own it or not.\nTo protect against this risk, there are two possible solutions:\nWhen setting public properties, Livewire treats models differently than plain values such as strings and integers. Because of this, if we instead store the entire post model as a property on the component, Livewire will ensure the ID is never tampered with.\nHere is an example of storing a $post property instead of a simple $postId property:\nThis component is now secured because there is no way for a malicious user to change the $post property to a different Eloquent model.\nAnother way to prevent properties from being set to unwanted values is to use locked properties. Locking properties is done by applying the #[Locked] attribute. Now if users attempt to tamper with this value an error will be thrown.\nNote that properties with the Locked attribute can still be changed in the back-end, so care still needs to taken that untrusted user input is not passed to the property in your own Livewire functions.\nIf using a model property is undesired in your scenario, you can of course fall-back to manually authorizing the deletion of the post inside the delete action:\nNow, even though a malicious user can still freely modify the value of $postId, when the delete action is called, $this->authorize() will throw an AuthorizationException if the user does not own the post.\nFurther reading:",
+            "examples": [
+                {
+                    "code": "<?php use App\\Models\\Post;use Livewire\\Component; class ShowPost extends Component{ public $postId;  public function mount($postId) { $this->postId = $postId; }  public function delete() { // INSECURE!  $post = Post::find($this->postId);  $post->delete(); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<button wire:click=\"delete\">Delete Post</button>",
+                    "type": "class"
+                },
+                {
+                    "code": "<input type=\"text\" wire:model=\"postId\">",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php use App\\Models\\Post;use Livewire\\Component; class ShowPost extends Component{ public Post $post;  public function mount($postId) { $this->post = Post::find($postId); }  public function delete() { $this->post->delete(); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php use App\\Models\\Post;use Livewire\\Component;use Livewire\\Attributes\\Locked; class ShowPost extends Component{ #[Locked] public $postId;  public function mount($postId) { $this->postId = $postId; }  public function delete() { $post = Post::find($this->postId);  $post->delete(); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php use App\\Models\\Post;use Livewire\\Component; class ShowPost extends Component{ public $postId;  public function mount($postId) { $this->postId = $postId; }  public function delete() { $post = Post::find($this->postId);  $this->authorize('delete', $post);   $post->delete(); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Middleware",
+            "content": "When a Livewire component is loaded on a page containing route-level Authorization Middleware, like so:\nLivewire will ensure those middlewares are re-applied to subsequent Livewire network requests. This is referred to as \"Persistent Middleware\" in Livewire's core.\nPersistent middleware protects you from scenarios where the authorization rules or user permissions have changed after the initial page-load.\nHere's a more in-depth example of such a scenario:\nAs you can see, the can:update,post middleware is applied at the route-level. This means that a user who doesn't have permission to update a post cannot view the page.\nHowever, consider a scenario where a user:\nBecause Livewire has already successfully loaded the page you might ask yourself: \"When Livewire makes a subsequent request to update the post, will the can:update,post middleware be re-applied? Or instead, will the un-authorized user be able to update the post successfully?\"\nBecause Livewire has internal mechanisms to re-apply middleware from the original endpoint, you are protected in this scenario.\nBy default, Livewire persists the following middleware across network requests:\nIf any of the above middlewares are applied to the initial page-load, they will be persisted (re-applied) to any future network requests.\nHowever, if you are applying a custom middleware from your application on the initial page-load, and want it persisted between Livewire requests, you will need to add it to this list from a Service Provider in your app like so:\nIf a Livewire component is loaded on a page that uses the EnsureUserHasRole middleware from your application, it will now be persisted and re-applied to any future network requests to that Livewire component.\nLivewire currently doesn't support middleware arguments for persistent middleware definitions.\nAlternatively, if you wish to apply specific middleware to every single Livewire update network request, you can do so by registering your own Livewire update route with any middleware you wish:\nAny Livewire AJAX/fetch requests made to the server will use the above endpoint and apply the LocalizeViewPaths middleware before handling the component update.\nLearn more about customizing the update route on the Installation page.",
+            "examples": [
+                {
+                    "code": "Route::get('/post/{post}', App\\Livewire\\UpdatePost::class) ->middleware('can:update,post');",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php use App\\Models\\Post;use Livewire\\Component;use Livewire\\Attributes\\Validate; class UpdatePost extends Component{ public Post $post;  #[Validate('required|min:5')] public $title = '';  public $content = '';  public function mount() { $this->title = $this->post->title; $this->content = $this->post->content; }  public function update() { $this->post->update([ 'title' => $this->title, 'content' => $this->content, ]); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "\\Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful::class,\\Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession::class,\\Illuminate\\Auth\\Middleware\\AuthenticateWithBasicAuth::class,\\Illuminate\\Routing\\Middleware\\SubstituteBindings::class,\\App\\Http\\Middleware\\RedirectIfAuthenticated::class,\\Illuminate\\Auth\\Middleware\\Authenticate::class,\\Illuminate\\Auth\\Middleware\\Authorize::class,",
+                    "type": "class"
+                },
+                {
+                    "code": "<?php namespace App\\Providers; use Illuminate\\Support\\ServiceProvider;use Livewire; class AppServiceProvider extends ServiceProvider{ /** * Bootstrap any application services. */ public function boot(): void { Livewire::addPersistentMiddleware([ App\\Http\\Middleware\\EnsureUserHasRole::class, ]); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "// Bad...Livewire::addPersistentMiddleware(AuthorizeResource::class.':admin'); // Good...Livewire::addPersistentMiddleware(AuthorizeResource::class);",
+                    "type": "class"
+                },
+                {
+                    "code": "Livewire::setUpdateRoute(function ($handle) { return Route::post('/livewire/update', $handle) ->middleware(App\\Http\\Middleware\\LocalizeViewPaths::class);});",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Snapshot checksums",
+            "content": "Between every Livewire request, a snapshot is taken of the Livewire component and sent to the browser. This snapshot is used to re-build the component during the next server round-trip.\nLearn more about Livewire snapshots in the Hydration documentation.\nBecause fetch requests can be intercepted and tampered with in a browser, Livewire generates a \"checksum\" of each snapshot to go along with it.\nThis checksum is then used on the next network request to verify that the snapshot hasn't changed in any way.\nIf Livewire finds a checksum mismatch, it will throw a CorruptComponentPayloadException and the request will fail.\nThis protects against any form of malicious tampering that would otherwise result in granting users the ability to execute or modify unrelated code.",
+            "examples": []
+        }
+    ],
+    "directives_used": [
+        "wire:click",
+        "wire:model"
+    ],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:38:01+00:00"
+}

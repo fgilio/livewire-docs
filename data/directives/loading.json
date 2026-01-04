@@ -1,0 +1,36 @@
+{
+    "name": "wire:loading",
+    "description": "Show, hide, or modify elements while a component is processing a request",
+    "variants": [
+        {
+            "syntax": "wire:loading",
+            "description": "Show element during any loading"
+        },
+        {
+            "syntax": "wire:loading.remove",
+            "description": "Hide element during loading"
+        },
+        {
+            "syntax": "wire:loading.class=\"opacity-50\"",
+            "description": "Add class during loading"
+        },
+        {
+            "syntax": "wire:loading.class.remove=\"hidden\"",
+            "description": "Remove class during loading"
+        },
+        {
+            "syntax": "wire:loading.attr=\"disabled\"",
+            "description": "Add attribute during loading"
+        },
+        {
+            "syntax": "wire:loading.delay",
+            "description": "Delay showing by 200ms"
+        },
+        {
+            "syntax": "wire:loading.delay.long",
+            "description": "Delay showing by 500ms"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

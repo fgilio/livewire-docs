@@ -1,0 +1,16 @@
+{
+    "name": "wire:target",
+    "description": "Scope loading indicators to specific actions or properties",
+    "variants": [
+        {
+            "syntax": "wire:target=\"methodName\"",
+            "description": "Only show loading for specific action"
+        },
+        {
+            "syntax": "wire:target=\"save, update\"",
+            "description": "Target multiple actions"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

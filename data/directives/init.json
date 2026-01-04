@@ -1,0 +1,12 @@
+{
+    "name": "wire:init",
+    "description": "Execute a component action when the component is first rendered",
+    "variants": [
+        {
+            "syntax": "wire:init=\"loadData\"",
+            "description": "Call method when component is rendered"
+        }
+    ],
+    "examples": [],
+    "related_topics": []
+}

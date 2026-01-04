@@ -1,0 +1,97 @@
+{
+    "slug": "synthesizers",
+    "title": "Synthesizers",
+    "description": "Because Livewire components are dehydrated (serialized) into JSON, then hydrated (unserialized) back into PHP components between requests, their properties need to be JSON-serializable.",
+    "category": "features",
+    "url": "https://livewire.laravel.com/docs/3.x/synthesizers",
+    "sections": [
+        {
+            "title": "#Understanding Synthesizers",
+            "content": "Before exploring the creation of custom Synthesizers, let's first look at the internal Synthesizer that Livewire uses to support Laravel Stringables.\nSuppose your application contained the following CreatePost component:\nBetween requests, Livewire might serialize this component's state into a JSON object like the following:\nNow, consider a more advanced example where the $title property value is a stringable instead of a plain string:\nThe dehydrated JSON representing this component's state now contains a metadata tuple instead of a plain empty string:\nLivewire can now use this tuple to hydrate the $title property back into a stringable on the next request.\nNow that you've seen the outside-in effects of Synthesizers, here is the actual source code for Livewire's internal stringable synth:\nLet's break this down piece by piece.\nFirst is the $key property:\nEvery synth must contain a static $key property that Livewire uses to convert a metadata tuple like ['', { s: 'str' }] back into a stringable. As you may notice, each metadata tuple has an s key referencing this key.\nInversely, when Livewire is dehydrating a property, it will use the synth's static match() function to identify if this particular Synthesizer is a good candidate to dehydrate the current property ($target being the current value of the property):\nIf match() returns true, the dehydrate() method will be used to take the property's PHP value as input and return the JSONable metadata tuple:\nNow, at the beginning of the next request, after this Synthesizer has been matched by the { s: 'str' } key in the tuple, the hydrate() method will be called and passed the raw JSON representation of the property with the expectation that it returns the full PHP-compatible value to be assigned to the property.",
+            "examples": [
+                {
+                    "code": "class CreatePost extends Component{ public $title = '';}",
+                    "type": "class"
+                },
+                {
+                    "code": "state: { title: '' },",
+                    "type": "class"
+                },
+                {
+                    "code": "class CreatePost extends Component{ public $title = '';  public function mount() { $this->title = str($this->title); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "state: { title: ['', { s: 'str' }] },",
+                    "type": "class"
+                },
+                {
+                    "code": "use Illuminate\\Support\\Stringable; class StringableSynth extends Synth{ public static $key = 'str';  public static function match($target) { return $target instanceof Stringable; }  public function dehydrate($target) { return [$target->__toString(), []]; }  public function hydrate($value) { return str($value); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "public static $key = 'str';",
+                    "type": "class"
+                },
+                {
+                    "code": "public static function match($target){ return $target instanceof Stringable;}",
+                    "type": "class"
+                },
+                {
+                    "code": "public function dehydrate($target){ return [$target->__toString(), []];}",
+                    "type": "class"
+                },
+                {
+                    "code": "public function hydrate($value){ return str($value);}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Registering a custom Synthesizer",
+            "content": "To demonstrate how you might author your own Synthesizer to support a custom property, we will use the following UpdateProperty component as an example:\nHere's the source for the Address class:\nTo support properties of type Address, we can use the following Synthesizer:\nTo make it available globally in your application, you can use Livewire's propertySynthesizer method to register the synthesizer from your service provider boot method:",
+            "examples": [
+                {
+                    "code": "class UpdateProperty extends Component{ public Address $address;  public function mount() { $this->address = new Address(); }}",
+                    "type": "class"
+                },
+                {
+                    "code": "namespace App\\Dtos\\Address; class Address{ public $street = ''; public $city = ''; public $state = ''; public $zip = '';}",
+                    "type": "class"
+                },
+                {
+                    "code": "use App\\Dtos\\Address; class AddressSynth extends Synth{ public static $key = 'address';  public static function match($target) { return $target instanceof Address; }  public function dehydrate($target) { return [[ 'street' => $target->street, 'city' => $target->city, 'state' => $target->state, 'zip' => $target->zip, ], []]; }  public function hydrate($value) { $instance = new Address;  $instance->street = $value['street']; $instance->city = $value['city']; $instance->state = $value['state']; $instance->zip = $value['zip'];  return $instance; }}",
+                    "type": "class"
+                },
+                {
+                    "code": "class AppServiceProvider extends ServiceProvider{ /** * Bootstrap any application services. */ public function boot(): void { Livewire::propertySynthesizer(AddressSynth::class); }}",
+                    "type": "class"
+                }
+            ]
+        },
+        {
+            "title": "#Supporting data binding",
+            "content": "Using the UpdateProperty example from above, it is likely that you would want to support wire:model binding directly to properties of the Address object. Synthesizers allow you to support this using the get() and set() methods:",
+            "examples": [
+                {
+                    "code": "use App\\Dtos\\Address; class AddressSynth extends Synth{ public static $key = 'address';  public static function match($target) { return $target instanceof Address; }  public function dehydrate($target) { return [[ 'street' => $target->street, 'city' => $target->city, 'state' => $target->state, 'zip' => $target->zip, ], []]; }  public function hydrate($value) { $instance = new Address;  $instance->street = $value['street']; $instance->city = $value['city']; $instance->state = $value['state']; $instance->zip = $value['zip'];  return $instance; }  public function get(&$target, $key) { return $target->{$key}; }  public function set(&$target, $key, $value) { $target->{$key} = $value; }}",
+                    "type": "class"
+                }
+            ]
+        }
+    ],
+    "directives_used": [],
+    "related": [
+        "quickstart",
+        "installation",
+        "upgrading",
+        "components",
+        "properties",
+        "actions",
+        "forms",
+        "events",
+        "lifecycle-hooks",
+        "nesting"
+    ],
+    "scraped_at": "2026-01-02T23:38:03+00:00"
+}
