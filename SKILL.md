@@ -16,7 +16,7 @@ Offline Livewire v3 documentation with JSON output for Claude Code integration.
 | Command | Purpose |
 |---------|---------|
 | `livewire-docs docs` | List all topics by category |
-| `livewire-docs search <query>` | Fuzzy search documentation |
+| `livewire-docs search <query> [--limit=N]` | Fuzzy search documentation |
 | `livewire-docs show <topic>` | Display full documentation |
 | `livewire-docs directives` | List all wire: directives |
 | `livewire-docs directive <name>` | Show directive usage and variants |
@@ -47,7 +47,7 @@ Search documentation by name, description, or content.
 
 ```bash
 livewire-docs search "file upload"
-livewire-docs search validation
+livewire-docs search validation --limit=5
 livewire-docs search "wire:model" --json
 ```
 
