@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -35,7 +36,7 @@ class Analytics
         }
     }
 
-    private function disk(): \Illuminate\Filesystem\FilesystemAdapter
+    private function disk(): FilesystemAdapter
     {
         $root = realpath(dirname(\Phar::running(false))) ?: dirname(\Phar::running(false));
 

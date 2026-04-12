@@ -1,5 +1,8 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use Fgilio\AgentSkillFoundation\AgentSkillFoundationServiceProvider;
+
 return [
 
     /*
@@ -54,8 +57,8 @@ return [
     */
 
     'providers' => [
-        App\Providers\AppServiceProvider::class,
-        Fgilio\AgentSkillFoundation\AgentSkillFoundationServiceProvider::class,
+        AppServiceProvider::class,
+        AgentSkillFoundationServiceProvider::class,
     ],
 
 ];
