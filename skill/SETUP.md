@@ -7,6 +7,7 @@
 ```
 
 Or manually:
+
 ```bash
 ln -sf $AGENT_HOME/skills/livewire-docs/livewire-docs ~/.local/bin/livewire-docs
 ```

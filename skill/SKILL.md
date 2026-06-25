@@ -15,13 +15,12 @@ Offline Livewire v4 documentation with JSON output for Claude Code integration.
 
 ## Execution
 
-`livewire-docs` is a self-contained binary available on PATH.
-Run it directly - never prefix with `bun`, `node`, `php`, or any runtime.
+`livewire-docs` is a self-contained binary available on PATH. Run it directly - never prefix with `bun`, `node`, `php`, or any runtime.
 
 ## Quick Reference
 
 | Command | Purpose |
-|---------|---------|
+| --- | --- |
 | `livewire-docs docs` | List all topics by category |
 | `livewire-docs search <query> [--limit=N]` | Fuzzy search documentation |
 | `livewire-docs show <topic>` | Display full documentation |
@@ -41,6 +40,7 @@ livewire-docs docs --json                 # JSON output
 ```
 
 Categories:
+
 - `getting-started` - Quickstart, installation, upgrade guide
 - `essentials` - Components, pages, properties, actions, forms, events, lifecycle
 - `features` - Validation, uploads, pagination, Alpine, islands, navigation, lazy loading, styles
@@ -107,6 +107,7 @@ livewire-docs directives
 ## Data Location
 
 Documentation stored in `data/` directory (versioned in git):
+
 - `data/getting-started/` - Getting started topics
 - `data/essentials/` - Core concepts
 - `data/features/` - Feature documentation
