@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-layout",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Layout] attribute to a full-page component to use a specific layout:\nThis component will render using the resources/views/layouts/dashboard.blade.php layout instead of the default.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Default layout",
+            "title": "Default layout¶",
             "content": "By default, Livewire uses the layout specified in your config/livewire.php file:\nThe #[Layout] attribute overrides this default for specific components.",
             "examples": [
                 {
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "#Passing data to layouts",
+            "title": "Passing data to layouts¶",
             "content": "You can pass additional data to your layout using array syntax:\nIn your layout file, the $title variable will be available:",
             "examples": [
                 {
@@ -40,17 +40,17 @@
             ]
         },
         {
-            "title": "#Alternative: Using layout() method",
+            "title": "Alternative: Using layout() method¶",
             "content": "Instead of the attribute, you can use the layout() method in your render() method:\nThe attribute approach is cleaner for single-file components that don't need a render() method.",
             "examples": [
                 {
-                    "code": "<?php // resources/views/pages/posts/⚡index.blade.php use Livewire\\Component; new class extends Component { public function render() { return view('livewire.posts.index') ->layout('layouts::dashboard', ['title' => 'Posts']); }};",
+                    "code": "<?php // resources/views/pages/posts/⚡index.blade.php use Livewire\\Component; new class extends Component { public function render() { return $this->view() ->layout('layouts::dashboard', ['title' => 'Posts']); }};",
                     "type": "class"
                 }
             ]
         },
         {
-            "title": "#Using different layouts per page",
+            "title": "Using different layouts per page¶",
             "content": "A common pattern is to use different layouts for different sections of your app:",
             "examples": [
                 {
@@ -60,17 +60,17 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Layout] when:\nThe #[Layout] attribute only applies to full-page components. Regular components that are rendered within other views don't use layouts.",
             "examples": []
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about full-page components and layouts, see the Pages documentation.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -84,9 +84,9 @@
         "wire:key"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -95,5 +95,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:14+00:00"
+    "scraped_at": "2026-07-22T16:18:59+00:00"
 }

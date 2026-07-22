@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-renderless",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Renderless] attribute to any action method that doesn't need to re-render the component:\nThe example above uses wire:intersect to call incrementViewCount() when the user scrolls to the bottom. Since #[Renderless] is applied, the view count is logged but the template doesn't re-render—no part of the page is affected.",
             "examples": [
                 {
@@ -20,12 +20,12 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Renderless] when an action:\nCommon use cases include:",
             "examples": []
         },
         {
-            "title": "#Alternative approaches",
+            "title": "Alternative approaches¶",
             "content": "If you need to conditionally skip rendering or prefer not to use attributes, you can call skipRender() directly in your action:\nYou can also skip rendering directly from the element using the .renderless modifier:\nThis approach is useful for one-off cases where you don't want to add an attribute to the method.",
             "examples": [
                 {
@@ -39,7 +39,7 @@
             ]
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about actions and performance optimization, see the Actions documentation.",
             "examples": []
         }
@@ -49,9 +49,9 @@
         "wire:intersect"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -60,5 +60,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:19+00:00"
+    "scraped_at": "2026-07-22T16:19:06+00:00"
 }

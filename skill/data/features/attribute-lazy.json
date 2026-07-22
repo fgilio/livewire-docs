@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-lazy",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Lazy] attribute to any component that should be lazy-loaded:\nWith #[Lazy], the component initially renders as an empty <div></div>, then loads when it enters the viewport—typically when a user scrolls to it.",
             "examples": [
                 {
@@ -16,12 +16,12 @@
             ]
         },
         {
-            "title": "#Lazy vs Defer",
+            "title": "Lazy vs Defer¶",
             "content": "Livewire provides two ways to delay component loading:\nUse lazy loading for components below the fold that users might not scroll to. Use defer for components that are always visible but you want to load after the page renders.",
             "examples": []
         },
         {
-            "title": "#Rendering placeholders",
+            "title": "Rendering placeholders¶",
             "content": "By default, Livewire renders an empty <div></div> before the component loads. You can provide a custom placeholder using the placeholder() method:\nUsers will see a skeleton placeholder until the component enters the viewport and loads.\nIf your placeholder's root element is a <div>, your component must also use a <div> element.",
             "examples": [
                 {
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "title": "#Bundling requests",
+            "title": "Bundling requests¶",
             "content": "By default, lazy components load in parallel with independent network requests. To bundle multiple lazy components into a single request, use the bundle parameter:\nNow, if there are ten revenue components on the page, all ten will load via a single bundled network request instead of ten parallel requests.",
             "examples": [
                 {
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "title": "#Alternative approach",
+            "title": "Alternative approach¶",
             "content": "Instead of the attribute, you can lazy-load specific component instances using the lazy parameter:\nThis is useful when you only want certain instances of a component to be lazy-loaded.\nIf a component has #[Lazy] but you want to load it immediately in certain cases, you can override it:",
             "examples": [
                 {
@@ -55,17 +55,17 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Lazy] when:",
             "examples": []
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For complete documentation on lazy loading, including placeholders, bundling strategies, and passing props, see the Lazy Loading documentation.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -79,9 +79,9 @@
         "wire:revenue"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -90,5 +90,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:14+00:00"
+    "scraped_at": "2026-07-22T16:19:00+00:00"
 }

@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-computed",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Computed] attribute to any method to turn it into a cached property:\nThe user() method is accessed like a property using $this->user. The first time it's called, the result is cached and reused for the rest of the request.\nUnlike normal properties, computed properties must be accessed via $this in your template. For example, $this->posts instead of $posts.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Performance advantage",
+            "title": "Performance advantage¶",
             "content": "Computed properties cache their result for the duration of a request. If you access $this->posts multiple times, the underlying method only executes once:\nThis allows you to freely access derived values without worrying about performance implications.",
             "examples": [
                 {
@@ -30,7 +30,7 @@
             ]
         },
         {
-            "title": "#Busting the cache",
+            "title": "Busting the cache¶",
             "content": "If the underlying data changes during a request, you can clear the cache using unset():\nAfter creating a new post, unset($this->posts) clears the cache so the next access retrieves the updated data.",
             "examples": [
                 {
@@ -40,7 +40,7 @@
             ]
         },
         {
-            "title": "#Caching between requests",
+            "title": "Caching between requests¶",
             "content": "By default, computed properties only cache within a single request. To cache across multiple requests, use the persist parameter:\nThis caches the value for 3600 seconds (1 hour). You can customize the duration:",
             "examples": [
                 {
@@ -54,7 +54,7 @@
             ]
         },
         {
-            "title": "#Caching across all components",
+            "title": "Caching across all components¶",
             "content": "To share cached values across all component instances in your application, use the cache parameter:\nYou can optionally set a custom cache key:",
             "examples": [
                 {
@@ -68,22 +68,22 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Computed properties are especially useful when:",
             "examples": []
         },
         {
-            "title": "#Limitations",
+            "title": "Limitations¶",
             "content": "Computed properties cannot be used on Livewire\\Form objects. Attempting to access them via $form->property will result in an error.",
             "examples": []
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For detailed information about computed properties, caching strategies, and advanced use cases, see the Computed Properties documentation.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -97,9 +97,9 @@
         "wire:click"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -108,5 +108,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:09+00:00"
+    "scraped_at": "2026-07-22T16:18:54+00:00"
 }

@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-locked",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Locked] attribute to any public property that should not be changed from the frontend:\nIf a user attempts to modify a locked property through browser DevTools or by tampering with requests, Livewire will throw an exception and prevent the action from executing.\nProperties with the #[Locked] attribute can still be changed in your component's PHP code. The lock only prevents client-side tampering. Be careful not to pass untrusted user input to locked properties in your own methods.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Locked] when you need to:\nIf you store an Eloquent model in a public property, Livewire automatically ensures the ID isn't tampered with—no #[Locked] attribute needed:",
             "examples": [
                 {
@@ -26,21 +26,21 @@
             ]
         },
         {
-            "title": "#Why not protected properties?",
+            "title": "Why not protected properties?¶",
             "content": "You might wonder why you can't just use protected properties for sensitive data.\nRemember, Livewire only persists public properties between requests. Protected properties work fine for static, hard-coded values, but any data that needs to be stored at runtime must use a public property to persist properly between requests.\nThis is where #[Locked] becomes essential: it gives you the persistence of public properties with protection against client-side tampering.",
             "examples": []
         },
         {
-            "title": "#Can't Livewire do this automatically?",
+            "title": "Can't Livewire do this automatically?¶",
             "content": "In a perfect world, Livewire would lock properties by default and only allow modifications when wire:model is used on that property.\nUnfortunately, that would require Livewire to parse all of your Blade templates to understand if a property is modified by wire:model or a similar API.\nNot only would that add technical and performance overhead, it would be impossible to detect if a property is mutated by something like Alpine or any other custom JavaScript.\nTherefore, Livewire will continue to make public properties freely mutable by default and give developers the tools to lock them as needed.",
             "examples": []
         }
     ],
     "directives_used": [],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -49,5 +49,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:15+00:00"
+    "scraped_at": "2026-07-22T16:19:02+00:00"
 }

@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-init",
     "sections": [
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "This directive has no modifiers.",
             "examples": [
                 {
@@ -20,9 +20,9 @@
         "wire:init"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -31,5 +31,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:59+00:00"
+    "scraped_at": "2026-07-22T16:18:41+00:00"
 }

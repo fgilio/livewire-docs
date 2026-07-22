@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/downloads",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Triggering a file download in Livewire is as simple as returning a standard Laravel download response.\nBelow is an example of a show-invoice component that contains a \"Download\" button to download the invoice PDF:\nJust like in a Laravel controller, you can also use the Storage facade to initiate downloads:",
             "examples": [
                 {
@@ -24,7 +24,7 @@
             ]
         },
         {
-            "title": "#Streaming downloads",
+            "title": "Streaming downloads¶",
             "content": "Livewire can also stream downloads; however, they aren't truly streamed. The download isn't triggered until the file's contents are collected and delivered to the browser:",
             "examples": [
                 {
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "title": "#Testing file downloads",
+            "title": "Testing file downloads¶",
             "content": "Livewire also provides a ->assertFileDownloaded() method to easily test that a file was downloaded with a given name:\nYou can also test to ensure a file was not downloaded using the ->assertNoFileDownloaded() method:",
             "examples": [
                 {
@@ -52,9 +52,9 @@
         "wire:click"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -63,5 +63,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:48+00:00"
+    "scraped_at": "2026-07-22T16:18:23+00:00"
 }

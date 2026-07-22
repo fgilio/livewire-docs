@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-defer",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Defer] attribute to any component that should be deferred:\nWith #[Defer], the component initially renders as an empty <div></div>, then loads immediately after the page finishes loading—without waiting for it to enter the viewport.",
             "examples": [
                 {
@@ -16,12 +16,12 @@
             ]
         },
         {
-            "title": "#Lazy vs Defer",
+            "title": "Lazy vs Defer¶",
             "content": "Livewire provides two ways to delay component loading:\nBoth prevent slow components from blocking your initial page render, but differ in when the component actually loads.",
             "examples": []
         },
         {
-            "title": "#Rendering placeholders",
+            "title": "Rendering placeholders¶",
             "content": "By default, Livewire renders an empty <div></div> before the component loads. You can provide a custom placeholder using the placeholder() method:\nUsers will see the loading spinner until the component fully loads.\nIf your placeholder's root element is a <div>, your component must also use a <div> element.",
             "examples": [
                 {
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "title": "#Bundling requests",
+            "title": "Bundling requests¶",
             "content": "By default, deferred components load in parallel with independent network requests. To bundle multiple deferred components into a single request, use the bundle parameter:\nNow, if there are ten revenue components on the page, all ten will load via a single bundled network request instead of ten parallel requests.",
             "examples": [
                 {
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "title": "#Alternative approach",
+            "title": "Alternative approach¶",
             "content": "Instead of the attribute, you can defer specific component instances using the defer parameter:\nThis is useful when you only want certain instances of a component to be deferred.\nIf a component has #[Defer] but you want to load it immediately in certain cases, you can override it:",
             "examples": [
                 {
@@ -55,17 +55,17 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Defer] when:",
             "examples": []
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For complete documentation on lazy and deferred loading, including placeholders and bundling strategies, see the Lazy Loading documentation.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -79,9 +79,9 @@
         "wire:revenue"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -90,5 +90,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:10+00:00"
+    "scraped_at": "2026-07-22T16:18:55+00:00"
 }

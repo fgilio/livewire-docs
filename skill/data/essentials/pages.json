@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/pages",
     "sections": [
         {
-            "title": "#Routing to components",
+            "title": "Routing to components¶",
             "content": "To route to a component, use the Route::livewire() method in your routes/web.php file:\nWhen you visit the specified URL, the component will be rendered as a complete page using your application's layout.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Layouts",
+            "title": "Layouts¶",
             "content": "Components rendered via routes will use your application's layout file. By default, Livewire looks for a layout called layouts::app located at resources/views/layouts/app.blade.php.\nYou may create this file if it doesn't already exist by running the following command:\nThis command will generate a file called resources/views/layouts/app.blade.php.\nEnsure you have created a Blade file at this location and included a {{ $slot }} placeholder:\nYou may customize the default layout by updating the component_layout configuration option in your config/livewire.php file:\nTo use a different layout for a specific component, you may place the #[Layout] attribute above your component class:\nAlternatively, you may use the ->layout() method within your component's render() method:",
             "examples": [
                 {
@@ -42,7 +42,7 @@
             ]
         },
         {
-            "title": "#Setting the page title",
+            "title": "Setting the page title¶",
             "content": "Assigning unique page titles to each page in your application is helpful for both users and search engines.\nTo set a custom page title for a page component, first, make sure your layout file includes a dynamic title:\nNext, above your Livewire component's class, add the #[Title] attribute and pass it your page title:\nThis will set the page title for the component. In this example, the page title will be \"Create Post\" when the component is rendered.\nIf you need to pass a dynamic title, such as a title that uses a component property, you can use the ->title() fluent method in the component's render() method:",
             "examples": [
                 {
@@ -60,7 +60,7 @@
             ]
         },
         {
-            "title": "#Setting additional layout file slots",
+            "title": "Setting additional layout file slots¶",
             "content": "If your layout file has any named slots in addition to $slot, you can set their content in your Blade view by defining <x-slot> outside your root element. For example, if you want to be able to set the page language for each component individually, you can add a dynamic $lang slot into the opening HTML tag in your layout file:\nThen, in your component view, define an <x-slot> element outside the root element:",
             "examples": [
                 {
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "title": "#Accessing route parameters",
+            "title": "Accessing route parameters¶",
             "content": "When working with page components, you may need to access route parameters within your Livewire component.\nTo demonstrate, first, define a route with a parameter in your routes/web.php file:\nHere, we've defined a route with an id parameter which represents a post's ID.\nNext, update your Livewire component to accept the route parameter in the mount() method:\nIn this example, because the parameter name $id matches the route parameter {id}, if the /posts/1 URL is visited, Livewire will pass the value of \"1\" as $id.",
             "examples": [
                 {
@@ -88,7 +88,7 @@
             ]
         },
         {
-            "title": "#Using route model binding",
+            "title": "Using route model binding¶",
             "content": "Laravel's route model binding allows you to automatically resolve Eloquent models from route parameters.\nAfter defining a route with a model parameter in your routes/web.php file:\nYou can now accept the route model parameter through the mount() method of your component:\nLivewire knows to use \"route model binding\" because the Post type-hint is prepended to the $post parameter in mount().\nLike before, you can reduce boilerplate by omitting the mount() method:\nThe $post property will automatically be assigned to the model bound via the route's {post} parameter.",
             "examples": [
                 {
@@ -110,9 +110,9 @@
         "wire:layout"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "properties",
         "actions",
@@ -190,5 +190,5 @@
         "security",
         "troubleshooting"
     ],
-    "scraped_at": "2026-02-23T13:09:31+00:00"
+    "scraped_at": "2026-07-22T16:17:56+00:00"
 }

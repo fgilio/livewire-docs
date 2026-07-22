@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/nesting",
     "sections": [
         {
-            "title": "#Nesting a component",
+            "title": "Nesting a component¶",
             "content": "To nest a Livewire component within a parent component, simply include it in the parent component's Blade view. Below is an example of a dashboard parent component that contains a nested todos component:\nOn this page's initial render, the dashboard component will encounter <livewire:todos /> and render it in place. On a subsequent network request to dashboard, the nested todos component will skip rendering because it is now its own independent component on the page. For more information on the technical concepts behind nesting and rendering, consult our documentation on why nested components are independent.\nFor more information about the syntax for rendering components, consult our documentation on Rendering Components.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Passing props to children",
+            "title": "Passing props to children¶",
             "content": "Passing data from a parent component to a child component is straightforward. In fact, it's very much like passing props to a typical Blade component.\nFor example, let's check out a todos component that passes a collection of $todos to a child component called todo-count:\nAs you can see, we are passing $this->todos into todo-count with the syntax: :todos=\"$this->todos\".\nNow that $todos has been passed to the child component, you can receive that data through the child component's mount() method:\nIf the mount() method in above example feels like redundant boilerplate code to you, it can be omitted as long as the property and parameter names match:\nIn the previous example, we passed props to our child component using Livewire's dynamic prop syntax, which supports PHP expressions like so:\nHowever, sometimes you may want to pass a component a simple static value such as a string. In these cases, you may omit the colon from the beginning of the statement:\nBoolean values may be provided to components by only specifying the key. For example, to pass an $inline variable with a value of true to a component, we may simply place inline on the component tag:\nWhen passing PHP variables into a component, the variable name and the prop name are often the same. To avoid writing the name twice, Livewire allows you to simply prefix the variable with a colon:",
             "examples": [
                 {
@@ -50,7 +50,7 @@
             ]
         },
         {
-            "title": "#Rendering children in a loop",
+            "title": "Rendering children in a loop¶",
             "content": "When rendering a child component within a loop, you should include a unique key value for each iteration.\nComponent keys are how Livewire tracks each component on subsequent renders, particularly if a component has already been rendered or if multiple components have been re-arranged on the page.\nYou can specify the component's key by specifying a :key prop on the child component:\nAs you can see, each child component will have a unique key set to the ID of each $todo. This ensures the key will be unique and tracked if the todos are re-ordered.\nIf you have used frontend frameworks like Vue or Alpine, you are familiar with adding a key to a nested element in a loop. However, in those frameworks, a key isn't mandatory, meaning the items will render, but a re-order might not be tracked properly. However, Livewire relies more heavily on keys and will behave incorrectly without them.",
             "examples": [
                 {
@@ -60,7 +60,7 @@
             ]
         },
         {
-            "title": "#Reactive props",
+            "title": "Reactive props¶",
             "content": "Developers new to Livewire expect that props are \"reactive\" by default. In other words, they expect that when a parent changes the value of a prop being passed into a child component, the child component will automatically be updated. However, by default, Livewire props are not reactive.\nWhen using Livewire, every component is independent. This means that when an update is triggered on the parent and a network request is dispatched, only the parent component's state is sent to the server to re-render - not the child component's. The intention behind this behavior is to only send the minimal amount of data back and forth between the server and client, making updates as performant as possible.\nBut, if you want or need a prop to be reactive, you can easily enable this behavior using the #[Reactive] attribute parameter.\nFor example, below is the template of a parent todos component. Inside, it is rendering a todo-count component and passing in the current list of todos:\nNow let's add #[Reactive] to the $todos prop in the todo-count component. Once we have done so, any todos that are added or removed inside the parent component will automatically trigger an update within the todo-count component:\nReactive properties are an incredibly powerful feature, making Livewire more similar to frontend component libraries like Vue and React. But, it is important to understand the performance implications of this feature and only add #[Reactive] when it makes sense for your particular scenario.\nIf you find yourself creating child components primarily to isolate updates and using #[Reactive] to keep them in sync, consider using islands instead. Islands provide isolated re-rendering within a single component without the need for reactive props or child component communication.",
             "examples": [
                 {
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "title": "#Binding to child data using wire:model",
+            "title": "Binding to child data using wire:model¶",
             "content": "Another powerful pattern for sharing state between parent and child components is using wire:model directly on a child component via Livewire's Modelable feature.\nThis behavior is very commonly needed when extracting an input element into a dedicated Livewire component while still accessing its state in the parent component.\nBelow is an example of a parent todos component that contains a $todo property which tracks the current todo about to be added by a user:\nAs you can see in the todos template, wire:model is being used to bind the $todo property directly to a nested todo-input component:\nLivewire provides a #[Modelable] attribute you can add to any child component property to make it modelable from a parent component.\nBelow is the todo-input component with the #[Modelable] attribute added above the $value property to signal to Livewire that if wire:model is declared on the component by a parent it should bind to this property:\nNow the parent todos component can treat todo-input like any other input element and bind directly to its value using wire:model.\nCurrently Livewire only supports a single #[Modelable] attribute, so only the first one will be bound.",
             "examples": [
                 {
@@ -92,7 +92,7 @@
             ]
         },
         {
-            "title": "#Slots",
+            "title": "Slots¶",
             "content": "Slots allow you to pass Blade content from a parent component into a child component. This is useful when a child component needs to render its own content while also allowing the parent to inject custom content in specific places.\nBelow is an example of a parent component that renders a list of comments. Each comment is rendered by a Comment child component, but the parent passes in a \"Remove\" button via a slot:\nNow that content has been passed to the Comment child component, you can render it using the $slot variable:\nWhen the Comment component renders $slot, Livewire will inject the content passed from the parent.\nIt's important to understand that slots are evaluated in the context of the parent component. This means any properties or methods referenced inside the slot belong to the parent, not the child. In the example above, the removeComment() method is called on the parent component, not the Comment child.\nIn addition to the default slot, you may also pass multiple named slots into a child component. This is useful when you want to provide content for multiple areas of a child component.\nBelow is an example of passing both a default slot and a named actions slot to the Comment component:\nYou can access named slots in the child component by passing the slot name to the $slots variable:\nYou can check if a slot was provided by the parent using the has() method on the $slots variable. This is helpful when you want to conditionally render content based on whether or not a slot is present:",
             "examples": [
                 {
@@ -118,7 +118,7 @@
             ]
         },
         {
-            "title": "#Forwarding HTML attributes",
+            "title": "Forwarding HTML attributes¶",
             "content": "Like Blade components, Livewire components support forwarding HTML attributes from a parent to a child using the $attributes variable.\nBelow is an example of a parent component passing a class attribute to a child component:\nYou can apply these attributes in the child component using the $attributes variable:\nAttributes that match public property names are automatically passed as props and excluded from $attributes. Any remaining attributes like class, id, or data-* are available through $attributes.",
             "examples": [
                 {
@@ -132,7 +132,7 @@
             ]
         },
         {
-            "title": "#Islands vs nested components",
+            "title": "Islands vs nested components¶",
             "content": "When building Livewire applications, you'll often face a choice: Should you create a nested child component or use an island? Both approaches allow you to isolate updates to specific regions, but they serve different purposes.\nIslands are ideal when you want performance isolation without architectural complexity. Use islands when:\nYou need performance optimization without the overhead\nIf your primary goal is to prevent expensive computations from running unnecessarily, islands are the simpler solution:\nThis achieves the same performance benefit as a child component, but without creating a separate component file, managing props, or setting up event communication.\nYou want to defer or lazy load content\nIslands excel at deferring expensive operations until after the initial page load:\nYou have multiple independent UI regions\nWhen you have several regions that update independently but don't need separate logic:\nThe isolated region doesn't need its own lifecycle\nIslands share the parent component's lifecycle, state, and methods. This is perfect when the region is conceptually part of the same component.\nNested components are better when you need true encapsulation and reusability. Use nested components when:\nYou need reusable, self-contained functionality\nIf the component will be used in multiple places with its own logic and state:\nYou need separate lifecycle hooks\nWhen the child needs its own mount(), updated(), or other lifecycle methods:\nYou need encapsulated state and logic\nWhen the child has complex state management that should be isolated:\nYou need the component to be truly independent\nNested components are truly independent, maintaining their own state across parent updates. This is valuable when you don't want parent re-renders to affect the child.\nYou're building a component library\nWhen creating reusable components for your team or organization, nested components provide the proper encapsulation boundaries.\nStill not sure? Ask yourself:\nRemember: You can always start with an island for simplicity and refactor to a nested component later if you need the additional encapsulation.",
             "examples": [
                 {
@@ -162,7 +162,7 @@
             ]
         },
         {
-            "title": "#Listening for events from children",
+            "title": "Listening for events from children¶",
             "content": "Another powerful parent-child component communication technique is Livewire's event system, which allows you to dispatch an event on the server or client that can be intercepted by other components.\nOur complete documentation on Livewire's event system provides more detailed information on events, but below we'll discuss a simple example of using an event to trigger an update in a parent component.\nConsider a todos component with functionality to show and remove todos:\nTo call remove() from inside the child todo-item components, you can add an event listener to todos via the #[On] attribute:\nOnce the attribute has been added to the action, you can dispatch the remove-todo event from the todo-item child component:\nNow when the \"Remove\" button is clicked inside a todo-item, the parent todos component will intercept the dispatched event and perform the todo removal.\nAfter the todo is removed in the parent, the list will be re-rendered and the child that dispatched the remove-todo event will be removed from the page.\nThough the above example works, it takes two network requests to perform a single action:\nYou can avoid the first request entirely by dispatching the remove-todo event directly on the client-side. Below is an updated todo-item component that does not trigger a network request when dispatching the remove-todo event:\nAs a rule of thumb, always prefer dispatching client-side when possible.\nIf you're creating child components primarily to trigger parent updates via events, consider using islands instead. Islands can call component methods directly without the indirection of events, since they share the same component context.",
             "examples": [
                 {
@@ -184,7 +184,7 @@
             ]
         },
         {
-            "title": "#Directly accessing the parent from the child",
+            "title": "Directly accessing the parent from the child¶",
             "content": "Event communication adds a layer of indirection. A parent can listen for an event that never gets dispatched from a child, and a child can dispatch an event that is never intercepted by a parent.\nThis indirection is sometimes desirable; however, in other cases you may prefer to access a parent component directly from the child component.\nLivewire allows you to accomplish this by providing a magic $parent variable to your Blade template that you can use to access actions and properties directly from the child. Here's the above TodoItem template rewritten to call the remove() action directly on the parent via the magic $parent variable:\nEvents and direct parent communication are a few of the ways to communicate back and forth between parent and child components. Understanding their tradeoffs enables you to make more informed decisions about which pattern to use in a particular scenario.",
             "examples": [
                 {
@@ -194,7 +194,7 @@
             ]
         },
         {
-            "title": "#Dynamic child components",
+            "title": "Dynamic child components¶",
             "content": "Sometimes, you may not know which child component should be rendered on a page until run-time. Therefore, Livewire allows you to choose a child component at run-time via <livewire:dynamic-component ...>, which receives an :is prop:\nDynamic child components are useful in a variety of different scenarios, but below is an example of rendering different steps in a multi-step form using a dynamic component:\nNow, if the steps component's $current prop is set to \"step-one\", Livewire will render a component named \"step-one\" like so:\nIf you prefer, you can use the alternative syntax:\nDon't forget to assign each child component a unique key. Although Livewire automatically generates a key for <livewire:dynamic-child /> and <livewire:is />, that same key will apply to all your child components, meaning subsequent renders will be skipped.\nSee forcing a child component to re-render for a deeper understanding of how keys affect component rendering.",
             "examples": [
                 {
@@ -216,7 +216,7 @@
             ]
         },
         {
-            "title": "#Recursive components",
+            "title": "Recursive components¶",
             "content": "Although rarely needed by most applications, Livewire components may be nested recursively, meaning a parent component renders itself as its child.\nImagine a survey which contains a survey-question component that can have sub-questions attached to itself:\nOf course, the standard rules of recursion apply to recursive components. Most importantly, you should have logic in your template to ensure the template doesn't recurse indefinitely. In the example above, if a $subQuestion contained the original question as its own $subQuestion, an infinite loop would occur.",
             "examples": [
                 {
@@ -226,7 +226,7 @@
             ]
         },
         {
-            "title": "#Forcing a child component to re-render",
+            "title": "Forcing a child component to re-render¶",
             "content": "Behind the scenes, Livewire generates a key for each nested Livewire component in its template.\nFor example, consider the following nested todo-count component:\nLivewire internally attaches a random string key to the component like so:\nWhen the parent component is rendering and encounters a child component like the above, it stores the key in a list of children attached to the parent:\nLivewire uses this list for reference on subsequent renders in order to detect if a child component has already been rendered in a previous request. If it has already been rendered, the component is skipped. Remember, nested components are independent. However, if the child key is not in the list, meaning it hasn't been rendered already, Livewire will create a new instance of the component and render it in place.\nThese nuances are all behind-the-scenes behavior that most users don't need to be aware of; however, the concept of setting a key on a child is a powerful tool for controlling child rendering.\nUsing this knowledge, if you want to force a component to re-render, you can simply change its key.\nBelow is an example where we might want to destroy and re-initialize the todo-count component if the $todos being passed to the component are changed:\nAs you can see above, we are generating a dynamic :key string based on the content of $todos. This way, the todo-count component will render and exist as normal until the $todos themselves change. At that point, the component will be re-initialized entirely from scratch, and the old component will be discarded.",
             "examples": [
                 {
@@ -263,9 +263,9 @@
         "wire:todos"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -279,5 +279,5 @@
         "offline",
         "volt"
     ],
-    "scraped_at": "2026-02-23T13:09:36+00:00"
+    "scraped_at": "2026-07-22T16:18:04+00:00"
 }

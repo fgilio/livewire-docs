@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-bind",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "As the user types, wire:bind:class reacts to the message length and applies the class instantly on the client.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Common use cases",
+            "title": "Common use cases¶",
             "content": "",
             "examples": [
                 {
@@ -38,7 +38,7 @@
             ]
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "Replace {attribute} with any valid HTML attribute name (e.g., class, style, href, disabled, data-*).\nThis directive has no modifiers.",
             "examples": [
                 {
@@ -53,9 +53,9 @@
         "wire:model"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -64,5 +64,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:50+00:00"
+    "scraped_at": "2026-07-22T16:18:25+00:00"
 }

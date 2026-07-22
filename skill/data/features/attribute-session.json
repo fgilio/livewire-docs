@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-session",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Session] attribute to any property that should persist in the session:\nAfter a user enters a search value, they can refresh the page or navigate away and return—the search value will be preserved.",
             "examples": [
                 {
@@ -16,17 +16,17 @@
             ]
         },
         {
-            "title": "#How it works",
+            "title": "How it works¶",
             "content": "Every time the property changes, Livewire stores its new value in the user's session. When the component loads, Livewire fetches the value from the session and initializes the property with it.\nThis creates a persistent user experience without modifying the URL.",
             "examples": []
         },
         {
-            "title": "#Session vs URL",
+            "title": "Session vs URL¶",
             "content": "Both #[Session] and #[Url] persist property values, but with different trade-offs:\nUse #[Session] when you want persistence without cluttering the URL or when state shouldn't be shareable.",
             "examples": []
         },
         {
-            "title": "#Custom session keys",
+            "title": "Custom session keys¶",
             "content": "By default, Livewire generates session keys using the component and property names. You can customize this:\nThe property will be stored in the session using the key post_search.",
             "examples": [
                 {
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "title": "#Dynamic session keys",
+            "title": "Dynamic session keys¶",
             "content": "You can generate keys dynamically using other properties:\nIf $author->id is 4, the session key becomes search-4. This allows different session values per author.",
             "examples": [
                 {
@@ -46,12 +46,12 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Session] when:",
             "examples": []
         },
         {
-            "title": "#Example: Dashboard filters",
+            "title": "Example: Dashboard filters¶",
             "content": "Here's a practical example of persisting dashboard filters:\nUsers can set their preferred filters and they'll persist across sessions, page refreshes, and navigation.",
             "examples": [
                 {
@@ -61,12 +61,12 @@
             ]
         },
         {
-            "title": "#Performance considerations",
+            "title": "Performance considerations¶",
             "content": "Laravel sessions are loaded into memory during every request. Storing too much in a user's session can slow down your entire application for that user. Avoid storing large collections or objects.\nGood uses:\nBad uses:\nIf you want state to be shareable via URL or bookmarkable, consider using the #[Url] attribute instead of #[Session]. URL parameters persist state in the address bar while session properties keep the URL clean.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -81,9 +81,9 @@
         "wire:model"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -92,5 +92,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:20+00:00"
+    "scraped_at": "2026-07-22T16:19:08+00:00"
 }

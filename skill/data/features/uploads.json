@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/uploads",
     "sections": [
         {
-            "title": "#Storing uploaded files",
+            "title": "Storing uploaded files¶",
             "content": "The previous example demonstrates the most basic storage scenario: moving the temporarily uploaded file to the \"photos\" directory on the application's default filesystem disk.\nHowever, you may want to customize the file name of the stored file or even specify a specific storage \"disk\" to keep the file on (such as S3).\nYou can access the original file name of a temporary upload, by calling its ->getClientOriginalName() method.\nLivewire honors the same APIs Laravel uses for storing uploaded files, so feel free to consult Laravel's file upload documentation. However, below are a few common storage scenarios and examples:",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Handling multiple files",
+            "title": "Handling multiple files¶",
             "content": "Livewire automatically handles multiple file uploads by detecting the multiple attribute on the <input> tag.\nFor example, below is a component with an array property named $photos. By adding multiple to the form's file input, Livewire will automatically append new files to this array:",
             "examples": [
                 {
@@ -30,12 +30,12 @@
             ]
         },
         {
-            "title": "#File validation",
+            "title": "File validation¶",
             "content": "Like we've discussed, validating file uploads with Livewire is the same as handling file uploads from a standard Laravel controller.\nMany of the validation rules relating to files require access to the file. When uploading directly to S3, these validation rules will fail if the S3 file object is not publicly accessible.\nFor more information on file validation, consult Laravel's file validation documentation.",
             "examples": []
         },
         {
-            "title": "#Temporary preview URLs",
+            "title": "Temporary preview URLs¶",
             "content": "After a user chooses a file, you should typically show them a preview of that file before they submit the form and store the file.\nLivewire makes this trivial by using the ->temporaryUrl() method on uploaded files.\nFor security reasons, temporary preview URLs are only supported on files with image MIME types.\nLet's explore an example of a file upload with an image preview:\nAs previously discussed, Livewire stores temporary files in a non-public directory; therefore, typically there's no simple way to expose a temporary, public URL to your users for image previewing.\nHowever, Livewire solves this issue by providing a temporary, signed URL that pretends to be the uploaded image so your page can show an image preview to your users.\nThis URL is protected against showing files in directories above the temporary directory. And, because it's signed, users can't abuse this URL to preview other files on your system.\nIf you've configured Livewire to use S3 for temporary file storage, calling ->temporaryUrl() will generate a temporary, signed URL to S3 directly so that image previews aren't loaded from your Laravel application server.",
             "examples": [
                 {
@@ -49,7 +49,7 @@
             ]
         },
         {
-            "title": "#Testing file uploads",
+            "title": "Testing file uploads¶",
             "content": "You can use Laravel's existing file upload testing helpers to test file uploads.\nBelow is a complete example of testing the UploadPhoto component with Livewire:\nBelow is an example of the upload-photo component required to make the previous test pass:\nFor more information on testing file uploads, please consult Laravel's file upload testing documentation.",
             "examples": [
                 {
@@ -63,7 +63,7 @@
             ]
         },
         {
-            "title": "#Uploading directly to Amazon S3",
+            "title": "Uploading directly to Amazon S3¶",
             "content": "As previously discussed, Livewire stores all file uploads in a temporary directory until the developer permanently stores the file.\nBy default, Livewire uses the default filesystem disk configuration (usually local) and stores the files within a livewire-tmp/ directory.\nConsequently, file uploads are always utilizing your application server, even if you choose to store the uploaded files in an S3 bucket later.\nIf you wish to bypass your application server and instead store Livewire's temporary uploads in an S3 bucket, set the LIVEWIRE_TEMPORARY_FILE_UPLOAD_DISK environment variable in your .env file to s3 (or another custom disk that uses the s3 driver):\nNow, when a user uploads a file, the file will never actually be stored on your server. Instead, it will be uploaded directly to your S3 bucket within the livewire-tmp/ sub-directory.\nAlternatively, you can publish Livewire's configuration file with php artisan livewire:config for full control over the temporary_file_upload config.\nLivewire's temporary upload directory will fill up with files quickly; therefore, it's essential to configure S3 to clean up files older than 24 hours.\nTo configure this behavior, run the following Artisan command from the environment that is utilizing an S3 bucket for file uploads:\nNow, any temporary files older than 24 hours will be cleaned up by S3 automatically.\nIf you are not using S3 for file storage, Livewire will handle file cleanup automatically and there is no need to run the command above.",
             "examples": [
                 {
@@ -77,7 +77,7 @@
             ]
         },
         {
-            "title": "#Loading indicators",
+            "title": "Loading indicators¶",
             "content": "Although wire:model for file uploads works differently than other wire:model input types under the hood, the interface for showing loading indicators remains the same.\nYou can display a loading indicator scoped to the file upload using wire:loading:\nOr more simply using Livewire's automatic data-loading attribute:\nNow, while the file is uploading, the \"Uploading...\" message will be shown and then hidden when the upload is finished.\nLearn more about loading states →",
             "examples": [
                 {
@@ -91,7 +91,7 @@
             ]
         },
         {
-            "title": "#Progress indicators",
+            "title": "Progress indicators¶",
             "content": "Every Livewire file upload operation dispatches JavaScript events on the corresponding <input> element, allowing custom JavaScript to intercept the events:\nBelow is an example of wrapping a Livewire file upload in an Alpine component to display an upload progress bar:",
             "examples": [
                 {
@@ -101,7 +101,7 @@
             ]
         },
         {
-            "title": "#Cancelling an upload",
+            "title": "Cancelling an upload¶",
             "content": "If an upload is taking a long time, a user may want to cancel it. You can provide this functionality with Livewire's $cancelUpload() function in JavaScript.\nHere's an example of creating a \"Cancel Upload\" button in a Livewire component using wire:click to handle the click event:\nWhen \"Cancel upload\" is pressed, the file upload will request will be aborted and the file input will be cleared. The user can now attempt another upload with a different file.\nAlternatively, you can call cancelUpload(...) from Alpine like so:",
             "examples": [
                 {
@@ -115,7 +115,7 @@
             ]
         },
         {
-            "title": "#JavaScript upload API",
+            "title": "JavaScript upload API¶",
             "content": "Integrating with third-party file-uploading libraries often requires more control than a simple <input type=\"file\" wire:model=\"...\"> element.\nFor these scenarios, Livewire exposes dedicated JavaScript functions.\nThese functions exist on a JavaScript component object, which can be accessed using Livewire's convenient $wire object from within your Livewire component's template:",
             "examples": [
                 {
@@ -125,7 +125,7 @@
             ]
         },
         {
-            "title": "#Configuration",
+            "title": "Configuration¶",
             "content": "Because Livewire stores all file uploads temporarily before the developer can validate or store them, it assumes some default handling behavior for all file uploads.\nBy default, Livewire will validate all temporary file uploads with the following rules: file|max:12288 (Must be a file less than 12MB).\nIf you wish to customize these rules, you can do so inside your application's config/livewire.php file:\nThe temporary file upload endpoint is assigned a throttling middleware by default. You can customize exactly what middleware this endpoint uses via the following configuration option:\nTemporary files are uploaded to the specified disk's livewire-tmp/ directory. You can customize this directory via the following configuration option:",
             "examples": [
                 {
@@ -152,9 +152,9 @@
         "wire:target"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -163,5 +163,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:44+00:00"
+    "scraped_at": "2026-07-22T16:18:16+00:00"
 }

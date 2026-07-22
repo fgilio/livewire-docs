@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-async",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Async] attribute to any action method that should run in parallel:\nWhen logActivity() is called, it executes immediately without blocking other requests or being blocked by them.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Async] for fire-and-forget operations where the result doesn't affect what's displayed on the page:\nHere's an example tracking external link clicks:\nBecause tracking happens asynchronously, the user's click isn't delayed by the network request.",
             "examples": [
                 {
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "title": "#When NOT to use",
+            "title": "When NOT to use¶",
             "content": "Never use async actions if they modify component state that's reflected in your UI. Because async actions run in parallel, you can end up with unpredictable race conditions where your component's state diverges across multiple simultaneous requests.\nConsider this dangerous example:\nIf a user rapidly clicks the increment button, multiple async requests fire simultaneously. Each request starts with the same initial $count value, leading to lost updates. You might click 5 times but only see the counter increment by 1.\nThe rule of thumb: Only use async for actions that perform pure side effects—operations that don't change any properties that affect your component's view.",
             "examples": [
                 {
@@ -44,7 +44,7 @@
             ]
         },
         {
-            "title": "#Alternative approach",
+            "title": "Alternative approach¶",
             "content": "Instead of using the attribute, you can make specific action calls async with the .async modifier:\nThis approach is useful when you want the action to be async in some places but synchronous in others.",
             "examples": [
                 {
@@ -54,7 +54,7 @@
             ]
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about async actions, race conditions, and advanced use cases, see the Actions documentation.",
             "examples": []
         }
@@ -64,9 +64,9 @@
         "wire:intersect"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -75,5 +75,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:09+00:00"
+    "scraped_at": "2026-07-22T16:18:53+00:00"
 }

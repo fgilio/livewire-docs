@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-click",
     "sections": [
         {
-            "title": "#Passing parameters",
+            "title": "Passing parameters¶",
             "content": "You can pass parameters to actions directly in the wire:click directive:\nWhen the button is clicked, the delete() method will be called with the post's ID.\nAction parameters should be treated like HTTP request input and should not be trusted. Always authorize ownership before updating data.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Using on links",
+            "title": "Using on links¶",
             "content": "When using wire:click on <a> tags, you must append .prevent to prevent the default link behavior. Otherwise, the browser will navigate to the provided href.",
             "examples": [
                 {
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "#Preventing re-renders",
+            "title": "Preventing re-renders¶",
             "content": "Use .renderless to skip re-rendering the component after the action completes. This is useful for actions that only perform side effects (like logging or analytics):",
             "examples": [
                 {
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "title": "#Preserving scroll position",
+            "title": "Preserving scroll position¶",
             "content": "By default, updating content may change the scroll position. Use .preserve-scroll to maintain the current scroll position:",
             "examples": [
                 {
@@ -46,7 +46,7 @@
             ]
         },
         {
-            "title": "#Parallel execution",
+            "title": "Parallel execution¶",
             "content": "By default, Livewire queues actions within the same component. Use .async to allow actions to run in parallel:",
             "examples": [
                 {
@@ -56,12 +56,12 @@
             ]
         },
         {
-            "title": "#Going deeper",
+            "title": "Going deeper¶",
             "content": "The wire:click directive is just one of many different available event listeners in Livewire. For full documentation on its (and other event listeners) capabilities, visit the Livewire actions documentation page.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -75,9 +75,9 @@
         "wire:click"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -86,5 +86,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:51+00:00"
+    "scraped_at": "2026-07-22T16:18:26+00:00"
 }

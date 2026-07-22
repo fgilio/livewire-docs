@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/upgrading",
     "sections": [
         {
-            "title": "#Installation",
+            "title": "Installation¶",
             "content": "Update your composer.json to require Livewire v4:\nAfter updating, clear your application's cache:\nFor a complete overview of all code changes between v3 and v4, you can review the full diff on GitHub: Compare 3.x to main →",
             "examples": [
                 {
@@ -20,12 +20,12 @@
             ]
         },
         {
-            "title": "#Upgrading to v4.1 from v4.0",
+            "title": "Upgrading to v4.1 from v4.0¶",
             "content": "Modifiers like .blur and .change now control when client-side state syncs, not just network timing. If you're using these modifiers and want the previous behavior, add .live before them (e.g., wire:model.live.blur).\nSee full details below →\nThe following changes apply when upgrading from v3 to v4.",
             "examples": []
         },
         {
-            "title": "#High-impact changes",
+            "title": "High-impact changes¶",
             "content": "These changes are most likely to affect your application and should be reviewed carefully.\nSeveral configuration keys have been renamed, reorganized, or have new defaults. Update your config/livewire.php file:\nFor reference, you can view the complete v4 config file on GitHub: livewire.php →\nLayout configuration:\nThe layout now uses the layouts:: namespace by default, pointing to resources/views/layouts/app.blade.php.\nPlaceholder configuration:\nSmart wire:key behavior:\nThis helps prevent wire:key issues on deeply nested components. Note: You still need to add wire:key manually in loops—this setting doesn't eliminate that requirement.\nLearn more about wire:key →\nComponent locations:\nDefines where Livewire looks for single-file and multi-file (view-based) components.\nComponent namespaces:\nCreates custom namespaces for organizing view-based components (e.g., <livewire:pages::dashboard />).\nMake command defaults:\nConfigure default component format and emoji usage. Set type to 'class' to match v3 behavior.\nCSP-safe mode:\nEnable Content Security Policy mode to avoid unsafe-eval violations. When enabled, Livewire uses the Alpine CSP build. Note: This mode restricts complex JavaScript expressions in directives like wire:click=\"addToCart($event.detail.productId)\" or global references like window.location.\nFor full-page components, the recommended routing approach has changed:\nUsing Route::livewire() is now the preferred method and is required for single-file and multi-file components to work correctly as full-page components.\nLearn more about routing →\nIn v3, wire:model would respond to input/change events that bubbled up from child elements. This caused unexpected behavior when using wire:model on container elements (like modals or accordions) that contained form inputs—clearing an input inside would bubble up and potentially close the modal.\nIn v4, wire:model now only listens for events originating directly on the element itself (equivalent to the .self modifier behavior).\nIf you have code that relies on capturing events from child elements, add the .deep modifier:\nThis change primarily affects non-standard uses of wire:model on container elements. Standard form input bindings (inputs, selects, textareas) are unaffected.\nWhen using wire:scroll to preserve scroll in a scrollable container across wire:navigate requests in v3, you will need to instead use wire:navigate:scroll in v4:\nIn v3, Livewire component tags would render even without being properly closed. In v4, with the addition of slot support, component tags must be properly closed—otherwise Livewire interprets subsequent content as slot content and the component won't render:\nLearn more about rendering components →\nLearn more about slots →",
             "examples": [
                 {
@@ -75,7 +75,7 @@
             ]
         },
         {
-            "title": "#Medium-impact changes",
+            "title": "Medium-impact changes¶",
             "content": "These changes may affect certain parts of your application depending on which features you use.\nIn v3, modifiers like .blur and .change only controlled when network requests were sent. The input's value was always synced to client-side state ($wire.property) immediately as the user typed.\nIn v4, these modifiers now control when client-side state syncs too. This unlocks new UI patterns—like inputs that don't update until the user finishes typing and hits Enter or tabs away.\nMigration: If you're using .blur or .change and want the old behavior, add .live before the modifier:\nwire:model.lazy continues to work as it did in v3—no migration needed.\nNew in v4: You can now delay client-side updates without sending network requests:\nLearn more about wire:model →\nIn v3, wire:transition was a wrapper around Alpine's x-transition directive, supporting modifiers like .opacity, .scale, .duration.200ms, and .origin.top.\nIn v4, wire:transition uses the browser's native View Transitions API instead. Basic usage still works—elements will fade in and out smoothly—but all modifiers have been removed.\nLearn more about wire:transition →\nLivewire v4 includes significant performance improvements to the request handling system:\nThese improvements happen automatically—no changes needed to your code.\nWhen replacing an entire array or object from the frontend (e.g., $wire.items = ['new', 'values']), Livewire now sends a single consolidated update instead of granular updates for each index.\nBefore: Setting $wire.items = ['a', 'b'] on an array of 4 items would fire updatingItems/updatedItems hooks multiple times—once for each index change plus __rm__ removals.\nAfter: The same operation fires the hooks once with the full new array value, matching v2 behavior.\nIf your code relies on individual index hooks firing when replacing entire arrays, you may need to adjust. Single-item changes (like wire:model=\"items.0\") still fire granular hooks as expected.\nIf you're extending Livewire's core functionality or using these methods directly, note these signature changes:\nStreaming:\nThe stream() method parameter order has changed:\nIf you're using named parameters (as shown above), note that to: has been renamed to el:. If you're using positional parameters, you'll need to update to the following:\nLearn more about streaming →\nComponent mounting (internal):\nIf you're extending LivewireManager or calling the mount() method directly:\nThis change adds support for passing slots when mounting components and generally won't affect most applications.",
             "examples": [
                 {
@@ -105,11 +105,19 @@
             ]
         },
         {
-            "title": "#Low-impact changes",
-            "content": "These changes only affect applications using advanced features or customization.\nAll Livewire URLs now include a unique hash derived from your APP_KEY. The prefix changed from /livewire/ to /livewire-{hash}/:\nIf your firewall rules, CDN config, or middleware reference /livewire/ paths, update them to account for the new prefix.\nLearn more about customizing Livewire's endpoints →\nThe $wire.$js() method for defining JavaScript actions has been deprecated:\nThe new syntax is cleaner and more intuitive.\nThe use of $js in scripts without $wire.$js or this.$js prefix has been deprecated:\nBoth $wire.$js('bookmark', ...) and $js('bookmark', ...) will continue to work in v4 for backward compatibility, but you should migrate to the new syntax when convenient.\nThe commit and request hooks have been deprecated in favor of a new interceptor system that provides more granular control and better performance.\nThe deprecated hooks will continue to work in v4 for backward compatibility, but you should migrate to the new system when convenient.\nThe old commit hook:\nShould be replaced with the new interceptMessage:\nThe old request hook:\nShould be replaced with the new interceptRequest:\nFor complete documentation on the new interceptor system, see the JavaScript Interceptors documentation.",
+            "title": "Low-impact changes¶",
+            "content": "These changes only affect applications using advanced features or customization.\nwire:model expressions now support bracket notation for accessing nested properties:\nThis means square brackets ([ and ]) in wire:model values are now interpreted as property accessors. In v3, they were treated as literal characters. If your property keys contain square brackets, rename them to avoid conflicts.\nLearn more about wire:model →\nAll Livewire URLs now include a unique hash derived from your APP_KEY. The prefix changed from /livewire/ to /livewire-{hash}/:\nIf your firewall rules, CDN config, or middleware reference /livewire/ paths, update them to account for the new prefix.\nIf you're using setUpdateRoute, use the $path parameter to preserve the hash-based endpoint:\nLearn more about customizing Livewire's endpoints →\nThe $wire.$js() method for defining JavaScript actions has been deprecated:\nThe new syntax is cleaner and more intuitive.\nThe use of $js in scripts without $wire.$js or this.$js prefix has been deprecated:\nBoth $wire.$js('bookmark', ...) and $js('bookmark', ...) will continue to work in v4 for backward compatibility, but you should migrate to the new syntax when convenient.\nThe commit and request hooks have been deprecated in favor of a new interceptor system that provides more granular control and better performance.\nThe deprecated hooks will continue to work in v4 for backward compatibility, but you should migrate to the new system when convenient.\nThe old commit hook:\nShould be replaced with the new interceptMessage:\nThe old request hook:\nShould be replaced with the new interceptRequest:\nFor complete documentation on the new interceptor system, see the JavaScript Interceptors documentation.",
             "examples": [
                 {
+                    "code": "<input type=\"text\" wire:model=\"foo['bar']['baz']\"> <input type=\"text\" wire:model=\"items[0].name\">",
+                    "type": "class"
+                },
+                {
                     "code": "# v3 # v4/livewire/update → /livewire-{hash}/update/livewire/upload-file → /livewire-{hash}/upload-file/livewire/livewire.js → /livewire-{hash}/livewire.js",
+                    "type": "class"
+                },
+                {
+                    "code": "// Before (v3)Livewire::setUpdateRoute(function ($handle) { return Route::post('/livewire/update', $handle);}); // After (v4)Livewire::setUpdateRoute(function ($handle, $path) { return Route::post($path, $handle);});",
                     "type": "class"
                 },
                 {
@@ -139,7 +147,7 @@
             ]
         },
         {
-            "title": "#Upgrading Volt",
+            "title": "Upgrading Volt¶",
             "content": "Livewire v4 now supports single-file components, which use the same syntax as Volt class-based components. This means you can migrate from Volt to Livewire's built-in single-file components.\nReplace all instances of Livewire\\Volt\\Component with Livewire\\Component:\nReplace Volt::route() with Route::livewire() in your routes files:\nReplace all instances of Livewire\\Volt\\Volt with Livewire\\Livewire and change Volt::test() to Livewire::test():\nDelete the Volt service provider file:\nThen remove it from the providers array in bootstrap/providers.php:\nUninstall the Volt package:\nAfter completing the above changes, install Livewire v4. Your existing Volt class-based components will work without modification since they use the same syntax as Livewire's single-file components.",
             "examples": [
                 {
@@ -169,7 +177,7 @@
             ]
         },
         {
-            "title": "#New features in v4",
+            "title": "New features in v4¶",
             "content": "Livewire v4 introduces several powerful new features you can start using immediately:\nSingle-file and multi-file components\nv4 introduces new component formats alongside the traditional class-based approach. Single-file components combine PHP and Blade in one file, while multi-file components organize PHP, Blade, JavaScript, and tests in a directory.\nBy default, view-based component files are prefixed with a ⚡ emoji to distinguish them from regular Blade files in your editor and searches. This can be disabled via the make_command.emoji config.\nLearn more about component formats →\nSlots and attribute forwarding\nComponents now support slots and automatic attribute bag forwarding using {{ $attributes }}, making component composition more flexible.\nLearn more about nesting components →\nJavaScript in view-based components\nView-based components can now include <script> tags without the @script wrapper. These scripts are served as separate cached files for better performance and automatic $wire binding:\nLearn more about JavaScript in components →\nIslands allow you to create isolated regions within a component that update independently, dramatically improving performance without creating separate child components.\nLearn more about islands →\nDeferred loading\nIn addition to lazy loading (viewport-based), components can now be deferred to load immediately after the initial page load:\nBundled loading\nControl whether multiple lazy/deferred components load in parallel or bundled together:\nLearn more about lazy and deferred loading →\nRun actions in parallel without blocking other requests using the .async modifier or #[Async] attribute:\nLearn more about async actions →\nwire:sort - Drag-and-drop sorting\nBuilt-in support for sortable lists with drag-and-drop:\nLearn more about wire:sort →\nwire:intersect - Viewport intersection\nRun actions when elements enter or leave the viewport, similar to Alpine's x-intersect:\nAvailable modifiers:\nLearn more about wire:intersect →\nwire:ref - Element references\nEasily reference and interact with elements in your template:\nLearn more about wire:ref →\n.renderless modifier\nSkip component re-rendering directly from the template:\nThis is an alternative to the #[Renderless] attribute for actions that don't need to update the UI.\n.preserve-scroll modifier\nPreserve scroll position during updates to prevent layout jumps:\ndata-loading attribute\nEvery element that triggers a network request automatically receives a data-loading attribute, making it easy to style loading states with Tailwind:\nLearn more about loading states →\n$errors magic property\nAccess your component's error bag from JavaScript:\nLearn more about validation →\n$intercept magic\nIntercept and modify Livewire requests from JavaScript:\nLearn more about JavaScript interceptors →\nIsland targeting from JavaScript\nTrigger island renders directly from the template:\nLearn more about islands →",
             "examples": [
                 {
@@ -247,7 +255,7 @@
             ]
         },
         {
-            "title": "#Getting help",
+            "title": "Getting help¶",
             "content": "If you encounter issues during the upgrade:",
             "examples": []
         }
@@ -356,5 +364,5 @@
         "security",
         "troubleshooting"
     ],
-    "scraped_at": "2026-02-23T13:09:27+00:00"
+    "scraped_at": "2026-07-22T16:17:53+00:00"
 }

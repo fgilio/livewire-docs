@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/directive-teleport",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Wrap content with @teleport and specify where to render it using a CSS selector:\nThe modal content will be rendered at the end of the <body> element:\nThe @teleport selector can be any string you would pass to document.querySelector(), such as 'body', '#modal-root', or '.modal-container'.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Why use teleport?",
+            "title": "Why use teleport?¶",
             "content": "Teleporting is useful for nested modals, dropdowns, and popovers where parent styles or z-index values can interfere with proper rendering.\nWithout teleporting:\nWith teleporting:",
             "examples": [
                 {
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "title": "#Common use cases",
+            "title": "Common use cases¶",
             "content": "Modal dialogs:\nDropdown menus:\nToast notifications:",
             "examples": [
                 {
@@ -52,7 +52,7 @@
             ]
         },
         {
-            "title": "#Important constraints",
+            "title": "Important constraints¶",
             "content": "Livewire only supports teleporting HTML outside your components. Teleporting to another element within the same component will not work.\nOnly include a single root element inside your @teleport statement. Multiple root elements are not supported.\nValid:\nInvalid:",
             "examples": [
                 {
@@ -66,12 +66,12 @@
             ]
         },
         {
-            "title": "#Powered by Alpine",
+            "title": "Powered by Alpine¶",
             "content": "This functionality uses Alpine's x-teleport directive under the hood.\nLearn more about teleporting content →",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -83,9 +83,9 @@
     ],
     "directives_used": [],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -94,5 +94,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:26+00:00"
+    "scraped_at": "2026-07-22T16:19:18+00:00"
 }

@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/testing",
     "sections": [
         {
-            "title": "#Installing Pest",
+            "title": "Installing Pest¶",
             "content": "Pest is a delightful PHP testing framework with a focus on simplicity. It's the recommended way to test Livewire components in Livewire 4.\nTo install Pest in your Laravel application, first remove PHPUnit (if it's installed) and require Pest:\nNext, initialize Pest in your project:\nThis will create a tests/Pest.php configuration file in your project.\nFor more detailed installation instructions, see the Pest installation documentation.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Configuring Pest for view-based components",
+            "title": "Configuring Pest for view-based components¶",
             "content": "If you're writing tests alongside your view-based components (single-file or multi-file), you'll need to configure Pest to recognize these test files.\nFirst, update your tests/Pest.php file to include the resources/views directory:\nThis tells Pest to use your TestCase base class for tests found in both the tests/Feature directory and anywhere within resources/views.\nNext, update your phpunit.xml file to include a test suite for component tests:\nNow Pest will recognize and run tests located next to your components when you run ./vendor/bin/pest.",
             "examples": [
                 {
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "title": "#Creating your first test",
+            "title": "Creating your first test¶",
             "content": "You can generate a test file alongside a component by appending the --test flag to the make:livewire command:\nFor multi-file components, this will create a test file at resources/views/components/post/create.test.php:\nFor class-based components, this creates a PHPUnit test file at tests/Feature/Livewire/Post/CreateTest.php. You can convert it to Pest syntax or keep using PHPUnit—both work great with Livewire.\nThe simplest Livewire test you can write is asserting that a given endpoint includes and successfully renders a Livewire component.\nTests like these are called \"smoke tests\"—they ensure there are no catastrophic problems in your application. Although simple, these tests provide enormous value as they require very little maintenance and give you a base level of confidence that your pages render successfully.",
             "examples": [
                 {
@@ -52,7 +52,7 @@
             ]
         },
         {
-            "title": "#Browser testing",
+            "title": "Browser testing¶",
             "content": "Pest v4 includes first-party browser testing support powered by Playwright. This allows you to test your Livewire components in a real browser, interacting with them just like a user would.\nFirst, install the Pest browser plugin:\nNext, install Playwright via npm:\nFor complete browser testing documentation, see the Pest browser testing guide.\nInstead of using Livewire::test(), you can use Livewire::visit() to test your component in a real browser:\nBrowser tests are slower than unit tests but provide end-to-end confidence that your components work as expected in a real browser environment.\nFor a complete list of available browser testing assertions, see the Pest browser testing assertions.\nUse browser tests for critical user flows and complex interactions. For most component testing, the standard Livewire::test() approach is faster and sufficient.",
             "examples": [
                 {
@@ -70,7 +70,7 @@
             ]
         },
         {
-            "title": "#Testing views",
+            "title": "Testing views¶",
             "content": "Livewire provides assertSee() to verify that text appears in your component's rendered output:\nSometimes it's helpful to test the data being passed into the view rather than the rendered output:\nFor simple assertions, you can pass the expected value directly:",
             "examples": [
                 {
@@ -88,7 +88,7 @@
             ]
         },
         {
-            "title": "#Testing with authentication",
+            "title": "Testing with authentication¶",
             "content": "Most applications require users to log in. Rather than manually authenticating at the beginning of each test, use the actingAs() method:",
             "examples": [
                 {
@@ -98,7 +98,7 @@
             ]
         },
         {
-            "title": "#Testing properties",
+            "title": "Testing properties¶",
             "content": "Livewire provides utilities for setting and asserting component properties.\nUse set() to update properties and assertSet() to verify their values:\nComponents often receive data from parent components or route parameters. Pass this data as the second parameter to Livewire::test():\nIf your component uses Livewire's URL feature to track state in query strings, use withQueryParams() to simulate URL parameters:\nUse withCookie() or withCookies() to set cookies for your tests:",
             "examples": [
                 {
@@ -120,7 +120,7 @@
             ]
         },
         {
-            "title": "#Calling actions",
+            "title": "Calling actions¶",
             "content": "Use the call() method to trigger component actions in your tests:\nThe examples above use Pest's expect() syntax for assertions. For a complete list of available expectations, see the Pest expectations documentation.\nYou can pass parameters to actions:\nAssert that validation errors have been thrown using assertHasErrors():\nTest specific validation rules:\nEnsure authorization checks work correctly using assertUnauthorized() and assertForbidden():\nAssert that an action performed a redirect:\nYou can also assert redirects to named routes or page components:\nAssert that events were dispatched from your component:\nTest event communication between components:\nAssert events were dispatched with specific parameters:\nFor complex assertions, use a closure:\nAssert that a component evaluated JavaScript via $this->js():\nYou can also assert that no JS was evaluated:",
             "examples": [
                 {
@@ -178,7 +178,7 @@
             ]
         },
         {
-            "title": "#Using PHPUnit",
+            "title": "Using PHPUnit¶",
             "content": "While Pest is recommended, you can absolutely use PHPUnit to test Livewire components. All the same testing utilities work with PHPUnit's syntax.\nHere's a PHPUnit example for comparison:\nAll features documented on this page work identically with PHPUnit—just use PHPUnit's assertion syntax instead of Pest's.\nIf you're interested in exploring Pest's more elegant syntax and features, check out pestphp.com to learn more.",
             "examples": [
                 {
@@ -188,16 +188,16 @@
             ]
         },
         {
-            "title": "#All available testing methods",
+            "title": "All available testing methods¶",
             "content": "Below is a comprehensive reference of every Livewire testing method available to you:",
             "examples": []
         }
     ],
     "directives_used": [],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -206,5 +206,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:37+00:00"
+    "scraped_at": "2026-07-22T16:18:05+00:00"
 }

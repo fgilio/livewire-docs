@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-json",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Json] attribute to any action method that returns data for JavaScript consumption:\nThe search() method returns posts directly to Alpine, where they're stored in the posts array and rendered client-side.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Handling responses",
+            "title": "Handling responses¶",
             "content": "JSON methods resolve with the return value on success, and reject on validation failure:\nOn success:\nOn validation failure:\nOr using .catch():",
             "examples": [
                 {
@@ -38,7 +38,7 @@
             ]
         },
         {
-            "title": "#Error rejection shape",
+            "title": "Error rejection shape¶",
             "content": "When a promise is rejected, the error object has this structure:\nFor HTTP errors (500, etc.), the shape is the same but with the actual response data:",
             "examples": [
                 {
@@ -52,21 +52,21 @@
             ]
         },
         {
-            "title": "#Behavior",
+            "title": "Behavior¶",
             "content": "The #[Json] attribute automatically applies two behaviors:\nThese behaviors match what you'd expect from an API-style endpoint.",
             "examples": []
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Json] when:\nValidation errors from JSON methods are only returned via promise rejection. They don't appear in $wire.$errors or the component's error bag. This is intentional—JSON methods are self-contained and don't affect the component's rendered state.",
             "examples": []
         }
     ],
     "directives_used": [],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -75,5 +75,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:13+00:00"
+    "scraped_at": "2026-07-22T16:18:58+00:00"
 }

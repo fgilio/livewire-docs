@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-reactive",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Reactive] attribute to any property that should react to parent changes:\nNow when the parent component adds or removes todos, the child component will automatically update to reflect the new count.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Why props aren't reactive by default",
+            "title": "Why props aren't reactive by default¶",
             "content": "By default, Livewire props are not reactive. When a parent component updates, only the parent's state is sent to the server—not the child's. This minimizes data transfer and improves performance.\nHere's what happens without #[Reactive]:\nWithout #[Reactive] on the child's $todos property, adding a todo in the parent won't update the child's count.",
             "examples": [
                 {
@@ -26,17 +26,17 @@
             ]
         },
         {
-            "title": "#How it works",
+            "title": "How it works¶",
             "content": "When you add #[Reactive]:\nThis creates a \"reactive\" relationship similar to frontend frameworks like Vue or React.",
             "examples": []
         },
         {
-            "title": "#Performance considerations",
+            "title": "Performance considerations¶",
             "content": "Reactive properties require additional data to be sent between server and client on every parent update. Only use #[Reactive] when necessary for your use case.\nWhen to use:\nWhen NOT to use:",
             "examples": []
         },
         {
-            "title": "#Example: Live search results",
+            "title": "Example: Live search results¶",
             "content": "Here's a practical example of a search component with reactive results:\nAs the user types, the parent's $posts changes and the child's results automatically update.",
             "examples": [
                 {
@@ -50,7 +50,7 @@
             ]
         },
         {
-            "title": "#Alternative: Events",
+            "title": "Alternative: Events¶",
             "content": "For loosely coupled components, consider using events instead of reactive props:\nEvents provide more flexibility but require explicit communication between components.",
             "examples": [
                 {
@@ -60,7 +60,7 @@
             ]
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about parent-child communication and component architecture, see the Nesting Components documentation.",
             "examples": []
         }
@@ -73,9 +73,9 @@
         "wire:todo-count"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -84,5 +84,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:18+00:00"
+    "scraped_at": "2026-07-22T16:19:05+00:00"
 }

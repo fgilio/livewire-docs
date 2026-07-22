@@ -6,11 +6,11 @@
     "url": "https://livewire.laravel.com/docs/4.x/contribution-guide",
     "sections": [
         {
-            "title": "#Setting up Livewire and Alpine locally",
+            "title": "Setting up Livewire and Alpine locally¶",
             "content": "To contribute, the easiest way is to ensure that the Livewire and Alpine repositories are set up on your local machine. This will allow you to make changes and run the test suite with ease.\nTo get started, the first step is to fork and clone the repositories. The easiest way to do this is by using the GitHub CLI, but you can also perform these steps manually by clicking the \"Fork\" button on the GitHub repository page.\nTo set up Alpine, make sure you have NPM installed, and then run the following commands. If you prefer to fork manually, you can visit the repository page.",
             "examples": [
                 {
-                    "code": "# Fork and clone Livewiregh repo fork livewire/livewire --default-branch-only --clone=true --remote=false -- livewire # Switch the working directory to livewirecd livewire # Install all composer dependenciescomposer install # Ensure Dusk is correctly configuredvendor/bin/dusk-updater detect --no-interaction",
+                    "code": "# Fork and clone Livewiregh repo fork livewire/livewire --default-branch-only --clone=true -- livewire # Switch the working directory to livewirecd livewire # Install all composer dependenciescomposer install # Ensure Dusk is correctly configuredvendor/bin/dusk-updater detect --no-interaction",
                     "type": "class"
                 },
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Contributing a Failing Test",
+            "title": "Contributing a Failing Test¶",
             "content": "If you're encountering a bug and are unsure about how to solve it, especially given the complexity of the Livewire core, you might be wondering where to start. In such cases, the easiest approach is to contribute a failing test. This way, someone with more experience can assist in identifying and fixing the bug. Nonetheless, we do recommend that you also explore the core to gain a better understanding of how Livewire operates.\nLet's take a step-by-step approach.\nThe Livewire core is divided into different folders, each corresponding to specific Livewire features. For example:\nTry to locate a feature that is related to the bug you are experiencing. If you can't find an appropriate folder or if you're unsure about which one to select, you can simply choose one and mention in your pull request that you require assistance with placing the test in the correct feature set.\nThe Livewire test suite consists of two types of tests:\nIf you're unsure about which type of test to choose or if you're unfamiliar with writing tests for Livewire, you can start with a browser test. Implement the steps you perform in your application and browser to reproduce the bug.\nUnit tests should be added to the UnitTest.php file, and browser tests should be added to BrowserTest.php. If one or both of these files do not exist, you can create them yourself.\nUnit test\nBrowser test\nYou can learn a lot by explore existing Unit and Browser tests to learn how tests are written. Even copying and pasting an existing test is a great starting point for writing your own test.\nBefore submitting your pull request, make sure your test passes. You can do so by running one of the following commands:\nBy default, browser tests will run in headed mode. If you want to run them in headless mode, you can create a .env file in the root of the Livewire repository and add DUSK_HEADLESS_DISABLED=false.\nOnce you have completed your feature or failing test, it's time to submit your Pull Request (PR) to the Livewire repository. First, ensure that you commit your changes to a separate branch (avoid using main). To create a new branch, you can use the git command:\nYou can name your branch anything you want, but for future reference, it's helpful to use a descriptive name that reflects your feature or failing test.\nNext, commit your changes to your branch. You can use git add . to stage all changes and then git commit -m \"Add my feature\" to commit all changes with a descriptive commit message.\nHowever, your branch is currently only available on your local machine. To create a Pull Request, you need to push your branch to your forked Livewire repository using git push.\nWe're almost there! Open your web browser and navigate to your forked Livewire repository (https://github.com/<your-username>/livewire). In the center of your screen, you will see a new notification: \"my-feature had recent pushes 1 minute ago\" along with a button that says \"Compare & pull request.\" Click the button to open the pull request form.\nIn the form, provide a title that describes your pull request and then proceed to the description section. The text area already contains a predefined template. Try to answer every question:\nAll set? Click on Create pull request 🚀 Congratulations! You've successfully created your first contribution 🎉\nThe maintainers will review your PR and may provide feedback or request changes. Please make an effort to address any feedback as soon as possible.\nThank you for contributing to Livewire!",
             "examples": [
                 {
@@ -56,9 +56,9 @@
     ],
     "directives_used": [],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -67,5 +67,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:35+00:00"
+    "scraped_at": "2026-07-22T16:19:32+00:00"
 }

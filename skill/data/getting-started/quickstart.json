@@ -6,12 +6,12 @@
     "url": "https://livewire.laravel.com/docs/4.x/quickstart",
     "sections": [
         {
-            "title": "#Prerequisites",
+            "title": "Prerequisites¶",
             "content": "Before we start, make sure you have the following installed:",
             "examples": []
         },
         {
-            "title": "#Install Livewire",
+            "title": "Install Livewire¶",
             "content": "From the root directory of your Laravel app, run the following Composer command:",
             "examples": [
                 {
@@ -21,7 +21,7 @@
             ]
         },
         {
-            "title": "#Create a layout",
+            "title": "Create a layout¶",
             "content": "Before creating our component, let's set up a layout file that Livewire components will render inside. By default, Livewire looks for a layout at: resources/views/layouts/app.blade.php\nYou can create this file by running the following command:\nThis will generate resources/views/layouts/app.blade.php with the following contents:\nThe @livewireStyles and @livewireScripts directives include the necessary JavaScript and CSS assets for Livewire to function. Your component will be rendered in place of the {{ $slot }} variable.",
             "examples": [
                 {
@@ -35,7 +35,7 @@
             ]
         },
         {
-            "title": "#Create a Livewire component",
+            "title": "Create a Livewire component¶",
             "content": "Livewire provides a convenient Artisan command to generate new components. Run the following command to make a new page component:\nSince this component will be used as a full page, we use the pages:: prefix to keep it organized in the pages directory.\nThis command will generate a new single-file component at resources/views/pages/post/⚡create.blade.php.\nThe lightning bolt makes Livewire components instantly recognizable in your editor. It's completely optional and can be disabled in your config if you prefer. See the components documentation for more details.",
             "examples": [
                 {
@@ -45,7 +45,7 @@
             ]
         },
         {
-            "title": "#Write the component",
+            "title": "Write the component¶",
             "content": "Open resources/views/pages/post/⚡create.blade.php and replace its contents with the following:\nThis form is intentionally unstyled so we can focus on Livewire's functionality. In a real application, you'd add CSS or use a framework like Tailwind.\nHere's what's happening in the code above:\nComponent properties:\nComponent methods:\nLivewire directives:\nComponents must have exactly one root HTML element. In this example, the <form> element is the single root. Multiple root elements or HTML comments outside the root element will cause an error. When rendering full-page components, named slots for the layout can be placed outside the root element.\nThe save() method uses dd() to dump the values for testing purposes. In a production application, you would typically save the data to a database and redirect:",
             "examples": [
                 {
@@ -59,7 +59,7 @@
             ]
         },
         {
-            "title": "#Register a route",
+            "title": "Register a route¶",
             "content": "Open the routes/web.php file in your Laravel application and add the following:\nNow when a user visits /post/create, Livewire will render the pages::post.create component inside your layout file.",
             "examples": [
                 {
@@ -69,7 +69,7 @@
             ]
         },
         {
-            "title": "#Test it out",
+            "title": "Test it out¶",
             "content": "With everything in place, let's test the component!\nStart your Laravel development server if it's not already running:\nVisit http://localhost:8000/post/create in your browser (or http://yourapp.test/post/create if using Valet, Herd, or a similar tool).\nYou should see a simple form with two fields and a submit button.\nTry the following:\nTest validation: Click \"Save Post\" without filling in any fields. You'll see red error messages appear instantly below each field—no page reload required.\nTest submission: Fill in both fields and click \"Save Post\". You should see a debug screen showing the values you entered.\nThis demonstrates Livewire's core power: reactive data binding, real-time validation, and form handling—all written in PHP without touching JavaScript.",
             "examples": [
                 {
@@ -79,12 +79,12 @@
             ]
         },
         {
-            "title": "#Troubleshooting",
+            "title": "Troubleshooting¶",
             "content": "Component not found error:\nForm doesn't submit or validation doesn't show:\n404 error when visiting the route:",
             "examples": []
         },
         {
-            "title": "#Next steps",
+            "title": "Next steps¶",
             "content": "Now that you've built your first Livewire component, here are some key concepts to explore:\nWe've barely scratched the surface of what Livewire is capable of. Keep reading the documentation to see everything Livewire has to offer.",
             "examples": []
         }
@@ -95,8 +95,8 @@
         "wire:submit"
     ],
     "related": [
-        "upgrading",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -180,5 +180,5 @@
         "security",
         "troubleshooting"
     ],
-    "scraped_at": "2026-02-23T13:09:28+00:00"
+    "scraped_at": "2026-07-22T16:17:51+00:00"
 }

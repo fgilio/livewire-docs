@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-url",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Url] attribute to any property that should persist in the URL:\nWhen a user types \"bob\" into the search field, the URL updates to https://example.com/users?search=bob. If they share this URL or refresh the page, the search value persists.",
             "examples": [
                 {
@@ -16,17 +16,17 @@
             ]
         },
         {
-            "title": "#How it works",
+            "title": "How it works¶",
             "content": "The #[Url] attribute does two things:\nThis creates a shareable, bookmarkable state for your component.",
             "examples": []
         },
         {
-            "title": "#URL vs Session",
+            "title": "URL vs Session¶",
             "content": "Both #[Url] and #[Session] persist property values, but with different trade-offs:\nUse #[Url] when you want users to be able to share or bookmark the current state. Use #[Session] when state should be private.",
             "examples": []
         },
         {
-            "title": "#Using an alias",
+            "title": "Using an alias¶",
             "content": "Shorten or obfuscate property names in the URL with the as parameter:\nThe URL will show ?q=bob instead of ?search=bob.",
             "examples": [
                 {
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "title": "#Excluding values",
+            "title": "Excluding values¶",
             "content": "By default, Livewire only adds query parameters when values differ from their initial value. Use except to customize this:\nNow Livewire will only exclude search from the URL when it's an empty string, not when it equals the initial username value.",
             "examples": [
                 {
@@ -46,7 +46,7 @@
             ]
         },
         {
-            "title": "#Always show in URL",
+            "title": "Always show in URL¶",
             "content": "To always include the parameter in the URL, even when empty, use keep:\nThe URL will always show ?search= even when the value is empty.",
             "examples": [
                 {
@@ -56,7 +56,7 @@
             ]
         },
         {
-            "title": "#Nullable properties",
+            "title": "Nullable properties¶",
             "content": "Use nullable type hints to treat empty query parameters as null instead of empty strings:\nNow ?search= sets $search to null instead of ''.",
             "examples": [
                 {
@@ -66,7 +66,7 @@
             ]
         },
         {
-            "title": "#Browser history",
+            "title": "Browser history¶",
             "content": "By default, Livewire uses history.replaceState() to modify the URL without adding browser history entries. To add history entries (making the back button restore previous query values), use history:\nNow clicking the browser's back button will restore previous search values instead of navigating to the previous page.",
             "examples": [
                 {
@@ -76,12 +76,12 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Url] when:",
             "examples": []
         },
         {
-            "title": "#Example: Product filtering",
+            "title": "Example: Product filtering¶",
             "content": "Here's a practical example of filtering products with multiple URL parameters:\nUsers can share URLs like:",
             "examples": [
                 {
@@ -95,17 +95,17 @@
             ]
         },
         {
-            "title": "#SEO considerations",
+            "title": "SEO considerations¶",
             "content": "Query parameters are indexed by search engines and included in analytics:",
             "examples": []
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about URL query parameters, including the queryString() method and trait hooks, see the URL Query Parameters documentation.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -120,9 +120,9 @@
         "wire:model"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -131,5 +131,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:22+00:00"
+    "scraped_at": "2026-07-22T16:19:12+00:00"
 }

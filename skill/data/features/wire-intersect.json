@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-intersect",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "The simplest form runs an action when an element becomes visible:\nWhen the element enters the viewport, the loadMore action will be called on your component.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Enter and leave events",
+            "title": "Enter and leave events¶",
             "content": "You can specify whether to run the action on enter, leave, or both:",
             "examples": [
                 {
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "#Visibility modifiers",
+            "title": "Visibility modifiers¶",
             "content": "Control how much of the element needs to be visible before triggering:",
             "examples": [
                 {
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "title": "#Margin",
+            "title": "Margin¶",
             "content": "Add a margin around the viewport to trigger the action before/after the element enters:",
             "examples": [
                 {
@@ -46,7 +46,7 @@
             ]
         },
         {
-            "title": "#Fire once",
+            "title": "Fire once¶",
             "content": "Use the .once modifier to ensure the action only fires on the first intersection:\nThis is particularly useful for analytics or tracking when you only want to record the first time a user sees something.",
             "examples": [
                 {
@@ -56,7 +56,7 @@
             ]
         },
         {
-            "title": "#Combining modifiers",
+            "title": "Combining modifiers¶",
             "content": "You can combine multiple modifiers to create precise behaviors:",
             "examples": [
                 {
@@ -66,7 +66,7 @@
             ]
         },
         {
-            "title": "#Common use cases",
+            "title": "Common use cases¶",
             "content": "",
             "examples": [
                 {
@@ -84,12 +84,12 @@
             ]
         },
         {
-            "title": "#Comparison with Alpine's x-intersect",
+            "title": "Comparison with Alpine's x-intersect¶",
             "content": "If you're familiar with Alpine.js, wire:intersect works similarly to x-intersect but triggers Livewire actions instead of Alpine expressions. The modifiers and behavior are designed to feel familiar to Alpine users.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -103,9 +103,9 @@
         "wire:intersect"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -114,5 +114,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:00+00:00"
+    "scraped_at": "2026-07-22T16:18:42+00:00"
 }

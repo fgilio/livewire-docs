@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-js",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Js] attribute to methods that return JavaScript expressions:\nWhen $wire.resetForm() is called, the JavaScript executes directly in the browser — no server round-trip occurs.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Executing JavaScript after server actions",
+            "title": "Executing JavaScript after server actions¶",
             "content": "If you need to execute JavaScript after a server action completes, use the js() method instead:\nThe js() method queues JavaScript to be executed when the server response arrives.",
             "examples": [
                 {
@@ -30,7 +30,7 @@
             ]
         },
         {
-            "title": "#Accessing $wire",
+            "title": "Accessing $wire¶",
             "content": "You can access the component's $wire object inside JavaScript expressions:",
             "examples": [
                 {
@@ -40,12 +40,12 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Js] when you need to:",
             "examples": []
         },
         {
-            "title": "#JavaScript actions vs #[Js] methods",
+            "title": "JavaScript actions vs #[Js] methods¶",
             "content": "There's an important distinction:\nBoth approaches execute JavaScript on the client without a server round-trip. The difference is where the JavaScript code is defined.",
             "examples": [
                 {
@@ -59,7 +59,7 @@
             ]
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about JavaScript integration in Livewire, see:",
             "examples": []
         }
@@ -69,9 +69,9 @@
         "wire:submit"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -80,5 +80,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:12+00:00"
+    "scraped_at": "2026-07-22T16:18:57+00:00"
 }

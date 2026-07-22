@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-sort",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "To make a list sortable, add wire:sort to the parent element with a handler method name, and wire:sort:item to each child with a unique identifier:\nWhen a user drags and drops an item to a new position, Livewire will call your handler with two parameters: the item's identifier (from wire:sort:item) and the new zero-based position.\nYou are responsible for persisting the new order in your database.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Sorting across groups",
+            "title": "Sorting across groups¶",
             "content": "To allow dragging items between multiple lists, use wire:sort:group with the same group name on each container.\nTo identify which group the item was dropped into, add wire:sort:group-id to each container. Its value will be passed as a third parameter to your handler:\nWhen an item is dragged to a different group, only the destination group's handler fires.",
             "examples": [
                 {
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "title": "#Sort handles",
+            "title": "Sort handles¶",
             "content": "By default, users can drag an item by clicking anywhere on it. To restrict dragging to a specific handle, use wire:sort:handle:\nNow users can only initiate a drag from the handle element.",
             "examples": [
                 {
@@ -44,7 +44,7 @@
             ]
         },
         {
-            "title": "#Ignoring elements",
+            "title": "Ignoring elements¶",
             "content": "To prevent specific areas from triggering drag operations, use wire:sort:ignore. This is useful for buttons or other interactive elements inside sortable items:",
             "examples": [
                 {
@@ -54,7 +54,7 @@
             ]
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "This directive has no modifiers.",
             "examples": [
                 {
@@ -69,9 +69,9 @@
         "wire:sort"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -80,5 +80,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:06+00:00"
+    "scraped_at": "2026-07-22T16:18:50+00:00"
 }

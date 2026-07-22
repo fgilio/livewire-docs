@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-on",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[On] attribute to any method that should be called when an event is dispatched:\nWhen another component dispatches the post-created event, the updatePostList() method will be called automatically.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Dispatching events",
+            "title": "Dispatching events¶",
             "content": "To dispatch an event that triggers listeners, use the dispatch() method:\nThe post-created event will trigger any methods decorated with #[On('post-created')].",
             "examples": [
                 {
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "#Passing data to listeners",
+            "title": "Passing data to listeners¶",
             "content": "Events can pass data as named parameters:",
             "examples": [
                 {
@@ -40,7 +40,7 @@
             ]
         },
         {
-            "title": "#Dynamic event names",
+            "title": "Dynamic event names¶",
             "content": "You can use component properties in event names for scoped listening:\nIf $post->id is 3, this will only listen for post-updated.3 events, ignoring updates to other posts.",
             "examples": [
                 {
@@ -50,7 +50,7 @@
             ]
         },
         {
-            "title": "#Multiple event listeners",
+            "title": "Multiple event listeners¶",
             "content": "A single method can listen for multiple events:",
             "examples": [
                 {
@@ -60,7 +60,7 @@
             ]
         },
         {
-            "title": "#Listening to browser events",
+            "title": "Listening to browser events¶",
             "content": "You can also listen for browser events dispatched from JavaScript:",
             "examples": [
                 {
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "title": "#Alternative: Listening in the template",
+            "title": "Alternative: Listening in the template¶",
             "content": "Instead of using the attribute, you can listen for events directly on child components in your Blade template:\nThis listens for the saved event from the post.edit child component and refreshes the parent when it's dispatched.\nYou can also call specific methods:",
             "examples": [
                 {
@@ -88,12 +88,12 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[On] when:",
             "examples": []
         },
         {
-            "title": "#Example: Real-time notifications",
+            "title": "Example: Real-time notifications¶",
             "content": "Here's a practical example of a notification bell that listens for new notifications:\nOther components can dispatch events to update the notification count:",
             "examples": [
                 {
@@ -107,12 +107,12 @@
             ]
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about events, dispatching to specific components, and Laravel Echo integration, see the Events documentation.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -126,9 +126,9 @@
         "wire:post"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -137,5 +137,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:17+00:00"
+    "scraped_at": "2026-07-22T16:19:04+00:00"
 }

@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/directive-placeholder",
     "sections": [
         {
-            "title": "#Basic usage with lazy components",
+            "title": "Basic usage with lazy components¶",
             "content": "For single-file and multi-file components, use @placeholder to specify what displays during loading:\nWhen rendered with <livewire:revenue lazy />, the placeholder displays until the component loads.\nThe @placeholder directive works for single-file and multi-file components. For class-based components, use the placeholder() method instead.\nThe placeholder and component must share the same root element type. If your placeholder uses <div>, your component must also use <div>.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Usage with islands",
+            "title": "Usage with islands¶",
             "content": "Use @placeholder inside lazy islands to customize loading states:\nThe placeholder appears while the island is loading, then gets replaced with the actual content.",
             "examples": [
                 {
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "#Skeleton placeholders",
+            "title": "Skeleton placeholders¶",
             "content": "Placeholders are ideal for skeleton loaders that match your content's layout:",
             "examples": [
                 {
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For lazy component loading, see the Lazy Loading documentation.\nFor island loading states, see the Islands documentation.",
             "examples": []
         }
@@ -45,9 +45,9 @@
         "wire:click"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -56,5 +56,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:25+00:00"
+    "scraped_at": "2026-07-22T16:19:15+00:00"
 }

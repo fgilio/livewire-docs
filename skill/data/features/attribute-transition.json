@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-transition",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Transition] attribute to action methods that should trigger specific transition animations:\nThe transition type can be targeted in CSS using the :active-view-transition-type() selector:",
             "examples": [
                 {
@@ -18,13 +18,13 @@
                     "type": "class"
                 },
                 {
-                    "code": "html:active-view-transition-type(forward) { &::view-transition-old(content) { animation: 300ms ease-out slide-out-left; } &::view-transition-new(content) { animation: 300ms ease-in slide-in-right; }} html:active-view-transition-type(backward) { &::view-transition-old(content) { animation: 300ms ease-out slide-out-right; } &::view-transition-new(content) { animation: 300ms ease-in slide-in-left; }} @keyframes slide-out-left { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; }} @keyframes slide-in-right { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }} @keyframes slide-out-right { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; }} @keyframes slide-in-left { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }}",
+                    "code": "html:active-view-transition-type(forward) { &::view-transition-old(content) { animation: 300ms ease-out both slide-out-left; } &::view-transition-new(content) { animation: 300ms ease-in both slide-in-right; }} html:active-view-transition-type(backward) { &::view-transition-old(content) { animation: 300ms ease-out both slide-out-right; } &::view-transition-new(content) { animation: 300ms ease-in both slide-in-left; }} @keyframes slide-out-left { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; }} @keyframes slide-in-right { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }} @keyframes slide-out-right { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; }} @keyframes slide-in-left { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }}",
                     "type": "class"
                 }
             ]
         },
         {
-            "title": "#Skipping transitions",
+            "title": "Skipping transitions¶",
             "content": "Use skip: true to disable transitions for specific actions:\nThis is useful for actions like \"reset\" or \"cancel\" that should instantly update without animation.",
             "examples": [
                 {
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "title": "#Alternative approaches",
+            "title": "Alternative approaches¶",
             "content": "For dynamic transition types that depend on runtime logic, use the transition() method instead:\nYou can also skip transitions imperatively:",
             "examples": [
                 {
@@ -48,7 +48,7 @@
             ]
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about view transitions, see the wire:transition documentation.",
             "examples": []
         }
@@ -58,9 +58,9 @@
         "wire:transition"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -69,5 +69,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:21+00:00"
+    "scraped_at": "2026-07-22T16:19:11+00:00"
 }

@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-navigate",
     "sections": [
         {
-            "title": "#Styling active links with data-current",
+            "title": "Styling active links with data-current¶",
             "content": "Livewire automatically adds a data-current attribute to any wire:navigate link that matches the current page URL. This allows you to style active navigation links using CSS or Tailwind without any additional directives:\nThe data-current attribute is added and removed automatically as users navigate between pages. Read more about highlighting active links in the Navigate documentation.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Prefetching pages on hover",
+            "title": "Prefetching pages on hover¶",
             "content": "By adding the .hover modifier, Livewire will pre-fetch a page when a user hovers over a link. This way, the page will have already been downloaded from the server when the user clicks on the link.",
             "examples": [
                 {
@@ -26,12 +26,12 @@
             ]
         },
         {
-            "title": "#Going deeper",
+            "title": "Going deeper¶",
             "content": "For more complete documentation on this feature, visit Livewire's navigate documentation page.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -45,9 +45,9 @@
         "wire:navigate"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -56,5 +56,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:54+00:00"
+    "scraped_at": "2026-07-22T16:18:30+00:00"
 }

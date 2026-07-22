@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-confirm",
     "sections": [
         {
-            "title": "#Prompting users for input",
+            "title": "Prompting users for input¶",
             "content": "For even more dangerous actions such as deleting a user's account entirely, you may want to present them with a confirmation prompt which they would need to type in a specific string of characters to confirm the action.\nLivewire provides a helpful .prompt modifier, that when applied to wire:confirm, it will prompt the user for input and only confirm the action if the input matches (case-sensitive) the provided string (designated by a \"|\" (pipe) character at the end if the wire:confirm value):\nWhen a user presses \"Delete account\", the action will only be performed if \"DELETE\" is entered into the prompt, otherwise, the action will be cancelled.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -31,9 +31,9 @@
         "wire:confirm"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -42,5 +42,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:57+00:00"
+    "scraped_at": "2026-07-22T16:18:39+00:00"
 }

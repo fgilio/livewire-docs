@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/synthesizers",
     "sections": [
         {
-            "title": "#Understanding Synthesizers",
+            "title": "Understanding Synthesizers¶",
             "content": "Before exploring the creation of custom Synthesizers, let's first look at the internal Synthesizer that Livewire uses to support Laravel Stringables.\nSuppose your application contained the following CreatePost component:\nBetween requests, Livewire might serialize this component's state into a JSON object like the following:\nNow, consider a more advanced example where the $title property value is a stringable instead of a plain string:\nThe dehydrated JSON representing this component's state now contains a metadata tuple instead of a plain empty string:\nLivewire can now use this tuple to hydrate the $title property back into a stringable on the next request.\nNow that you've seen the outside-in effects of Synthesizers, here is the actual source code for Livewire's internal stringable synth:\nLet's break this down piece by piece.\nFirst is the $key property:\nEvery synth must contain a static $key property that Livewire uses to convert a metadata tuple like ['', { s: 'str' }] back into a stringable. As you may notice, each metadata tuple has an s key referencing this key.\nInversely, when Livewire is dehydrating a property, it will use the synth's static match() function to identify if this particular Synthesizer is a good candidate to dehydrate the current property ($target being the current value of the property):\nIf match() returns true, the dehydrate() method will be used to take the property's PHP value as input and return the JSONable metadata tuple:\nNow, at the beginning of the next request, after this Synthesizer has been matched by the { s: 'str' } key in the tuple, the hydrate() method will be called and passed the raw JSON representation of the property with the expectation that it returns the full PHP-compatible value to be assigned to the property.",
             "examples": [
                 {
@@ -48,7 +48,7 @@
             ]
         },
         {
-            "title": "#Registering a custom Synthesizer",
+            "title": "Registering a custom Synthesizer¶",
             "content": "To demonstrate how you might author your own Synthesizer to support a custom property, we will use the following UpdateProperty component as an example:\nHere's the source for the Address class:\nTo support properties of type Address, we can use the following Synthesizer:\nTo make it available globally in your application, you can use Livewire's propertySynthesizer method to register the synthesizer from your service provider boot method:",
             "examples": [
                 {
@@ -70,7 +70,7 @@
             ]
         },
         {
-            "title": "#Supporting data binding",
+            "title": "Supporting data binding¶",
             "content": "Using the UpdateProperty example from above, it is likely that you would want to support wire:model binding directly to properties of the Address object. Synthesizers allow you to support this using the get() and set() methods:",
             "examples": [
                 {
@@ -82,9 +82,9 @@
     ],
     "directives_used": [],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -93,5 +93,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:33+00:00"
+    "scraped_at": "2026-07-22T16:19:30+00:00"
 }

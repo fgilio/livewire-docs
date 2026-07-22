@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/csp",
     "sections": [
         {
-            "title": "#What is Content Security Policy (CSP)?",
+            "title": "What is Content Security Policy (CSP)?¶",
             "content": "Content Security Policy (CSP) is a security standard that helps prevent various types of attacks, including Cross-Site Scripting (XSS) and code injection attacks. CSP works by allowing web developers to control which resources the browser is allowed to load and execute.\nOne of the most restrictive CSP directives is 'unsafe-eval', which when omitted, prevents JavaScript from executing dynamic code through functions like eval(), new Function(), and similar constructs that compile and execute strings as code at runtime.\nBy default, Livewire (and its underlying Alpine.js framework) uses new Function() declarations to compile and execute JavaScript expressions from HTML attributes like:\nWhile this approach is much faster and safer than using eval() directly, it still violates the 'unsafe-eval' CSP directive that many security-conscious applications enforce.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Enabling CSP-Safe Mode",
+            "title": "Enabling CSP-Safe Mode¶",
             "content": "To enable Livewire's CSP-safe mode, you need to modify your application's configuration:\nIn your config/livewire.php file, set the csp_safe option to true:",
             "examples": [
                 {
@@ -26,12 +26,12 @@
             ]
         },
         {
-            "title": "#Impact on Alpine.js",
+            "title": "Impact on Alpine.js¶",
             "content": "Important: When you enable CSP-safe mode in Livewire, it also affects all Alpine.js functionality in your application. Alpine will automatically use its CSP-safe evaluator, which means all Alpine expressions throughout your app will be subject to the same parsing limitations.\nThis is where most developers will notice the constraints, as Alpine expressions tend to be more complex than typical Livewire expressions.",
             "examples": []
         },
         {
-            "title": "#What's Supported",
+            "title": "What's Supported¶",
             "content": "The CSP build supports most common JavaScript expressions you'd use in Livewire:",
             "examples": [
                 {
@@ -53,7 +53,7 @@
             ]
         },
         {
-            "title": "#What's Not Supported",
+            "title": "What's Not Supported¶",
             "content": "Some advanced JavaScript features won't work in CSP-safe mode:",
             "examples": [
                 {
@@ -71,7 +71,7 @@
             ]
         },
         {
-            "title": "#Working around limitations",
+            "title": "Working around limitations¶",
             "content": "For complex Alpine expressions, use Alpine.data() or move logic to methods:",
             "examples": [
                 {
@@ -81,7 +81,7 @@
             ]
         },
         {
-            "title": "#CSP Headers Example",
+            "title": "CSP Headers Example¶",
             "content": "Here's an example of CSP headers that work with Livewire's CSP-safe build:\nThe key points:",
             "examples": [
                 {
@@ -91,17 +91,17 @@
             ]
         },
         {
-            "title": "#Performance Considerations",
+            "title": "Performance Considerations¶",
             "content": "The CSP-safe build uses a different expression evaluator that:\nFor most applications, these differences are imperceptible, but it's worth testing with your specific use case.",
             "examples": []
         },
         {
-            "title": "#Testing Your CSP Implementation",
+            "title": "Testing Your CSP Implementation¶",
             "content": "To verify your CSP setup is working:",
             "examples": []
         },
         {
-            "title": "#When to Use CSP-Safe Mode",
+            "title": "When to Use CSP-Safe Mode¶",
             "content": "Consider using CSP-safe mode when:",
             "examples": []
         }
@@ -113,9 +113,9 @@
         "wire:show"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -124,5 +124,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:31+00:00"
+    "scraped_at": "2026-07-22T16:19:27+00:00"
 }

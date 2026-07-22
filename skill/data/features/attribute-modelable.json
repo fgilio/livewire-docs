@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-modelable",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Modelable] attribute to a property in a child component to make it bindable:\nNow the parent component can bind to this child component just like any other input element:\nWhen the user types in the todo-input component, the parent's $todo property automatically updates.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#How it works",
+            "title": "How it works¶",
             "content": "Without #[Modelable], you would need to manually handle two-way communication between parent and child:\nThe #[Modelable] attribute simplifies this by allowing wire:model to work directly on the component.",
             "examples": [
                 {
@@ -30,8 +30,8 @@
             ]
         },
         {
-            "title": "#Building reusable input components",
-            "content": "#[Modelable] is perfect for creating custom input components that feel like native HTML inputs:",
+            "title": "Building reusable input components¶",
+            "content": "#[Modelable] is perfect for creating custom input components that feel like native HTML inputs:\nYour component's root element cannot be a form control with wire:model. Wrap your input in a wrapper element like <div>. Livewire injects wire:model and x-modelable on the root element to wire up the parent binding — a second wire:model on the same element creates a conflict.",
             "examples": [
                 {
                     "code": "<?php // resources/views/components/⚡date-picker.blade.php use Livewire\\Attributes\\Modelable;use Livewire\\Component; new class extends Component { #[Modelable] public $date = '';};?> <div> <input type=\"date\" wire:model=\"date\" class=\"border rounded px-3 py-2\" ></div>",
@@ -44,17 +44,21 @@
             ]
         },
         {
-            "title": "#Modifiers",
-            "content": "The parent can use wire:model modifiers, and they'll work as expected:",
+            "title": "Modifiers¶",
+            "content": "The parent can use wire:model modifiers for timing and network control:\nEvent-based modifiers like .blur, .change, and .enter control DOM events on specific elements, not reactive component bindings. To control sync timing for modelable components, place these modifiers on the actual input element inside the child component:",
             "examples": [
                 {
-                    "code": "{{-- Live updates on every keystroke --}}<livewire:todo-input wire:model.live=\"todo\" /> {{-- Update on blur --}}<livewire:todo-input wire:model.live.blur=\"todo\" /> {{-- Debounce updates --}}<livewire:todo-input wire:model.live.debounce.500ms=\"todo\" />",
+                    "code": "{{-- Live updates on every keystroke --}}<livewire:todo-input wire:model.live=\"todo\" /> {{-- Debounce updates --}}<livewire:todo-input wire:model.live.debounce.500ms=\"todo\" /> {{-- Throttle updates --}}<livewire:todo-input wire:model.live.throttle.500ms=\"todo\" />",
+                    "type": "class"
+                },
+                {
+                    "code": "<livewire:todo-input wire:model=\"todo\" /> <input wire:model.blur=\"value\" />",
                     "type": "class"
                 }
             ]
         },
         {
-            "title": "#Example: Custom rich text editor",
+            "title": "Example: Custom rich text editor¶",
             "content": "Here's a more complex example of a rich-text editor component:",
             "examples": [
                 {
@@ -68,17 +72,17 @@
             ]
         },
         {
-            "title": "#Limitations",
+            "title": "Limitations¶",
             "content": "Currently Livewire only supports a single #[Modelable] attribute per component, so only the first one will be bound.",
             "examples": []
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Modelable] when:",
             "examples": []
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about parent-child communication and data binding, see the Nesting Components documentation.",
             "examples": []
         }
@@ -91,9 +95,9 @@
         "wire:todo-input"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -102,5 +106,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:16+00:00"
+    "scraped_at": "2026-07-22T16:19:03+00:00"
 }

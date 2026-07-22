@@ -6,12 +6,12 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-submit",
     "sections": [
         {
-            "title": "#Going deeper",
+            "title": "Going deeper¶",
             "content": "wire:submit is just one of many event listeners that Livewire provides. The following two pages provide much more complete documentation on using wire:submit in your application:",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -25,9 +25,9 @@
         "wire:submit"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -36,5 +36,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:51+00:00"
+    "scraped_at": "2026-07-22T16:18:27+00:00"
 }

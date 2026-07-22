@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/styles",
     "sections": [
         {
-            "title": "#Scoped styles",
+            "title": "Scoped styles¶",
             "content": "By default, styles defined in your component are scoped to that component only. This means your CSS selectors will only affect elements within your component, even if those same selectors exist elsewhere on the page.\nAdd a <style> tag at the root level of your single-file component:\nThe .title and .btn styles will only apply to elements within this component, not to any other elements on the page with the same classes.\nFor multi-file components, create a CSS file with the same name as your component:\ncounter.css",
             "examples": [
                 {
@@ -24,7 +24,7 @@
             ]
         },
         {
-            "title": "#How scoping works",
+            "title": "How scoping works¶",
             "content": "Livewire automatically wraps your styles in a selector that targets your component's root element. Behind the scenes, your CSS is transformed using CSS nesting:\nThis uses the wire:name attribute that Livewire adds to every component's root element, ensuring styles only apply within that component.\nYou can use the & selector to target the component's root element itself:\nThis will add a border and padding to the component's outermost element.",
             "examples": [
                 {
@@ -38,7 +38,7 @@
             ]
         },
         {
-            "title": "#Global styles",
+            "title": "Global styles¶",
             "content": "Sometimes you need styles that apply globally rather than being scoped to a single component. Add the global attribute to your style tag:\nCreate a file with .global.css extension:",
             "examples": [
                 {
@@ -52,7 +52,7 @@
             ]
         },
         {
-            "title": "#Combining scoped and global styles",
+            "title": "Combining scoped and global styles¶",
             "content": "You can use both scoped and global styles in the same component:",
             "examples": [
                 {
@@ -62,12 +62,12 @@
             ]
         },
         {
-            "title": "#Style deduplication",
+            "title": "Style deduplication¶",
             "content": "Livewire automatically deduplicates styles when multiple instances of the same component appear on a page. The styles are only loaded once, regardless of how many component instances exist.",
             "examples": []
         },
         {
-            "title": "#When to use component styles",
+            "title": "When to use component styles¶",
             "content": "Use scoped styles when:\nUse global styles when:\nUse @assets for external stylesheets:",
             "examples": [
                 {
@@ -77,7 +77,7 @@
             ]
         },
         {
-            "title": "#Browser support",
+            "title": "Browser support¶",
             "content": "Scoped styles use CSS nesting, which is supported in all modern browsers (Chrome 120+, Firefox 117+, Safari 17.2+). For older browser support, consider using a CSS preprocessor or the @assets directive with pre-compiled stylesheets.",
             "examples": []
         }
@@ -86,9 +86,9 @@
         "wire:click"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -97,5 +97,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:39+00:00"
+    "scraped_at": "2026-07-22T16:18:08+00:00"
 }

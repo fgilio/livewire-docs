@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-show",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Here's a practical example of using wire:show to toggle a \"Create Post\" modal:\nWhen the \"Create New Post\" button is clicked, the modal appears without a server roundtrip. After successfully saving the post, the modal is hidden and the form is reset.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Using transitions",
+            "title": "Using transitions¶",
             "content": "You can combine wire:show with Alpine.js transitions to create smooth show/hide animations. Since wire:show only toggles the CSS display property, Alpine's x-transition directives work perfectly with it:\nThe Alpine.js transition classes above will create a fade and scale effect when the modal shows and hides.\nView the full x-transition documentation →",
             "examples": [
                 {
@@ -30,7 +30,7 @@
             ]
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "This directive has no modifiers.",
             "examples": [
                 {
@@ -46,9 +46,9 @@
         "wire:submit"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -57,5 +57,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:05+00:00"
+    "scraped_at": "2026-07-22T16:18:49+00:00"
 }

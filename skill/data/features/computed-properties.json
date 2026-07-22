@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/computed-properties",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "To create a computed property, you can add the #[Computed] attribute above any method in your Livewire component. Once the attribute has been added to the method, you can access it like any other property.\nMake sure you import any attribute classes. For example, the below #[Computed] attribute requires the following import use Livewire\\Attributes\\Computed;.\nFor example, here's a show-user component that uses a computed property named user() to access a User Eloquent model based on a property named $userId:\nBecause the #[Computed] attribute has been added to the user() method, the value is accessible in other methods in the component and within the Blade template.\nUnlike normal properties, computed properties aren't directly available inside your component's template. Instead, you must access them on the $this object. For example, a computed property named posts() must be accessed via $this->posts inside your template.\nTrying to use a Computed property within a Form will result in an error when you attempt to access the property in blade using $form->property syntax.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Performance advantage",
+            "title": "Performance advantage¶",
             "content": "You may be asking yourself: why use computed properties at all? Why not just call the method directly?\nAccessing a method as a computed property offers a performance advantage over calling a method. Internally, when a computed property is executed for the first time, Livewire memoizes the returned value. This way, any subsequent accesses in the request will return the memoized value instead of executing multiple times.\nThis allows you to freely access a derived value and not worry about the performance implications.\nIt's a common misconception that Livewire memoizes computed properties for the entire lifespan of your Livewire component on a page. However, this isn't the case. Instead, Livewire only memoizes the result for the duration of a single component request (it does not persist between requests). This means that if your computed property method contains an expensive database query, it will be executed every time your Livewire component performs an update.\nConsider the following problematic scenario:\nTo clear, or \"bust\", the stored memo, you can use PHP's unset() function.\nBelow is an example of an action called createPost() that, by creating a new post in the application, makes the posts() computed stale — meaning the computed property posts() needs to be re-computed to include the newly added post:\nIn the above component, the computed property is memoized before a new post is created because the createPost() method accesses $this->posts before the new post is created. To ensure that $this->posts contains the most up-to-date contents when accessed inside the view, the memo is cleared using unset($this->posts).\nThe memoization we've discussed so far only lasts for a single request. If you need values to persist across multiple requests, you need actual Laravel caching.\nSometimes you would like to cache the value of a computed property for the lifespan of a Livewire component, rather than it being cleared after every request. In these cases, you can use Laravel's caching utilities.\nBelow is an example of a computed property named user(), where instead of executing the Eloquent query directly, we wrap the query in Cache::remember() to ensure that any future requests retrieve it from Laravel's cache instead of re-executing the query:\nBecause each unique instance of a Livewire component has a unique ID, we can use $this->getId() to generate a unique cache key that will only be applied to future requests for this same component instance.\nBut, as you may have noticed, most of this code is predictable and can easily be abstracted. Because of this, Livewire's #[Computed] attribute provides a helpful persist parameter. By applying #[Computed(persist: true)] to a method, you can achieve the same result without any extra code:\nIn the example above, when $this->user is accessed from your component, it will continue to be cached for the duration of the Livewire component on the page. This means the actual Eloquent query will only be executed once.\nLivewire caches persisted values for 3600 seconds (one hour). You can override this default by passing an additional seconds parameter to the #[Computed] attribute:\nAs previously discussed, you can clear a computed property's memo using PHP's unset() method. This also applies to computed properties using the persist: true parameter. When calling unset() on a persisted computed property, Livewire will clear not only the in-request memo, but also the underlying cached value in Laravel's cache.",
             "examples": [
                 {
@@ -42,7 +42,7 @@
             ]
         },
         {
-            "title": "#Caching across all components",
+            "title": "Caching across all components¶",
             "content": "Instead of caching the value of a computed property for the duration of a single component's lifecycle, you can cache the value of a computed across all components in your application using the cache: true parameter provided by the #[Computed] attribute:\nIn the above example, until the cache expires or is busted, every instance of this component in your application will share the same cached value for $this->posts.\nIf you need to manually clear the cache for a computed property, you may set a custom cache key using the key parameter:",
             "examples": [
                 {
@@ -56,7 +56,7 @@
             ]
         },
         {
-            "title": "#When to use computed properties?",
+            "title": "When to use computed properties?¶",
             "content": "In addition to offering performance advantages, there are a few other scenarios where computed properties are helpful.\nSpecifically, when passing data into your component's Blade template, there are a few occasions where a computed property is a better alternative. Below is an example of a simple component's render() method passing a collection of posts to a Blade template:\nAlthough this is sufficient for many use cases, here are three scenarios where a computed property would be a better alternative:\nIf you are conditionally accessing a value that is computationally expensive to retrieve in your Blade template, you can reduce performance overhead using a computed property.\nConsider the following template without a computed property:\nIf a user is restricted from viewing posts, the database query to retrieve the posts has already been made, yet the posts are never used in the template.\nHere's a version of the above scenario using a computed property instead:\nNow, because we are providing the posts to the template using a computed property, we only execute the database query when the data is needed.\nAnother scenario when computed properties are helpful is using inline templates in your component.\nBelow is an example of an inline component where, because we are returning a template string directly inside render(), we never have an opportunity to pass data into the view:\nIn the above example, without a computed property, we would have no way to explicitly pass data into the Blade template.\nIn Livewire, another way to cut down on boilerplate in your components is by omitting the render() method entirely. When omitted, Livewire will use its own render() method returning the corresponding Blade view by convention.\nIn these case, you obviously don't have a render() method from which you can pass data into a Blade view.\nRather than re-introducing the render() method into your component, you can instead provide that data to the view via computed properties:",
             "examples": [
                 {
@@ -94,7 +94,7 @@
             ]
         },
         {
-            "title": "#Alternative: Session properties",
+            "title": "Alternative: Session properties¶",
             "content": "If you need to persist simple values across page refreshes without cross-request caching, consider using the #[Session] attribute instead of computed properties.\nSession properties are useful when:\nFor example, storing a search query in the session:\nThis keeps the search value across page refreshes without using URL parameters or computed property caching.\nLearn more about session properties →",
             "examples": [
                 {
@@ -109,9 +109,9 @@
         "wire:key"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -120,5 +120,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:46+00:00"
+    "scraped_at": "2026-07-22T16:18:21+00:00"
 }

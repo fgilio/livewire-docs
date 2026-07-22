@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-cloak",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "To use wire:cloak, add the directive to any element you want to hide during page load:\nwire:cloak is particularly useful in scenarios where you want to prevent users from seeing uninitialized dynamic content such as element shown or hidden using wire:show.\nIn the above example, without wire:cloak, both icons would be shown before Livewire initializes. However, with wire:cloak, both elements will be hidden until initialization.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "This directive has no modifiers.",
             "examples": [
                 {
@@ -35,9 +35,9 @@
         "wire:show"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -46,5 +46,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:56+00:00"
+    "scraped_at": "2026-07-22T16:18:33+00:00"
 }

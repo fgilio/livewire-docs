@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/directive-island",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Wrap any portion of your template with @island to create an isolated region:\nWhen the \"Refresh\" button is clicked, only the island re-renders—the rest of the component remains untouched.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Lazy loading islands",
+            "title": "Lazy loading islands¶",
             "content": "Defer an island's initial render until after the page loads using the lazy parameter:\nThe island displays a loading state initially, then fetches its content in a separate request.\nBy default, lazy waits until the island is visible in the viewport. Use defer to load immediately after page load:",
             "examples": [
                 {
@@ -30,7 +30,7 @@
             ]
         },
         {
-            "title": "#Custom loading states",
+            "title": "Custom loading states¶",
             "content": "Use @placeholder to customize what displays while loading:",
             "examples": [
                 {
@@ -40,7 +40,7 @@
             ]
         },
         {
-            "title": "#Named islands",
+            "title": "Named islands¶",
             "content": "Give islands names to target them from elsewhere in your component:\nThe wire:island directive scopes updates to specific islands.",
             "examples": [
                 {
@@ -50,12 +50,12 @@
             ]
         },
         {
-            "title": "#Why use islands?",
+            "title": "Why use islands?¶",
             "content": "Islands provide performance isolation without the overhead of creating separate child components, managing props, or dealing with component communication.\nUse islands when:\nLearn more about islands →",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -70,9 +70,9 @@
         "wire:island"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -81,5 +81,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:24+00:00"
+    "scraped_at": "2026-07-22T16:19:14+00:00"
 }

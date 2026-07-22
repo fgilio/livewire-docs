@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-validate",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Validate] attribute to properties that need validation:\nWith #[Validate], Livewire automatically validates properties on each update, providing instant feedback to users.",
             "examples": [
                 {
@@ -16,12 +16,12 @@
             ]
         },
         {
-            "title": "#How it works",
+            "title": "How it works¶",
             "content": "When you add #[Validate] to a property:",
             "examples": []
         },
         {
-            "title": "#Real-time validation",
+            "title": "Real-time validation¶",
             "content": "By default, #[Validate] validates properties as they're updated:\nAs users fill out the form, they receive immediate validation feedback.",
             "examples": [
                 {
@@ -31,7 +31,7 @@
             ]
         },
         {
-            "title": "#Disabling auto-validation",
+            "title": "Disabling auto-validation¶",
             "content": "To validate only when explicitly calling $this->validate(), use onUpdate: false:\nNow validation only runs when save() is called, not on every property update.",
             "examples": [
                 {
@@ -41,7 +41,7 @@
             ]
         },
         {
-            "title": "#Custom attribute names",
+            "title": "Custom attribute names¶",
             "content": "Customize the field name in validation messages:\nError message will be \"The date of birth field is required\" instead of \"The dob field is required\".",
             "examples": [
                 {
@@ -51,7 +51,7 @@
             ]
         },
         {
-            "title": "#Custom validation messages",
+            "title": "Custom validation messages¶",
             "content": "Override default validation messages:\nFor multiple rules, use multiple attributes:",
             "examples": [
                 {
@@ -65,7 +65,7 @@
             ]
         },
         {
-            "title": "#Array validation",
+            "title": "Array validation¶",
             "content": "Validate array properties and their children:\nThis validates both the array itself and each individual task.",
             "examples": [
                 {
@@ -75,7 +75,7 @@
             ]
         },
         {
-            "title": "#Limitations",
+            "title": "Limitations¶",
             "content": "PHP attributes can't use Laravel's Rule objects directly. For complex rules like Rule::exists(), use a rules() method instead:",
             "examples": [
                 {
@@ -85,12 +85,12 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Validate] when:\nUse rules() method when:",
             "examples": []
         },
         {
-            "title": "#Example: Contact form",
+            "title": "Example: Contact form¶",
             "content": "Here's a complete contact form with validation:\nUsers get immediate feedback as they fill out the form, with friendly field names and helpful error messages.",
             "examples": [
                 {
@@ -100,12 +100,12 @@
             ]
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For comprehensive documentation on validation, including form objects, custom rules, and testing, see the Validation documentation.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -121,9 +121,9 @@
         "wire:submit"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -132,5 +132,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:23+00:00"
+    "scraped_at": "2026-07-22T16:19:13+00:00"
 }

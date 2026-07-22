@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/redirecting",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Below is an example of a post.create Livewire component that redirects the user to another page after they submit the form to create a post:\nAs you can see, when the save action is triggered, a redirect will also be triggered to /posts. When Livewire receives this response, it will redirect the user to the new URL on the frontend.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Redirect to Route",
+            "title": "Redirect to Route¶",
             "content": "In case you want to redirect to a page using its route name you can use the redirectRoute.\nFor example, if you have a page with the route named 'profile' like this:\nYou can use redirectRoute to redirect to that page using the name of the route like so:\nIn case you need to pass parameters to the route you may use the second argument of the method redirectRoute like so:",
             "examples": [
                 {
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "title": "#Redirect to intended",
+            "title": "Redirect to intended¶",
             "content": "In case you want to redirect the user back to the previous page they were on you can use redirectIntended. It accepts an optional default URL as its first argument which is used as a fallback if no previous page can be determined:",
             "examples": [
                 {
@@ -44,7 +44,7 @@
             ]
         },
         {
-            "title": "#Redirecting to full-page components",
+            "title": "Redirecting to full-page components¶",
             "content": "Because Livewire uses Laravel's built-in redirection feature, you can use all of the redirection methods available to you in a typical Laravel application.\nFor example, if you are using a Livewire component as a full-page component for a route like so:\nYou can redirect to it simply by using the route path:",
             "examples": [
                 {
@@ -58,7 +58,7 @@
             ]
         },
         {
-            "title": "#Redirect to controller actions",
+            "title": "Redirect to controller actions¶",
             "content": "If you want to redirect to a route handled by a controller action, you can use redirectAction():\nYou can pass parameters to the controller action as the second argument:",
             "examples": [
                 {
@@ -72,7 +72,7 @@
             ]
         },
         {
-            "title": "#Flash messages",
+            "title": "Flash messages¶",
             "content": "In addition to allowing you to use Laravel's built-in redirection methods, Livewire also supports Laravel's session flash data utilities.\nTo pass flash data along with a redirect, you can use Laravel's session()->flash() method like so:\nAssuming the page being redirected to contain the following Blade snippet, the user will see a \"Post successfully updated.\" message after updating the post:",
             "examples": [
                 {
@@ -90,9 +90,9 @@
         "wire:submit"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -101,5 +101,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:47+00:00"
+    "scraped_at": "2026-07-22T16:18:22+00:00"
 }

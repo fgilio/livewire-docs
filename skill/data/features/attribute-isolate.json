@@ -6,12 +6,12 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-isolate",
     "sections": [
         {
-            "title": "#Why bundling matters",
+            "title": "Why bundling matters¶",
             "content": "Every component update in Livewire triggers a network request. By default, when multiple components trigger updates at the same time, they are bundled into a single request.\nThis results in fewer network connections to the server and can drastically reduce server load. In addition to the performance gains, this also unlocks features internally that require collaboration between multiple components (Reactive Properties, Modelable Properties, etc.)\nHowever, there are times when disabling this bundling is desired for performance reasons. That's where #[Isolate] comes in.",
             "examples": []
         },
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Isolate] attribute to any component that should send isolated requests:\nWith #[Isolate], this component's requests will no longer be bundled with other component updates, allowing them to execute in parallel.\nBundling is great for most scenarios, but if a component performs expensive operations, bundling can slow down the entire request. Isolating that component allows it to run in parallel with other updates.",
             "examples": [
                 {
@@ -21,12 +21,12 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Isolate] when:",
             "examples": []
         },
         {
-            "title": "#Example: Polling components",
+            "title": "Example: Polling components¶",
             "content": "Here's a practical example with multiple polling components:\nWithout #[Isolate], this component's slow API call would delay other components on the page. With it, the component polls independently without blocking others.",
             "examples": [
                 {
@@ -40,7 +40,7 @@
             ]
         },
         {
-            "title": "#Lazy components are isolated by default",
+            "title": "Lazy components are isolated by default¶",
             "content": "When using the #[Lazy] attribute, components are automatically isolated to load in parallel. You can disable this behavior if needed:\nNow multiple revenue components will bundle their lazy-load requests into a single network request.",
             "examples": [
                 {
@@ -50,7 +50,7 @@
             ]
         },
         {
-            "title": "#Trade-offs",
+            "title": "Trade-offs¶",
             "content": "Benefits:\nDrawbacks:",
             "examples": []
         }
@@ -59,9 +59,9 @@
         "wire:poll"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -70,5 +70,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:11+00:00"
+    "scraped_at": "2026-07-22T16:18:56+00:00"
 }

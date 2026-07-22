@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-ref",
     "sections": [
         {
-            "title": "#Dispatching events",
+            "title": "Dispatching events¶",
             "content": "Refs are a great way to target specific child components within Livewire's event system.\nConsider the following Livewire modal component that listens for a close event:\nBy adding wire:ref to the component tag, you now dispatch the close event directly to it using the ref: parameter:",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Accessing DOM elements",
+            "title": "Accessing DOM elements¶",
             "content": "When you add wire:ref to an HTML element, you can access it via the $refs magic property.\nConsider a character counter that updates in real-time:",
             "examples": [
                 {
@@ -30,7 +30,7 @@
             ]
         },
         {
-            "title": "#Accessing $wire",
+            "title": "Accessing $wire¶",
             "content": "If you wish to access $wire for a component with a ref, you can do so via the .$wire propert on the element:",
             "examples": [
                 {
@@ -40,7 +40,7 @@
             ]
         },
         {
-            "title": "#Streaming content",
+            "title": "Streaming content¶",
             "content": "Livewire supports streaming content directly to elements within a component using CSS selectors, however, wire:ref is a more convenient and discoverable approach.\nConsider the following component that streams an answer directly from an LLM as it's generated:",
             "examples": [
                 {
@@ -50,7 +50,7 @@
             ]
         },
         {
-            "title": "#Dynamic refs",
+            "title": "Dynamic refs¶",
             "content": "Refs work perfectly in loops and other dynamic contexts.\nHere's an example with multiple modal instances:",
             "examples": [
                 {
@@ -60,12 +60,12 @@
             ]
         },
         {
-            "title": "#Scoping behavior",
+            "title": "Scoping behavior¶",
             "content": "Refs are scoped to the current component. This means you can target any element within the component, but not elements in other components on the page.\nIf multiple elements have the same ref name within a component, the first one encountered will be used.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "This directive has no modifiers.",
             "examples": [
                 {
@@ -84,9 +84,9 @@
         "wire:show"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -95,5 +95,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:03+00:00"
+    "scraped_at": "2026-07-22T16:18:46+00:00"
 }

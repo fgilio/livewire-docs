@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-offline",
     "sections": [
         {
-            "title": "#Toggling classes",
+            "title": "Toggling classes¶",
             "content": "Adding the class modifier allows you to add a class to an element when the user loses their connection. The class will be removed again, once the user is back online:\nOr, using the .remove modifier, you can remove a class when a user loses their connection. In this example, the bg-green-300 class will be removed from the <div> while the user has lost their connection:",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Toggling attributes",
+            "title": "Toggling attributes¶",
             "content": "The .attr modifier allows you to add an attribute to an element when the user loses their connection. In this example, the \"Save\" button will be disabled while the user has lost their connection:",
             "examples": [
                 {
@@ -30,7 +30,7 @@
             ]
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -44,9 +44,9 @@
         "wire:offline"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -55,5 +55,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:02+00:00"
+    "scraped_at": "2026-07-22T16:18:44+00:00"
 }

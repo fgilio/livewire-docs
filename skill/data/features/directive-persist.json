@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/directive-persist",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Wrap an element with @persist and provide a unique name to preserve it across page visits:\nWhen navigating to a new page that also contains a persisted element with the same name, Livewire reuses the existing DOM element instead of creating a new one. For an audio player, this means playback continues uninterrupted.\nThe @persist directive only works when navigation is handled by Livewire's wire:navigate feature. Standard page loads will not preserve elements.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Common use cases",
+            "title": "Common use cases¶",
             "content": "Audio/video players\nChat widgets\nThird-party widgets",
             "examples": [
                 {
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "title": "#Placement in layouts",
+            "title": "Placement in layouts¶",
             "content": "Persisted elements should typically be placed outside Livewire components, commonly in your main layout:",
             "examples": [
                 {
@@ -44,7 +44,7 @@
             ]
         },
         {
-            "title": "#Preserving scroll position",
+            "title": "Preserving scroll position¶",
             "content": "For scrollable persisted elements, add wire:navigate:scroll to maintain scroll position:",
             "examples": [
                 {
@@ -54,7 +54,7 @@
             ]
         },
         {
-            "title": "#Active link highlighting",
+            "title": "Active link highlighting¶",
             "content": "Inside persisted elements, use wire:current instead of server-side conditionals to highlight active links:\nLearn more about wire:current →",
             "examples": [
                 {
@@ -64,12 +64,12 @@
             ]
         },
         {
-            "title": "#How it works",
+            "title": "How it works¶",
             "content": "When navigating with wire:navigate:\nLearn more about navigation →",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -84,9 +84,9 @@
         "wire:navigate"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -95,5 +95,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:25+00:00"
+    "scraped_at": "2026-07-22T16:19:16+00:00"
 }

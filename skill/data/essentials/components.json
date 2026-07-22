@@ -6,8 +6,8 @@
     "url": "https://livewire.laravel.com/docs/4.x/components",
     "sections": [
         {
-            "title": "#Creating components",
-            "content": "You can create a component using the make:livewire Artisan command:\nThis creates a single-file component at:\nresources/views/components/post/⚡create.blade.php\nYou might be wondering about the lightning bolt in the filename. This small touch serves a practical purpose: it makes Livewire components instantly recognizable in your editor's file tree and search results. Since it's a Unicode character, it works seamlessly across all platforms — Windows, macOS, Linux, Git, and your production servers.\nThe emoji is completely optional and if you find it outside your comfort zone you can disable it entirely in your config/livewire.php file:\nWhen creating components that will be used as full pages, use the pages:: namespace to organize them in a dedicated directory:\nThis creates the component at resources/views/pages/post/⚡create.blade.php. This organization makes it clear which components are pages versus reusable UI components.\nLearn more about using components as pages in the Page components section below. You can also register your own custom namespaces—see the Component namespaces documentation.\nAs your component or project grows, you might find the single-file approach limiting. Livewire offers a multi-file alternative that splits your component into separate files for better organization and IDE support.\nTo create a multi-file component, pass the --mfc flag:\nThis creates a directory with all related files together:\nLivewire provides the livewire:convert command to seamlessly convert components between single-file and multi-file formats.\nAuto-detect and convert:\nExplicitly convert to multi-file:\nThis will parse your single-file component, create a directory structure, split the files, and delete the original.\nExplicitly convert to single-file:\nThis combines all files back into a single file and deletes the directory.\nIf your multi-file component has a test file, you'll be prompted to confirm before conversion since test files cannot be preserved in the single-file format.\nSingle-file components (default):\nMulti-file components:\nClass-based components:",
+            "title": "Creating components¶",
+            "content": "You can create a component using the make:livewire Artisan command:\nThis creates a single-file component at:\nresources/views/components/post/⚡create.blade.php\nYou might be wondering about the lightning bolt in the filename. This small touch serves a practical purpose: it makes Livewire components instantly recognizable in your editor's file tree and search results. Since it's a Unicode character, it works seamlessly across all platforms — Windows, macOS, Linux, Git, and your production servers.\nThe emoji is completely optional and if you find it outside your comfort zone you can disable it entirely in your config/livewire.php file:\nIf you prefer class-based components from v3, you can restore the previous defaults with two config lines in config/livewire.php:\nWhen creating components that will be used as full pages, use the pages:: namespace to organize them in a dedicated directory:\nThis creates the component at resources/views/pages/post/⚡create.blade.php. This organization makes it clear which components are pages versus reusable UI components.\nLearn more about using components as pages in the Page components section below. You can also register your own custom namespaces—see the Component namespaces documentation.\nAs your component or project grows, you might find the single-file approach limiting. Livewire offers a multi-file alternative that splits your component into separate files for better organization and IDE support.\nTo create a multi-file component, pass the --mfc flag:\nThis creates a directory with all related files together:\nThe make:livewire command accepts the following options:\nLivewire provides the livewire:convert command to seamlessly convert components between single-file and multi-file formats.\nAuto-detect and convert:\nExplicitly convert to multi-file:\nThis will parse your single-file component, create a directory structure, split the files, and delete the original.\nExplicitly convert to single-file:\nThis combines all files back into a single file and deletes the directory.\nIf your multi-file component has a test file, you'll be prompted to confirm before conversion since test files cannot be preserved in the single-file format.\nSingle-file components (default):\nMulti-file components:\nClass-based components:",
             "examples": [
                 {
                     "code": "php artisan make:livewire post.create",
@@ -19,6 +19,10 @@
                 },
                 {
                     "code": "'make_command' => [ 'emoji' => false,],",
+                    "type": "class"
+                },
+                {
+                    "code": "'make_command' => [ 'type' => 'class', 'emoji' => false,],",
                     "type": "class"
                 },
                 {
@@ -48,8 +52,8 @@
             ]
         },
         {
-            "title": "#Rendering components",
-            "content": "You can include a Livewire component within any Blade template using the <livewire:component-name /> syntax:\nIf the component is located in a sub-directory, you can indicate this using the dot (.) character:\nresources/views/components/post/⚡create.blade.php\nFor namespaced components—like pages::—use the namespace prefix:\nTo pass data into a Livewire component, you can use prop attributes on the component tag:\nFor dynamic values or variables, prefix the attribute with a colon:\nData passed into components is received through the mount() method:\nYou can think of the mount() method as a class constructor. It runs when the component initializes, but not on subsequent requests within a page's session. You can learn more about mount() and other helpful lifecycle hooks within the lifecycle documentation.\nTo reduce boilerplate code, you can omit the mount() method and Livewire will automatically set any properties with names matching the passed values:\nThe $title property will not update automatically if the outer :title=\"$initialValue\" changes after the initial page load. This is a common point of confusion when using Livewire, especially for developers who have used JavaScript frameworks like Vue or React and assume these parameters behave like \"reactive props\" in those frameworks. But, don't worry, Livewire allows you to opt-in to making your props reactive.\nWhen using components as pages, you can pass route parameters directly to your component. The route parameters are automatically passed to the mount() method:\nLivewire also supports Laravel's route model binding:",
+            "title": "Rendering components¶",
+            "content": "You can include a Livewire component within any Blade template using the <livewire:component-name /> syntax:\nIf the component is located in a sub-directory, you can indicate this using the dot (.) character:\nresources/views/components/post/⚡create.blade.php\nFor namespaced components—like pages::—use the namespace prefix:\nRegardless of which format you use (single-file, multi-file, or class-based), the component name you use in Blade tags and routes is always the same. The ⚡ emoji prefix and file structure are stripped away automatically:\nThis means you can switch between formats without changing any of your Blade templates or routes.\nTo pass data into a Livewire component, you can use prop attributes on the component tag:\nFor dynamic values or variables, prefix the attribute with a colon:\nData passed into components is received through the mount() method:\nYou can think of the mount() method as a class constructor. It runs when the component initializes, but not on subsequent requests within a page's session. You can learn more about mount() and other helpful lifecycle hooks within the lifecycle documentation.\nTo reduce boilerplate code, you can omit the mount() method and Livewire will automatically set any properties with names matching the passed values:\nThe $title property will not update automatically if the outer :title=\"$initialValue\" changes after the initial page load. This is a common point of confusion when using Livewire, especially for developers who have used JavaScript frameworks like Vue or React and assume these parameters behave like \"reactive props\" in those frameworks. But, don't worry, Livewire allows you to opt-in to making your props reactive.\nWhen using components as pages, you can pass route parameters directly to your component. The route parameters are automatically passed to the mount() method:\nLivewire also supports Laravel's route model binding:",
             "examples": [
                 {
                     "code": "<livewire:component-name />",
@@ -98,7 +102,7 @@
             ]
         },
         {
-            "title": "#Page components",
+            "title": "Page components¶",
             "content": "Components can be routed to directly as full pages using Route::livewire(). This is one of Livewire's most powerful features, allowing you to build entire pages without traditional controllers.\nWhen a user visits /posts/create, Livewire will render the pages::post.create component inside your application's layout file.\nPage components work just like regular components, but they're rendered as full pages with access to:\nFor complete information about page components, including layouts, titles, and advanced routing, see the Pages documentation.",
             "examples": [
                 {
@@ -108,7 +112,7 @@
             ]
         },
         {
-            "title": "#Accessing data in views",
+            "title": "Accessing data in views¶",
             "content": "Livewire provides several ways to pass data to your component's Blade view. Each approach has different performance and security characteristics.\nThe simplest approach is using public properties, which are automatically available in your Blade template:\nProtected properties must be accessed with $this->:\nUnlike public properties, protected properties are never sent to the frontend and cannot be manipulated by users. This makes them safe for sensitive data. However, they are not persisted between requests, which limits their usefulness in most Livewire scenarios. They're best used for static values defined in the property declaration that you don't want exposed client-side.\nFor complete information about properties, including persistence behavior and advanced features, see the properties documentation.\nComputed properties are methods that act like memoized properties. They're perfect for expensive operations like database queries:\nNotice the $this-> prefix - this tells Livewire to call the method and cache the result for the current request only (not between requests). For more details, see the computed properties section in the properties documentation.\nSimilar to a controller, you can pass data directly to the view using the render() method:\nKeep in mind that render() runs on every component update, so avoid expensive operations here unless you need fresh data on every update.",
             "examples": [
                 {
@@ -138,7 +142,7 @@
             ]
         },
         {
-            "title": "#Organizing components",
+            "title": "Organizing components¶",
             "content": "While Livewire automatically discovers components in the default resources/views/components/ directory, you can customize where Livewire looks for components and organize them using namespaces.\nComponent namespaces allow you to organize components into dedicated directories with a clean reference syntax.\nBy default, Livewire provides two namespaces:\nYou can define additional namespaces in your config/livewire.php file:\nThen use them when creating, rendering, and routing:\nIf you want Livewire to discover components in additional directories beyond the defaults, you can configure them in your config/livewire.php file:\nNow Livewire will automatically discover components in all these directories.\nFor more dynamic scenarios (like package development or runtime configuration), you can register components, locations, and namespaces programmatically in a service provider:\nRegister an individual component:\nRegister a component directory:\nRegister a namespace:\nThis approach is useful when you need to register components conditionally or when building Laravel packages that provide Livewire components.\nFor class-based components, use the same methods but with the class parameter instead of path:",
             "examples": [
                 {
@@ -180,7 +184,7 @@
             ]
         },
         {
-            "title": "#Class-based components",
+            "title": "Class-based components¶",
             "content": "For teams migrating from Livewire v3 or those who prefer a more traditional Laravel structure, Livewire fully supports class-based components. This approach separates the PHP class and Blade view into different files in their conventional locations.\nThis creates two separate files:\napp/Livewire/CreatePost.php\nresources/views/livewire/create-post.blade.php\nUse class-based components when:\nUse single-file or multi-file components when:\nIf you want class-based components by default, configure it in config/livewire.php:",
             "examples": [
                 {
@@ -202,7 +206,7 @@
             ]
         },
         {
-            "title": "#Customizing component stubs",
+            "title": "Customizing component stubs¶",
             "content": "You can customize the files (or stubs) Livewire uses to generate new components by running:\nThis creates stub files in your application that you can modify:\nSingle-file component stubs:\nMulti-file component stubs:\nClass-based component stubs:\nAdditional stubs:\nOnce published, Livewire will automatically use your custom stubs when generating new components.",
             "examples": [
                 {
@@ -212,7 +216,7 @@
             ]
         },
         {
-            "title": "#Troubleshooting",
+            "title": "Troubleshooting¶",
             "content": "Symptom: Error message like \"Component [post.create] not found\" or \"Unable to find component\"\nSolutions:\nCommon causes:\nSymptom: Errors about duplicate class names when using single-file components\nSolution: This can happen if you have multiple single-file components with the same name in different directories. Either:",
             "examples": []
         }
@@ -229,9 +233,9 @@
         "wire:stubs"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "pages",
         "properties",
         "actions",
@@ -314,5 +318,5 @@
         "security",
         "troubleshooting"
     ],
-    "scraped_at": "2026-02-23T13:09:30+00:00"
+    "scraped_at": "2026-07-22T16:17:54+00:00"
 }

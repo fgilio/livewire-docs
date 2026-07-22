@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/attribute-title",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Apply the #[Title] attribute to a full-page component to set its title:\nThe browser tab will display \"Create Post\" as the page title.",
             "examples": [
                 {
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "title": "#Layout configuration",
+            "title": "Layout configuration¶",
             "content": "For the #[Title] attribute to work, your layout file must include a $title variable:\nThe ?? 'My App' provides a fallback title if none is specified.",
             "examples": [
                 {
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "#Dynamic titles",
+            "title": "Dynamic titles¶",
             "content": "For dynamic titles using component properties, use the title() method in the render() method:\nThe title will dynamically include the post's title.",
             "examples": [
                 {
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "title": "#Combining with layouts",
+            "title": "Combining with layouts¶",
             "content": "You can use both #[Title] and #[Layout] together:\nThis component will use the admin layout with \"Create Post\" as the title.",
             "examples": [
                 {
@@ -46,12 +46,12 @@
             ]
         },
         {
-            "title": "#When to use",
+            "title": "When to use¶",
             "content": "Use #[Title] when:\nUse title() method when:",
             "examples": []
         },
         {
-            "title": "#Example: CRUD pages",
+            "title": "Example: CRUD pages¶",
             "content": "Here's a complete example showing titles across CRUD operations:\nEach page has a contextually appropriate title that improves user experience and SEO.",
             "examples": [
                 {
@@ -73,22 +73,22 @@
             ]
         },
         {
-            "title": "#SEO considerations",
+            "title": "SEO considerations¶",
             "content": "Good page titles are crucial for SEO:",
             "examples": []
         },
         {
-            "title": "#Only for full-page components",
+            "title": "Only for full-page components¶",
             "content": "The #[Title] attribute only works for full-page components accessed via routes. Regular components rendered within other views don't use titles—they inherit the parent page's title.",
             "examples": []
         },
         {
-            "title": "#Learn more",
+            "title": "Learn more¶",
             "content": "For more information about full-page components, layouts, and routing, see the Pages documentation.",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "",
             "examples": [
                 {
@@ -103,9 +103,9 @@
         "wire:model"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -114,5 +114,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:10:20+00:00"
+    "scraped_at": "2026-07-22T16:19:09+00:00"
 }

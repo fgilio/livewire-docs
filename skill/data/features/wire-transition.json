@@ -6,7 +6,7 @@
     "url": "https://livewire.laravel.com/docs/4.x/wire-transition",
     "sections": [
         {
-            "title": "#Basic usage",
+            "title": "Basic usage¶",
             "content": "Add wire:transition to any element that may be added, removed, or changed during a Livewire update:\nWhen the comments appear or disappear, the browser will smoothly crossfade them instead of abruptly showing or hiding them.",
             "examples": [
                 {
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "title": "#Named transitions",
+            "title": "Named transitions¶",
             "content": "By default, Livewire assigns the view-transition-name match-element to elements with wire:transition. You can provide a custom name to enable more advanced transition effects:\nThis sets the element's view-transition-name CSS property to sidebar, which you can target with CSS for custom animations.",
             "examples": [
                 {
@@ -30,35 +30,43 @@
             ]
         },
         {
-            "title": "#Customizing animations with CSS",
+            "title": "Customizing animations with CSS¶",
             "content": "View Transitions are controlled entirely through CSS. You can customize the animation by targeting the view-transition pseudo-elements:\nThe View Transitions API provides three pseudo-elements you can style:",
             "examples": [
                 {
-                    "code": "/* Customize the transition for a specific element */::view-transition-old(sidebar) { animation: 300ms ease-out slide-out;} ::view-transition-new(sidebar) { animation: 300ms ease-in slide-in;} @keyframes slide-out { to { transform: translateX(-100%); }} @keyframes slide-in { from { transform: translateX(100%); }}",
+                    "code": "/* Customize the transition for a specific element */::view-transition-old(sidebar) { animation: 300ms ease-out both slide-out;} ::view-transition-new(sidebar) { animation: 300ms ease-in both slide-in;} @keyframes slide-out { to { transform: translateX(-100%); }} @keyframes slide-in { from { transform: translateX(100%); }}",
                     "type": "class"
                 }
             ]
         },
         {
-            "title": "#Transition types",
-            "content": "For more complex scenarios like step wizards where you need different animations based on direction, you can use transition types. This allows you to animate \"forward\" and \"backward\" differently.\nUse the $this->transition() method to set a transition type:\nThen target the type in your CSS using the :active-view-transition-type() selector:\nFor methods that always transition in the same direction, you can use the #[Transition] attribute instead:",
+            "title": "Transition types¶",
+            "content": "For more complex scenarios like step wizards where you need different animations based on direction, you can use transition types. This allows you to animate \"forward\" and \"backward\" differently.\nUse the $this->transition() method to set a transition type:\nThen target the type in your CSS using the :active-view-transition-type() selector:\nFor methods that always transition in the same direction, you can use the #[Transition] attribute instead:\nWhen a typed transition is active, Livewire treats the swap as a single orchestrated unit. Any unnamed wire:transition element inside that swap stays unnamed and rides along with its parent's snapshot, instead of becoming an independent group with the browser's default fade.\nIf you need an inner element to animate independently during a typed swap, give it an explicit name:\nOutside of a typed transition (a regular morph, like a validation error appearing), unnamed wire:transition elements continue to use match-element and animate independently as before.",
             "examples": [
                 {
                     "code": "class Wizard extends Component{ public $step = 1;  public function goToStep($step) { $this->transition(type: $step > $this->step ? 'forward' : 'backward');  $this->step = $step; }}",
                     "type": "class"
                 },
                 {
-                    "code": "html:active-view-transition-type(forward) { &::view-transition-old(content) { animation: 300ms ease-out slide-out-left; } &::view-transition-new(content) { animation: 300ms ease-in slide-in-right; }} html:active-view-transition-type(backward) { &::view-transition-old(content) { animation: 300ms ease-out slide-out-right; } &::view-transition-new(content) { animation: 300ms ease-in slide-in-left; }} @keyframes slide-out-left { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; }} @keyframes slide-in-right { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }} @keyframes slide-out-right { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; }} @keyframes slide-in-left { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }}",
+                    "code": "html:active-view-transition-type(forward) { &::view-transition-old(content) { animation: 300ms ease-out both slide-out-left; } &::view-transition-new(content) { animation: 300ms ease-in both slide-in-right; }} html:active-view-transition-type(backward) { &::view-transition-old(content) { animation: 300ms ease-out both slide-out-right; } &::view-transition-new(content) { animation: 300ms ease-in both slide-in-left; }} @keyframes slide-out-left { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; }} @keyframes slide-in-right { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }} @keyframes slide-out-right { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; }} @keyframes slide-in-left { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; }}",
                     "type": "class"
                 },
                 {
                     "code": "use Livewire\\Attributes\\Transition; class Wizard extends Component{ public $step = 1;  #[Transition(type: 'forward')] public function next() { $this->step++; }  #[Transition(type: 'backward')] public function previous() { $this->step--; }}",
                     "type": "class"
+                },
+                {
+                    "code": "<div wire:transition=\"slide\"> <p>Step content</p>  {{-- Unnamed: rides along with the parent's \"slide\" during a typed swap --}} <div wire:transition> <button>Save</button> </div></div>",
+                    "type": "class"
+                },
+                {
+                    "code": "<div wire:transition=\"badge\">...</div>",
+                    "type": "class"
                 }
             ]
         },
         {
-            "title": "#Skipping transitions",
+            "title": "Skipping transitions¶",
             "content": "Sometimes you may want to disable transitions for specific actions—for example, a \"reset\" button that should instantly jump to the first step without animation.\nUse $this->skipTransition() to disable transitions for the current request:\nOr use the #[Transition] attribute with skip: true:",
             "examples": [
                 {
@@ -72,17 +80,17 @@
             ]
         },
         {
-            "title": "#Respecting reduced motion",
+            "title": "Respecting reduced motion¶",
             "content": "Livewire automatically respects the user's prefers-reduced-motion setting. When enabled, transitions are disabled to avoid causing discomfort for users who are sensitive to motion.",
             "examples": []
         },
         {
-            "title": "#Browser support",
+            "title": "Browser support¶",
             "content": "View Transitions are supported in Chrome 111+, Edge 111+, and Safari 18+. In browsers that don't support View Transitions, elements will appear and disappear without animation—the functionality still works, just without the visual transition.\nFirefox 144+ supports basic view transitions, but does not support transition types.\nView browser support on caniuse.com →",
             "examples": []
         },
         {
-            "title": "#Reference",
+            "title": "Reference¶",
             "content": "This directive has no modifiers.",
             "examples": [
                 {
@@ -97,9 +105,9 @@
         "wire:transition"
     ],
     "related": [
-        "upgrading",
         "quickstart",
         "installation",
+        "upgrading",
         "components",
         "pages",
         "properties",
@@ -108,5 +116,5 @@
         "events",
         "lifecycle-hooks"
     ],
-    "scraped_at": "2026-02-23T13:09:58+00:00"
+    "scraped_at": "2026-07-22T16:18:40+00:00"
 }
